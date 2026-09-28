@@ -36,12 +36,24 @@ const OUTCOME_STAGES = [
   },
 ];
 
-export default function Process() {
+type ProcessProps = {
+  badgeText?: string;
+  className?: string;
+  titleLine1?: string;
+  titleLine2?: string;
+};
+
+export default function Process({
+  badgeText = "DELIVERY METHODOLOGY",
+  className = "",
+  titleLine1 = "From Strategy to",
+  titleLine2 = "Sustained Outcomes",
+}: ProcessProps = {}) {
   const sectionRef = useRef<HTMLElement>(null);
   useProcessStack(sectionRef);
 
   return (
-    <section className="process-section position-relative" ref={sectionRef}>
+    <section className={`process-section position-relative ${className}`} ref={sectionRef}>
       {/* Background Glow */}
       <img
         src="/images/6.png"
@@ -59,18 +71,18 @@ export default function Process() {
             <div className="process-sticky-left">
               <div className="process-badge d-inline-flex align-items-center gap-2 mb-3 process-anim-badge anim-reveal">
                 <img src="/images/h.png" alt="Icon" />
-                <span>DELIVERY METHODOLOGY</span>
+                <span>{badgeText}</span>
               </div>
 
               <h2 className="process-title text-white">
                 <span className="process-line-mask">
                   <span className="process-line-inner anim-text-reveal">
-                    From Strategy to
+                    {titleLine1}
                   </span>
                 </span>
                 <span className="process-line-mask">
                   <span className="process-line-inner anim-text-reveal">
-                    Sustained Outcomes
+                    {titleLine2}
                   </span>
                 </span>
               </h2>
