@@ -1,0 +1,45 @@
+/* Bootstrap */
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+/* Swiper */
+@import "swiper/css";
+@import "swiper/css/free-mode";
+@import "swiper/css/autoplay";
+
+/* Lenis */
+@import "lenis/dist/lenis.css";
+
+/* Site design system — source of truth from static site */
+@import "./style.css";
+@import "./responsive.css";
+
+/* Next.js / React adjustments that do not change visual design */
+/* Override Bootstrap reboot smooth scroll — Lenis + immediate route reset own scrolling */
+html {
+  scroll-behavior: auto !important;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* Ensure reduced-motion class still works after client hydration */
+body.reduce-motion .anim-reveal,
+body.reduce-motion .anim-text-reveal,
+body.reduce-motion [class*="-line-inner"],
+body.reduce-motion .hero-line-inner,
+body.reduce-motion .image-reveal-mask,
+body.reduce-motion .image-reveal-img {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+  clip-path: none !important;
+}
+
+
+/* Header Services dropdown uses <button class="nav-link"> (no Bootstrap JS) */
+button.nav-link.dropdown-toggle {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}

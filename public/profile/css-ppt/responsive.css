@@ -1,0 +1,452 @@
+@media (max-width:576px) {
+    .mainSlider {
+        display: none;
+    }
+
+    .mobile-container {
+        display: block;
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    .who-we-bottom.about-image {
+        margin-top: 0px;
+    }
+
+    .list-box-2 ul li,
+    .list-box-1 li {
+        font-size: 13px !important;
+    }
+
+    .about-mid,
+    .home-section,
+    .intro-section {
+        height: auto;
+    }
+
+    .vision-box-inner {
+        height: auto;
+    }
+
+    .what-box-info {
+        padding: 20px;
+        border-radius: 20px;
+        border-right: solid 1px var(--box-bg) !important;
+    }
+
+    .mission-vision-section .what-do-inner-box {
+        padding: 0px;
+    }
+
+    .about-mid span {
+        margin-top: 0px;
+    }
+
+    .about-mid {
+        padding: 0px 0px !important;
+    }
+
+    .mission-vision-section .vision-box-main {
+        margin-top: 0px;
+    }
+
+    .mission-vision-section .vision-box-main {
+        padding: 0px;
+        background: none;
+    }
+
+    /* .business-problem .list-box-1 {
+    margin-top: 0px;
+} */
+    .list-box-1 {
+        margin-top: 0px;
+    }
+
+    .problems-right-main .main-heading {
+        position: static;
+        padding: 20px;
+        border-radius: 20px;
+        border: 1px solid var(--box-bg);
+
+    }
+
+    .problems-right {
+        display: none;
+    }
+
+    .about-key-box .mb-40 {
+        margin-bottom: 15px;
+    }
+
+    .services-section .about-key-box,
+    .ServicesImg {
+        width: 100%;
+        max-width: 100% !important;
+    }
+
+    .about-right {
+        row-gap: 15px;
+    }
+
+    .service-inner {
+        padding: 0px 0 0 0;
+        height: auto;
+    }
+
+    .service2-listing-main {
+        margin-top: 10px;
+        border-radius: 20px;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .service-list-inner.one {
+        padding: 20px 20px 0px 20px;
+    }
+
+    .service-list-inner.two {
+        padding: 20px 20px 20px 20px;
+    }
+
+    .service-list-inner.three {
+        padding: 0px 20px;
+    }
+
+    .service-list-inner .list-box-1 {
+        margin-top: 14px;
+    }
+
+    .project-process-main,
+    .process-right-main {
+        height: 100%;
+    }
+
+    .project-process-main {
+        padding: 0px 0px 15px 0px;
+    }
+
+    .client-choose-section.mt-50,
+    .client-content-outer {
+        margin-top: 0px;
+    }
+
+    .tech-marquee-inner .list-box-2 {
+        margin-top: 9px;
+    }
+
+    .client-choose-right-img img {
+        height: 284px;
+        max-height: 100%;
+    }
+
+    .client-exp-inner-main {
+        margin-top: 0px;
+    }
+
+    .client-exp-inner-main.client-project-cat {
+        margin-top: 0px;
+    }
+
+    .service-inner .main-heading h2 {
+        text-align: left;
+    }
+
+    .client-exp-inner {
+        margin-top: 0px;
+    }
+
+    .partners-row .client-exp-box {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .partners-row .client-exp-img img {
+        height: 220px !important;
+    }
+
+    .Build-box-data p,
+    .CaseStudies-box .list-box-1 p {
+        font-size: 13px !important;
+    }
+
+    .Build-box h3 {
+        font-size: 16px !important;
+    }
+
+    .client-exp-inner-main {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .client-exp-inner.CaseStudies .client-exp-img {
+        width: 100%;
+        text-align: center;
+    }
+
+    .client-exp-inner-main.client-project-cat .partners-row .client-exp-img img {
+        width: 100%;
+    }
+
+    .client-exp-inner.CaseStudies .client-exp-data p {
+        display: block;
+    }
+
+    .client-exp-img img {
+        width: 80%;
+    }
+
+    .client-exp-inner.CaseStudies .client-exp-box .client-exp-data {
+        text-align: center;
+    }
+
+    .client-choose-main.only-tab-port {
+        gap: 15px;
+        grid-template-columns: repeat(1, auto);
+    }
+
+    .intro-section .list-box-2 ul {
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .intro-section li.fw-medium i {
+        font-size: 18px;
+    }
+
+    .intro-section .list-box-2 ul li {
+        padding: 8px 13px;
+        gap: 8px;
+        border-radius: 10px;
+    }
+
+    .Macbook-img {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .CaseStudies-head img {
+        max-width: 80%;
+        margin-bottom: 15px;
+    }
+
+    .clients-work-right .about-image {
+        max-width: 100%;
+    }
+
+    .row.CaseStudies-info-row {
+        margin-bottom: 0px;
+    }
+
+    .about-key-box .list-box-1 ul {
+        grid-template-columns: repeat(1, auto);
+    }
+
+    .services-section.Future-Ready .about-key-box .mb-40 {
+        margin-bottom: 0px;
+    }
+
+    .mission-vision-section .vision-box-inner .what-do-inner-box {
+        row-gap: 0px;
+    }
+
+    .contact-outer {
+        padding-top: 0px;
+    }
+
+    .contact-footer {
+        padding: 20px;
+        margin-right: 0px;
+        border-radius: 12px;
+        margin-top: 0px;
+    }
+
+    .Call-list {
+        gap: 14px;
+        list-style-type: none;
+    }
+
+    .list-box-1 h3,
+    .list-box-2 h3,
+    .process-right h2 {
+        font-size: 16px !important;
+    }
+
+    .CaseStudies-head .main-heading h5 {
+        line-height: 20px;
+    }
+
+    .contact-footer h3 {
+        font-size: 15px;
+        line-height: 26px;
+    }
+
+    .home-banner.thanks-slide .home-logo img {
+        width: 100%;
+        max-width: 110px !important;
+    }
+
+    .home-banner.first-slide h5 {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .row {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    .client-project-goal {
+        margin-top: 17px;
+    }
+
+    h1.text-main,
+    h2.text-main {
+        font-size: 26px;
+    }
+
+    .home-section2 .home-heading h2 {
+        font-size: 21px;
+    }
+
+    .main-heading h2 {
+        font-size: 21px !important;
+    }
+
+    .tech-marquee-inner h3 {
+        font-size: 15px;
+    }
+
+    .mission-vision-section .what-do-inner-box h3 {
+        font-size: 16px;
+    }
+
+    .contact-outer h5 {
+        font-size: 15px;
+    }
+
+    .home-section2 .present-main::before,
+    .client-exp-box {
+        border-radius: 15px;
+    }
+
+    .top-heading {
+        font-size: 12px;
+    }
+
+    .about-image img,
+    .about-image {
+        animation: none;
+    }
+
+    .about-key-box {
+        width: 100%;
+    }
+
+    .about-image {
+        opacity: 1;
+        transform: none;
+        border-radius: 15px;
+    }
+
+    .who-we-bottom.about-image img,
+    .who-we-bottom.about-image,
+    .clients-work-right .about-image,
+    .clients-work-right .about-image img,
+    .about-image.ServicesImg,
+    .contact-footer .contactImg img,
+    .client-exp-img img,
+    .client-choose-right-img img {
+        border-radius: 15px;
+    }
+
+    .home-section2 .present-main {
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    .about-key-box .list-box-1 {
+        padding: 16px;
+        border-radius: 15px;
+    }
+
+    .about-image img {
+        border-radius: 15px;
+    }
+
+    .main-heading h2 {
+        font-size: 19px !important;
+    }
+
+    .problems-right-main p {
+        font-size: 14px;
+    }
+
+    .what-box-info {
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    .mission-vision-section .img-box img {
+        border-radius: 15px;
+    }
+
+    .home-banner.thanks-slide .home-logo {
+        margin-top: 0px;
+    }
+
+    .home-banner.thanks-slide h5 {
+        font-size: 16px;
+        line-height: 28px;
+    }
+
+    .home-banner.thanks-slide h2.text-main {
+        font-size: 24px;
+    }
+
+    .home-banner {
+        padding: 50px 20px;
+        justify-content: center;
+        gap: 31px;
+        min-height: auto;
+    }
+
+    .problems-right-main {
+        margin-top: 16px;
+    }
+
+    .about-right.clients-work-right {
+        margin-top: 9px;
+    }
+
+    .about-mid.vision-left .main-heading,
+    .about-mid.vision-left .main-heading h2 {
+        text-align: left;
+    }
+
+    .service-inner,
+    .client-exp-inner-main .main-heading,
+    .service-inner .main-heading {
+        align-items: flex-start;
+    }
+
+    .mobile-bg-color {
+        background-color: #092030 !important;
+    }
+
+    .mobile-bg-dark {
+        background-color: var(--box-dark-bg) !important;
+    }
+
+    .mobile-container .client-choose-box {
+        display: flex;
+        align-items: center;
+        column-gap: 12px;
+    }
+
+    .mobile-container .client-choose-box .client-choose-icon {
+        margin-bottom: 0;
+        width: 45px;
+        height: 45px;
+    }
+
+}
