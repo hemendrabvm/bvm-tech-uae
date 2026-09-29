@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { useProcessStack } from "@/animations/usePageAnimations";
+import { useProcessStack, useImageReveals } from "@/animations/usePageAnimations";
 
 const OUTCOME_STAGES = [
   {
@@ -48,7 +48,10 @@ const OUTCOME_STAGES = [
 
 export default function Process() {
   const sectionRef = useRef<HTMLElement>(null);
+
+  // Hook into the site's master GSAP animations
   useProcessStack(sectionRef);
+  useImageReveals(sectionRef);
 
   return (
     <section className="process-section position-relative" ref={sectionRef}>
@@ -91,7 +94,7 @@ export default function Process() {
             </div>
           </div>
 
-          {/* Stacking Cards on Right with Visual Thumbnail */}
+          {/* Stacking Cards on Right with Animated Image Reveal Thumbnails */}
           <div className="col-12 col-lg-7">
             <div className="process-cards-stack">
               {OUTCOME_STAGES.map((stage) => (
@@ -99,19 +102,22 @@ export default function Process() {
                   key={stage.num}
                   className={`process-stack-card ${stage.className} process-anim-card`}
                 >
-                  {/* Left: Visual Thumbnail */}
+                  {/* Left: Visual Thumbnail with Signature Reveal Mask */}
                   <div className="process-card-thumb">
-                    <img
-                      src={stage.img}
-                      alt={stage.name}
-                      className="process-thumb-img"
-                    />
+                    <div className="image-reveal-wrapper">
+                      <div className="image-reveal-mask" />
+                      <img
+                        src={stage.img}
+                        alt={stage.name}
+                        className="img-fluid image-reveal-img process-thumb-img"
+                      />
+                    </div>
                   </div>
 
                   {/* Center: Stage Content & Outcome Tag */}
                   <div className="process-card-content">
                     <div className="process-card-header">
-                      <h3 className="process-card-name text-white">{stage.name}</h3>
+                      <h3 className="process-card-name text-white mb-0">{stage.name}</h3>
                       <span className="process-outcome-tag">{stage.outcome}</span>
                     </div>
                     <p className="process-card-desc text-bright-muted">{stage.desc}</p>
