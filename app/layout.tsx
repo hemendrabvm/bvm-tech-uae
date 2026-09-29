@@ -6,9 +6,12 @@ import Footer from "@/components/Footer/Footer";
 import Preloader from "@/components/Preloader/Preloader";
 
 export const metadata: Metadata = {
-  title: "BVM Tech Limited | Enterprise Software UAE",
+  title: {
+    default: "BVM Tech Limited | Enterprise Technology, Consulting & Digital Engineering",
+    template: "%s | BVM Tech Limited",
+  },
   description:
-    "Enterprise software development company for UAE businesses — ERP, CRM, mobile apps, and AI, built and supported end to end.",
+    "Enterprise technology, consulting and digital engineering company in Dubai (DIFC). BVM Tech helps organizations modernize core systems, adopt AI, connect enterprise platforms, and scale technology delivery across the GCC and global markets.",
 
   icons: {
     // Standard browser favicon

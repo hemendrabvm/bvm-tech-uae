@@ -9,7 +9,7 @@ const TOP_CLIENT_STORIES = [
     img: "/images/m1.png",
     alt: "Kings Furniture In-House Inventory Management System",
     tags: ["PHP", "MySQL", "JavaScript", "Role-Based Access"],
-    title: "Kings Furniture — In-House Inventory Management System",
+    title: "Kings Furniture - In-House Inventory Management System",
     desc: "A custom inventory management platform developed to centralize store operations, manage invoices and inventory, and provide role-based access through a structured PHP and MySQL architecture.",
     stats: [
       { target: "1", label: "Centralized Platform", suffix: "" },
@@ -23,7 +23,7 @@ const TOP_CLIENT_STORIES = [
     img: "/images/yuye.png",
     alt: "Royal Care FS Furniture Protection Platform",
     tags: ["Node.js", "Next.js", "MySQL", "Claims Engine"],
-    title: "Royal Care FS — Furniture Protection & Claims Platform",
+    title: "Royal Care FS - Furniture Protection & Claims Platform",
     desc: "A responsive digital platform developed to present furniture protection plans, simplify claims and service information, and deliver a seamless customer experience across devices.",
     stats: [
       { target: "3", label: "Protection & Claims Areas", suffix: " Core" },
@@ -37,7 +37,7 @@ const TOP_CLIENT_STORIES = [
     img: "/images/m3.png",
     alt: "HRMS ERP Enterprise Operations Platform",
     tags: ["Node.js", "MySQL", "AWS Cloud", "WPS Payroll"],
-    title: "HRMS ERP — Enterprise Workforce & Payroll Platform",
+    title: "HRMS ERP - Enterprise Workforce & Payroll Platform",
     desc: "A smart centralized business platform combining employee management, payroll automation, attendance tracking, employee self-service, reporting, and workflow approvals.",
     stats: [
       { target: "70", label: "Reduction in Manual HR Work", suffix: "%" },
@@ -51,7 +51,7 @@ const TOP_CLIENT_STORIES = [
     img: "/images/m7.png",
     alt: "Realty Guru Property Management Platform",
     tags: ["PHP", "CodeIgniter", "MySQL", "Trust Accounting"],
-    title: "Realty Guru — Smart Property Management Platform",
+    title: "Realty Guru - Smart Property Management Platform",
     desc: "All-in-one real estate management platform designed to streamline property operations, maintenance, inspections, contractor management, accounting, reporting, and communication.",
     stats: [
       { target: "100", label: "Centralized Operations", suffix: "%" },
@@ -65,7 +65,7 @@ const TOP_CLIENT_STORIES = [
     img: "/images/m4.png",
     alt: "Just Pack Smart Property Rental Platform",
     tags: ["PHP", "Laravel", "MySQL", "Bootstrap"],
-    title: "Just Pack — Smart Property Rental Platform",
+    title: "Just Pack - Smart Property Rental Platform",
     desc: "A modern rental platform developed for the Egypt market that helps users discover, list, and manage rental properties with a smooth digital experience.",
     stats: [
       { target: "50", label: "Faster Rental Inquiries", suffix: "%" },
