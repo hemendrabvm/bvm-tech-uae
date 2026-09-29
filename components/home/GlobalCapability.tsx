@@ -1,34 +1,61 @@
 "use client";
 
 import Link from "next/link";
+import { type MouseEvent } from "react";
+
+const STRATEGIC_HUBS = [
+  {
+    title: "UAE",
+    subtitle: "Regional Strategy & Client Engagement",
+    badge: "DIFC REGIONAL HQ",
+    image: "/images/zj1.png",
+    cardTheme: "hub-cyan",
+    pinIcon: "fa-location-dot",
+    href: "/contact",
+  },
+  {
+    title: "United Kingdom",
+    subtitle: "International Business Presence",
+    badge: "INTERNATIONAL PRESENCE",
+    image: "/images/zj2.png",
+    cardTheme: "hub-red",
+    pinIcon: "fa-landmark",
+    href: "/contact",
+  },
+  {
+    title: "Global Engineering & Delivery",
+    subtitle: "Technology Capability at Scale",
+    badge: "CENTRES OF EXCELLENCE",
+    image: "/images/zj3.png",
+    cardTheme: "hub-cyan",
+    pinIcon: "fa-network-wired",
+    href: "/contact",
+  },
+];
 
 export default function GlobalCapability() {
+  // Cursor coordinate tracking for the theme's radial spotlight hover effect
+  const handleMouseMove = (e: MouseEvent<HTMLAnchorElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    card.style.setProperty("--mouse-x", `${x}px`);
+    card.style.setProperty("--mouse-y", `${y}px`);
+  };
+
   return (
-    <section className="global-reach-section position-relative" aria-labelledby="gr-title">
+    <section className="global-presence-section position-relative" aria-labelledby="gr-title">
       {/* Background Ambient Glows */}
-      <img
-        src="/images/3.png"
-        className="who-bg-glow who-bg-glow-left"
-        alt=""
-        onError={(e) => {
-          (e.target as HTMLImageElement).style.display = "none";
-        }}
-      />
-      <img
-        src="/images/4.png"
-        className="who-bg-glow who-bg-glow-right"
-        alt=""
-        onError={(e) => {
-          (e.target as HTMLImageElement).style.display = "none";
-        }}
-      />
+      <div className="presence-glow-left" />
+      <div className="presence-glow-right" />
 
       <div className="container position-relative z-10">
-        {/* Header Block matching the site's design */}
-        <div className="reach-head">
-          <div className="who-badge d-inline-flex align-items-center gap-2 mb-3 who-anim-elem anim-reveal">
+        {/* Header Block matching the site's kinetic animation */}
+        <div className="presence-head">
+          <div className="who-badge d-inline-flex align-items-center gap-2 who-anim-elem anim-reveal">
             <img src="/images/h.png" alt="Icon" />
-            <span>GLOBAL PRESENCE</span>
+            <span>GLOBAL PRESENCE &amp; DELIVERY</span>
           </div>
 
           <h2 id="gr-title" className="who-title text-white mb-3">
@@ -38,166 +65,96 @@ export default function GlobalCapability() {
               </span>
             </span>
             <span className="services-line-mask">
-              <span className="services-line-inner anim-text-reveal">
-                Global Capability.
+              <span className="services-line-inner anim-text-reveal text-cyan-highlight">
+                Global engineering.
               </span>
             </span>
           </h2>
 
-          <p className="services-subtext mx-auto anim-reveal">
-            On-ground teams in the UAE and UK, backed by engineering and delivery that scales across borders.
+          <p className="presence-lead anim-reveal">
+            Regional engagement in the UAE, international presence in the United Kingdom, and global engineering capability designed to scale with your business.
           </p>
         </div>
 
-        {/* 3-Column Stage */}
-        <div className="reach-stage">
-          {/* Left Column: Regional On-Ground Hubs */}
-          <div className="reach-col">
-            {/* UAE */}
-            <article className="reach-card spotlight-card anim-reveal">
-              <div className="reach-top">
-                <span className="reach-ico text-red">
-                  <i className="fa-solid fa-location-dot" />
-                </span>
-                <div>
-                  <h3 className="reach-card-title">UAE</h3>
-                  <p className="reach-sub">Close to clients and decisions</p>
-                </div>
-              </div>
-              <ul className="reach-chips">
-                <li className="reach-chip-item">Strategy</li>
-                <li className="reach-chip-item">Advisory</li>
-                <li className="reach-chip-item">Client engagement</li>
-                <li className="reach-chip-item">GCC solution consulting</li>
-              </ul>
-            </article>
+        {/* 3 Symmetrical Strategic Hub Cards with Image Reveal Masks */}
+        <div className="row g-4 align-items-stretch mb-2">
+          {STRATEGIC_HUBS.map((hub) => (
+            <div className="col-12 col-lg-4" key={hub.title}>
+              <Link
+                href={hub.href}
+                className={`presence-hub-card ${hub.cardTheme} anim-reveal`}
+                onMouseMove={handleMouseMove}
+              >
+                {/* Photo Header with Site's Signature Image Reveal System */}
+                <div className="presence-hub-visual">
+                  <div className="presence-hub-status-tag">
+                    <span className="live-pulse-dot" />
+                    <span>{hub.badge}</span>
+                  </div>
 
-            {/* United Kingdom */}
-            <article className="reach-card spotlight-card anim-reveal">
-              <div className="reach-top">
-                <span className="reach-ico text-cyan">
-                  <i className="fa-solid fa-globe" />
-                </span>
-                <div>
-                  <h3 className="reach-card-title">United Kingdom</h3>
-                  <p className="reach-sub">A European base for growth</p>
-                </div>
-              </div>
-              <ul className="reach-chips">
-                <li className="reach-chip-item">International presence</li>
-                <li className="reach-chip-item">Business engagement</li>
-              </ul>
-            </article>
-          </div>
+                  <div className="presence-hub-pin-icon">
+                    <i className={`fa-solid ${hub.pinIcon}`} />
+                  </div>
 
-          {/* Center Column: Globe PNG Image */}
-          <div className="reach-mid anim-reveal">
-            <img
-              src="/images/globe.png"
-              alt="BVM Tech Global Reach Connected Globe"
-              className="reach-globe-img"
-            />
-          </div>
-
-          {/* Right Column: Global Engineering & Delivery Modes */}
-          <div className="reach-col">
-            {/* Global Engineering & Delivery */}
-            <article className="reach-card spotlight-card anim-reveal">
-              <div className="reach-top">
-                <span className="reach-ico text-cyan">
-                  <i className="fa-solid fa-code" />
-                </span>
-                <div>
-                  <h3 className="reach-card-title">Global Engineering &amp; Delivery</h3>
-                  <p className="reach-sub">One delivery engine for every region</p>
+                  <div className="image-reveal-wrapper">
+                    <div className="image-reveal-mask" />
+                    <img
+                      src={hub.image}
+                      alt={hub.title}
+                      className="img-fluid image-reveal-img presence-hub-img"
+                    />
+                  </div>
                 </div>
-              </div>
-              <ul className="reach-chips">
-                <li className="reach-chip-item">Engineering</li>
-                <li className="reach-chip-item">Enterprise platforms</li>
-                <li className="reach-chip-item">AI &amp; Data</li>
-                <li className="reach-chip-item">Cloud</li>
-                <li className="reach-chip-item">Quality Engineering</li>
-                <li className="reach-chip-item">Managed services</li>
-              </ul>
-            </article>
 
-            {/* Transformation Projects & Models */}
-            <article className="reach-card spotlight-card anim-reveal">
-              <div className="reach-top">
-                <span className="reach-ico text-red">
-                  <i className="fa-solid fa-arrows-rotate" />
-                </span>
-                <div>
-                  <h3 className="reach-card-title">Transformation Projects</h3>
-                  <p className="reach-sub">Flexible ways to extend your team</p>
+                {/* Card Content Body */}
+                <div className="presence-hub-body">
+                  <div>
+                    <h3 className="presence-hub-title">{hub.title}</h3>
+                    <p className="presence-hub-sub">{hub.subtitle}</p>
+                  </div>
+
+                  <div className="presence-hub-action-row">
+                    <span className="presence-hub-action-text">Explore Engagement</span>
+                    <span className="presence-hub-action-btn">
+                      <i className="fa-solid fa-arrow-right" />
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <ul className="reach-chips">
-                <li className="reach-chip-item">Managed Services</li>
-                <li className="reach-chip-item">Dedicated Teams</li>
-                <li className="reach-chip-item">Specialist Technology Resources</li>
-              </ul>
-            </article>
-          </div>
+              </Link>
+            </div>
+          ))}
         </div>
 
-        {/* Action Buttons using BVM Master Theme Buttons */}
-        {/* <div className="reach-cta-row anim-reveal">
-          <Link
-            href="/services"
-            className="btn btn-sky-blue rounded-pill fw-semibold magnetic-btn d-inline-flex align-items-center justify-content-center px-4 py-3"
-          >
-            <span className="btn-text">Explore Services</span>
-            <span className="arrow-icon-wrapper">
-              <svg
-                className="diagonal-arrow-svg"
-                width="14"
-                height="14"
-                viewBox="0 0 14 14"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-              >
-                <path
-                  d="M2 12L12 2M12 2H4M12 2V10"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+        {/* Short Bottom Dock Line: Project Delivery | Managed Services | Dedicated Teams | Specialist Resources */}
+        <div className="presence-dock-wrapper anim-reveal">
+          <div className="presence-dock-capsule">
+            <span className="presence-dock-item">
+              <i className="fa-solid fa-file-lines" />
+              <span>Project Delivery</span>
             </span>
-            <span className="btn-sheen" />
-          </Link>
 
-          <Link
-            href="/contact"
-            className="btn btn-consult-red rounded-pill fw-semibold magnetic-btn d-inline-flex align-items-center justify-content-center px-4 py-3"
-          >
-            <span className="btn-text">Book Free Consultation</span>
-            <span className="arrow-icon-wrapper">
-              <svg
-                className="diagonal-arrow-svg"
-                width="14"
-                height="14"
-                viewBox="0 0 14 14"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-              >
-                <path
-                  d="M2 12L12 2M12 2H4M12 2V10"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+            <span className="presence-dock-sep">|</span>
+
+            <span className="presence-dock-item">
+              <i className="fa-solid fa-gear" />
+              <span>Managed Services</span>
             </span>
-            <span className="btn-sheen" />
-          </Link>
-        </div> */}
+
+            <span className="presence-dock-sep">|</span>
+
+            <span className="presence-dock-item">
+              <i className="fa-solid fa-users" />
+              <span>Dedicated Teams</span>
+            </span>
+
+            <span className="presence-dock-sep">|</span>
+
+            <span className="presence-dock-item">
+              <i className="fa-solid fa-server" />
+              <span>Specialist Resources</span>
+            </span>
+          </div>
+        </div>
       </div>
     </section>
   );

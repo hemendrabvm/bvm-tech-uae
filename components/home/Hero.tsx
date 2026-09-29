@@ -3,9 +3,11 @@
 import { useRef } from "react";
 import Link from "next/link";
 import { useHeroAnimation } from "@/animations/useHeroAnimation";
+import { useAdvisorModal } from "@/components/AdvisorModal/AdvisorModalContext";
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
+  const { openAdvisorModal } = useAdvisorModal();
   useHeroAnimation(heroRef);
 
   return (
@@ -34,60 +36,55 @@ export default function Hero() {
       <div className="container position-relative z-10">
         <div className="row min-vh-80 align-items-center">
           <div className="col-12 col-lg-12 text-start position-relative hero-text-container">
-            {/* Top Eyebrow Badge with Original Icon */}
+            {/* 1. Compact Eyebrow Badge */}
             <div className="hero-shimmer-badge hero-anim-badge d-inline-flex align-items-center gap-2 mb-4">
               <img src="/images/h.png" alt="Icon" />
-              <span className="badge-text">ENTERPRISE TECHNOLOGY &amp; CONSULTING</span>
+              <span className="badge-text">GLOBAL ADVISORY &amp; DIGITAL ENGINEERING</span>
               <span className="shimmer-line" aria-hidden="true" />
             </div>
 
-          {/* Headline with Signature Skyline Animated Pill before "Engineered" */}
+            {/* 2. Balanced 3-Line Headline */}
             <h1 className="hero-headline text-white mb-4">
               <span className="hero-line-mask">
-                <span className="hero-line-inner">Technology transformation.</span>
+                <span className="hero-line-inner">From Strategy</span>
               </span>
               <span className="hero-line-mask">
                 <span className="hero-line-inner">
                   <span className="skyline-pill-container">
                     <span className="skyline-pill" />
                   </span>{" "}
-                  Engineered around
+                  to Scale.
                 </span>
               </span>
               <span className="hero-line-mask">
-                <span className="hero-line-inner">your business.</span>
+                <span className="hero-line-inner">Built for Business.</span>
               </span>
             </h1>
 
-            {/* Supporting Content */}
-            <p className="hero-subtext mb-4 hero-anim-subtext">
-              BVM Tech helps organizations modernize enterprise systems, adopt AI, connect technology ecosystems, build digital platforms and scale technology delivery across the GCC and global markets.
-            </p>
-
-            {/* Supporting Line: 5 Core Capabilities */}
-            <div className="hero-capabilities-strip hero-anim-subtext">
-              <span className="hero-cap-item">
-                Strategy <span className="hero-cap-sep">|</span>
-              </span>
-              <span className="hero-cap-item">
-                Enterprise Platforms <span className="hero-cap-sep">|</span>
-              </span>
-              <span className="hero-cap-item">
-                AI &amp; Data <span className="hero-cap-sep">|</span>
-              </span>
-              <span className="hero-cap-item">
-                Digital Engineering <span className="hero-cap-sep">|</span>
-              </span>
-              <span className="hero-cap-item">
-                Managed Delivery
-              </span>
+            {/* 3. Five Core Enterprise Pillars */}
+            <div className="hero-pillars-bar hero-anim-subtext">
+              <span className="hero-pillar-item">Advisory</span>
+              <span className="hero-pillar-sep">&bull;</span>
+              <span className="hero-pillar-item">Enterprise Platforms</span>
+              <span className="hero-pillar-sep">&bull;</span>
+              <span className="hero-pillar-item">AI &amp; Data</span>
+              <span className="hero-pillar-sep">&bull;</span>
+              <span className="hero-pillar-item">Digital Engineering</span>
+              <span className="hero-pillar-sep">&bull;</span>
+              <span className="hero-pillar-item">Global Delivery</span>
             </div>
 
-            {/* Action Buttons */}
+            {/* 4. Supporting Content */}
+            <p className="hero-subtext mb-5 hero-anim-subtext">
+              BVM brings together enterprise platforms, AI, digital engineering and global delivery to modernize technology, accelerate transformation and create measurable business outcomes.
+            </p>
+
+            {/* 5. Action Buttons */}
             <div className="hero-actions d-flex flex-wrap gap-3">
-              {/* Primary CTA */}
-              <Link
-                href="/contact"
+              {/* Primary CTA: Talk to an Advisor (Modal Popup) */}
+              <button
+                type="button"
+                onClick={openAdvisorModal}
                 className="btn btn-consult-red hero-anim-btn d-inline-flex align-items-center justify-content-center px-4 py-3 rounded-pill fw-semibold magnetic-btn"
               >
                 <span className="btn-text">Talk to an Advisor</span>
@@ -111,14 +108,14 @@ export default function Hero() {
                   </svg>
                 </span>
                 <span className="btn-sheen" />
-              </Link>
+              </button>
 
-              {/* Secondary CTA */}
+              {/* Secondary CTA: Explore Our Capabilities */}
               <Link
                 href="#what-we-do"
                 className="btn btn-sky-blue hero-anim-btn d-inline-flex align-items-center justify-content-center px-4 py-3 rounded-pill fw-semibold magnetic-btn"
               >
-                <span className="btn-text">Explore What We Do</span>
+                <span className="btn-text">Explore Our Capabilities</span>
                 <span className="arrow-icon-wrapper">
                   <svg
                     className="diagonal-arrow-svg"
@@ -141,14 +138,42 @@ export default function Hero() {
                 <span className="btn-sheen" />
               </Link>
             </div>
+
+           {/* 6. Location Footprint Strip (Cleanly Docked Below Buttons) */}
+            <div className="hero-footprint-dock hero-anim-subtext">
+              <div className="hero-footprint-row">
+                <span className="hero-footprint-node">
+                  <i className="fa-solid fa-location-dot text-cyan" />
+                  <span>UAE</span>
+                </span>
+
+                <span className="hero-footprint-sep">|</span>
+
+                <span className="hero-footprint-node">
+                  <i className="fa-solid fa-landmark text-red" />
+                  <span>United Kingdom</span>
+                </span>
+
+                <span className="hero-footprint-sep">|</span>
+
+                <span className="hero-footprint-node">
+                  <i className="fa-solid fa-globe text-cyan" />
+                  <span>Global Engineering &amp; Delivery</span>
+                </span>
+              </div>
+
+              <p className="hero-footprint-tagline">
+                Local engagement. Global engineering.
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Right Floating Hero Banner */}
+        {/* Right Floating Phone Mockup */}
         <div className="hero-banner-absolute">
           <img
             src="/images/zzz.png"
-            alt="Enterprise Technology Transformation"
+            alt="Enterprise Technology & Strategy"
             className="img-fluid hero-banner-img"
           />
         </div>

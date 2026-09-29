@@ -4,26 +4,87 @@ import { useRef } from "react";
 import Link from "next/link";
 import { useTechAnimation } from "@/animations/useTechAnimation";
 
-/* Outer Orbit: 8 Logos (Facilitybot, AWS, Atlassian, Dynamics 365, Oracle, Microsoft, Odoo, Salesforce) */
+/* Outer Orbit: 8 Logos (Radius: 540px) */
 const OUTER_ORBIT = [
-  { angle: "0deg", src: "/images/tech-logo/tech-logo1.png", name: "Coupa" },
-  { angle: "45deg", src: "/images/tech-logo/tech-logo2.svg", name: "AWS" },
-  { angle: "90deg", src: "/images/tech-logo/tech-logo3.svg", name: "Atlassian" },
-  { angle: "135deg", src: "/images/tech-logo/tech-logo5.png", name: "Microsoft Dynamics 365" },
-  { angle: "180deg", src: "/images/tech-logo/tech-logo6.svg", name: "Oracle" },
-  { angle: "225deg", src: "/images/tech-logo/tech-logo7.png", name: "Microsoft" },
-  { angle: "270deg", src: "/images/tech-logo/tech-logo8.svg", name: "Odoo" },
-  { angle: "315deg", src: "/images/tech-logo/tech-logo9.png", name: "Salesforce" },
+  {
+    angle: "0deg",
+    name: "SAP",
+    src: "/images/tech-logo/tech-logo10.png",
+  },
+  {
+    angle: "45deg",
+    name: "Oracle",
+    src: "/images/tech-logo/tech-logo6.svg",
+  },
+  {
+    angle: "90deg",
+    name: "Microsoft Dynamics 365",
+    src: "/images/tech-logo/tech-logo5.png",
+  },
+  {
+    angle: "135deg",
+    name: "Odoo",
+    src: "/images/tech-logo/tech-logo8.svg",
+  },
+  {
+    angle: "180deg",
+    name: "Salesforce",
+    src: "/images/tech-logo/tech-logo9.png",
+  },
+  {
+    angle: "225deg",
+    name: "ServiceNow",
+    src: "https://upload.wikimedia.org/wikipedia/commons/5/57/ServiceNow_logo.svg",
+  },
+  {
+    angle: "270deg",
+    name: "Creatio",
+    src: "/images/tech-logo/tech-logo11.svg",
+  },
+  {
+    angle: "315deg",
+    name: "Zoho",
+    src: "/images/tech-logo/tech-logo15.svg",
+  },
 ];
 
-/* Inner Orbit: 6 Logos (SAP, Creatio, Snowflake, UiPath, Facilitybot, Zoho) */
+/* Inner Orbit: 7 Logos (Radius: 410px) */
 const INNER_ORBIT = [
-  { angle: "30deg", src: "/images/tech-logo/tech-logo10.png", name: "SAP" },
-  { angle: "90deg", src: "/images/tech-logo/tech-logo11.svg", name: "Creatio" },
-  { angle: "150deg", src: "/images/tech-logo/tech-logo12.svg", name: "Snowflake" },
-  { angle: "210deg", src: "/images/tech-logo/tech-logo13.svg", name: "UiPath" },
-  { angle: "270deg", src: "/images/tech-logo/tech-logo14.png", name: "Facilitybot" },
-  { angle: "330deg", src: "/images/tech-logo/tech-logo15.svg", name: "Zoho" },
+  {
+    angle: "25deg",
+    name: "Microsoft Azure",
+    src: "https://upload.wikimedia.org/wikipedia/commons/a/a8/Microsoft_Azure_Logo.svg",
+  },
+  {
+    angle: "76.4deg",
+    name: "AWS",
+    src: "/images/tech-logo/tech-logo2.svg",
+  },
+  {
+    angle: "127.8deg",
+    name: "Databricks",
+    src: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Databricks-logo.svg",
+  },
+  {
+    angle: "179.3deg",
+    name: "Snowflake",
+    src: "/images/tech-logo/tech-logo12.svg",
+  },
+  {
+    angle: "230.7deg",
+    name: "Atlassian",
+    src: "/images/tech-logo/tech-logo3.svg",
+  },
+  {
+    angle: "282.1deg",
+    name: "UiPath",
+    src: "/images/tech-logo/tech-logo13.svg",
+  },
+  {
+    angle: "333.5deg",
+    name: "FacilityBot",
+    src: "/images/tech-logo/tech-logo14.png",
+  },
 ];
 
 export default function Technology() {
@@ -38,7 +99,7 @@ export default function Technology() {
         <div className="tech-orbit-track track-outer">
           {OUTER_ORBIT.map((item) => (
             <div
-              key={item.src}
+              key={`${item.name}-${item.angle}`}
               className="tech-icon-orbit"
               style={
                 {
@@ -55,11 +116,11 @@ export default function Technology() {
           ))}
         </div>
 
-        {/* Inner Orbit (6 items) */}
+        {/* Inner Orbit (7 items) */}
         <div className="tech-orbit-track track-inner">
           {INNER_ORBIT.map((item) => (
             <div
-              key={item.src}
+              key={`${item.name}-${item.angle}`}
               className="tech-icon-orbit"
               style={
                 {
@@ -79,24 +140,28 @@ export default function Technology() {
 
       {/* Center Content Container */}
       <div className="tech-content-container text-center">
+        {/* Badge */}
         <div className="tech-badge d-inline-flex align-items-center gap-2 mb-3 tech-anim-badge">
           <img src="/images/h.png" alt="Icon" />
           <span>ENTERPRISE ECOSYSTEM</span>
         </div>
 
+        {/* Headline */}
         <h2 className="tech-title text-white mb-3">
           <span className="tech-line-mask">
-            <span className="tech-line-inner">Connected Across the </span>
+            <span className="tech-line-inner">Connected Across the Enterprise</span>
           </span>
           <span className="tech-line-mask">
-            <span className="tech-line-inner">Enterprise Technology Ecosystem.</span>
+            <span className="tech-line-inner">Technology Ecosystem.</span>
           </span>
         </h2>
 
+        {/* Supporting Content */}
         <p className="tech-ecosystem-subtext">
-          We work across established enterprise platforms and custom technology ecosystems to design solutions around the business requirement, rather than forcing every challenge into a single technology.
+          We work across established enterprise platforms and technology ecosystems to design solutions around business requirements, rather than forcing every challenge into a single technology.
         </p>
 
+        {/* CTA Button using Site's Native Diagonal Arrow SVG */}
         <div>
           <Link
             href="/services"

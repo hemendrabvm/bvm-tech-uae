@@ -2,117 +2,127 @@
 
 import Link from "next/link";
 import { useRef } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function Footer() {
   const footerRef = useRef<HTMLElement>(null);
 
-  useGSAP(
-    () => {
-      if (typeof window === "undefined") return;
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-      const wm = footerRef.current?.querySelector(".footer-huge-bvm");
-      if (wm) {
-        gsap.fromTo(
-          wm,
-          { y: 60, scale: 0.85, letterSpacing: "-10px", opacity: 0.15 },
-          {
-            y: -16,
-            scale: 1.04,
-            letterSpacing: "6px",
-            opacity: 1,
-            ease: "none",
-            scrollTrigger: {
-              trigger: footerRef.current,
-              start: "top bottom",
-              end: "bottom bottom",
-              scrub: 1.1,
-            },
-          }
-        );
-      }
-    },
-    { scope: footerRef, dependencies: [] }
-  );
-
   return (
     <footer className="footer-section position-relative" ref={footerRef}>
-      <div className="container position-relative z-10">
-        <div className="row g-4 mb-5 footer-grid-container">
-          <div className="col-12 col-md-6 col-lg-4 footer-anim-col anim-reveal">
-            <div className="footer-about-block">
+      <div className="footer-container">
+        {/* 6 Responsive Grid Columns with Natural Content Widths */}
+        <div className="footer-grid-layout">
+          {/* Column 1: Brand Block */}
+          <div className="footer-brand-block anim-reveal">
+            <Link href="/" className="d-inline-block mb-3">
               <img
                 src="/images/logo.svg"
                 alt="BVM Tech Limited Logo"
-                className="footer-logo mb-3"
+                className="footer-logo"
+                height={38}
               />
-              <p className="footer-desc mb-4 text-bright-muted">
-                BVM is a premier enterprise software development company delivering bespoke ERP, CRM, custom web, mobile apps, and AI-powered automation solutions tailored for businesses across Dubai, Abu Dhabi, and GCC.
-              </p>
-              <div className="footer-profile-action mb-4">
-                <a
-                  href="/profile/profile.html"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-login-red rounded-pill px-4 py-2 fw-semibold magnetic-btn d-inline-flex align-items-center gap-2"
+            </Link>
+
+            <h4 className="footer-tagline">
+              Enterprise technology. Engineered around your business.
+            </h4>
+
+            <p className="footer-desc">
+              BVM brings together advisory, enterprise platforms, AI, digital engineering and global delivery to help organizations modernize, connect and scale technology.
+            </p>
+
+            <a
+              href="/profile/profile.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-consult-red rounded-pill px-4 py-2 fw-semibold magnetic-btn d-inline-flex align-items-center gap-2"
+            >
+              <i className="fa-solid fa-file-pdf" />
+              <span className="btn-text">View Company Profile</span>
+              <span className="arrow-icon-wrapper ms-1">
+                <svg
+                  className="diagonal-arrow-svg"
+                  width="11"
+                  height="11"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
                 >
-                  <i className="fa-solid fa-file-pdf" />
-                  <span className="btn-text">View Company Profile</span>
-                  <span className="arrow-icon-wrapper ms-1">
-                    <i className="fa-solid fa-arrow-up-right-from-square" style={{ fontSize: "11px" }} />
-                  </span>
-                  <span className="btn-sheen" />
-                </a>
-              </div>
-            </div>
+                  <path
+                    d="M1.5 10.5L10.5 1.5M10.5 1.5H3.5M10.5 1.5V8.5"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+              <span className="btn-sheen" />
+            </a>
           </div>
 
-          <div className="col-6 col-md-3 col-lg-2 footer-anim-col anim-reveal">
-            <h5 className="footer-col-title text-white mb-3">Services</h5>
-            <ul className="list-unstyled footer-links-list">
+          {/* Column 2: Capabilities */}
+          <div className="footer-capabilities-col anim-reveal">
+            <h5 className="footer-col-title">Capabilities</h5>
+            <ul className="footer-links-list">
               <li>
-                <Link href="/custom-software-development">Custom Software</Link>
+                <Link href="/contact">Advisory &amp; Transformation</Link>
               </li>
               <li>
-                <Link href="/erp-development">ERP Development</Link>
+                <Link href="/erp-development">Enterprise Applications</Link>
               </li>
               <li>
-                <Link href="/crm-development">CRM Development</Link>
+                <Link href="/ai-automation-development">AI, Data &amp; Intelligent Automation</Link>
               </li>
               <li>
-                <Link href="/mobile-apps">Mobile Apps</Link>
+                <Link href="/custom-software-development">Digital &amp; Product Engineering</Link>
               </li>
               <li>
-                <Link href="/web-development">Website Development</Link>
+                <Link href="/security">Cloud, Cybersecurity &amp; Integration</Link>
               </li>
               <li>
-                <Link href="/ai-automation-development">AI Automations</Link>
-              </li>
-              <li>
-                <Link href="/saas-development">SaaS Development</Link>
+                <Link href="/contact">Managed Services &amp; Global Delivery</Link>
               </li>
             </ul>
           </div>
 
-          <div className="col-6 col-md-3 col-lg-2 footer-anim-col anim-reveal">
-            <h5 className="footer-col-title text-white mb-3">Company</h5>
-            <ul className="list-unstyled footer-links-list">
+          {/* Column 3: Platforms & Ecosystems */}
+          <div className="anim-reveal">
+            <h5 className="footer-col-title">Platforms &amp; Ecosystems</h5>
+            <ul className="footer-links-list">
               <li>
-                <Link href="/about">About Us</Link>
+                <Link href="/erp-development">Enterprise Applications</Link>
+              </li>
+              <li>
+                <Link href="/crm-development">Customer &amp; Service</Link>
+              </li>
+              <li>
+                <Link href="/ai-automation-development">Cloud, Data &amp; AI</Link>
+              </li>
+              <li>
+                <Link href="/custom-software-development">Digital Operations</Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 4: Company */}
+          <div className="anim-reveal">
+            <h5 className="footer-col-title">Company</h5>
+            <ul className="footer-links-list">
+              <li>
+                <Link href="/about">About BVM</Link>
               </li>
               <li>
                 <Link href="/industries">Industries</Link>
               </li>
               <li>
-                <Link href="/projects">Projects</Link>
+                <Link href="/projects">Client Success</Link>
               </li>
               <li>
-                <Link href="/blog">Blog</Link>
+                <Link href="/about">Global Presence</Link>
+              </li>
+              <li>
+                <Link href="/contact">Careers</Link>
               </li>
               <li>
                 <Link href="/contact">Contact</Link>
@@ -120,50 +130,101 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Legal Column with proper dedicated routes */}
-          <div className="col-6 col-md-3 col-lg-2 footer-anim-col anim-reveal">
-            <h5 className="footer-col-title text-white mb-3">Legal</h5>
-            <ul className="list-unstyled footer-links-list">
+          {/* Column 5: Legal & Trust (No More Squeezed Line Breaks) */}
+          <div className="anim-reveal">
+            <h5 className="footer-col-title">Legal &amp; Trust</h5>
+            <ul className="footer-links-list">
               <li>
                 <Link href="/privacy-policy">Privacy Policy</Link>
               </li>
               <li>
-                <Link href="/terms-of-service">Terms of Service</Link>
+                <Link href="/terms-of-service">Terms of Use</Link>
               </li>
               <li>
-                <Link href="/security">Security</Link>
+                <Link href="/privacy-policy">Cookie Policy</Link>
               </li>
             </ul>
           </div>
 
-          <div className="col-6 col-md-3 col-lg-2 footer-anim-col anim-reveal">
-            <h5 className="footer-col-title text-white mb-3">Headquarters</h5>
-            <ul className="list-unstyled footer-links-list office-info-list">
-              <li>DIFC Innovation One, Dubai, UAE</li>
-              <li>
-                <a href="mailto:info@bvmtech.ae" className="text-decoration-none text-bright-muted">
-                  info@bvmtech.ae
-                </a>
-              </li>
-              <li>
-                <a href="tel:+971556506799" className="text-decoration-none text-bright-muted">
-                  +971 55 650 6799
-                </a>
-              </li>
-            </ul>
+          {/* Column 6: Headquarters Card */}
+          <div className="anim-reveal">
+            <div className="footer-hq-card">
+              <div className="footer-hq-header">
+                <h5 className="footer-hq-title">Headquarters</h5>
+              </div>
+
+              <ul className="footer-hq-list">
+                <li className="footer-hq-item">
+                  <i className="fa-solid fa-location-dot" />
+                  <span>DIFC Innovation One, Dubai, UAE, Dubai, United Arab Emirates</span>
+                </li>
+                <li className="footer-hq-item">
+                  <i className="fa-solid fa-phone" />
+                  <a href="tel:+971556506799">+971 55 650 6799</a>
+                </li>
+                <li className="footer-hq-item">
+                  <i className="fa-solid fa-envelope" />
+                  <a href="mailto:info@bvmtech.ae">info@bvmtech.ae</a>
+                </li>
+                <li className="footer-hq-item">
+                  <i className="fa-brands fa-linkedin-in" />
+                  <a
+                    href="https://www.linkedin.com/company/bvm-tech-limited"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    LinkedIn
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <div className="row align-items-center pt-4 border-top border-secondary border-opacity-20 text-center footer-anim-col anim-reveal">
-          <div className="col-12">
-            <p className="footer-copyright text-bright-muted mb-0">
-              © 2026 BVM Tech Limited. All rights reserved.
-            </p>
-          </div>
-        </div>
+        {/* Bottom Bar: Copyright on Left, Social Icons in Center, Regional Footprint on Right */}
+        <div className="footer-bottom-row anim-reveal">
+          <p className="footer-copy-text">
+            &copy; 2026 BVM Tech Limited. All rights reserved.
+          </p>
 
-        <div className="footer-watermark-row text-center mt-4">
-          <div className="footer-huge-bvm">BVM</div>
+          <div className="footer-social-group">
+            <a
+              href="https://www.linkedin.com/company/bvm-tech-limited"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-social-icon"
+              aria-label="BVM on LinkedIn"
+            >
+              <i className="fa-brands fa-linkedin-in" />
+            </a>
+            <a
+              href="https://www.youtube.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-social-icon"
+              aria-label="BVM on YouTube"
+            >
+              <i className="fa-brands fa-youtube" />
+            </a>
+            <a
+              href="https://x.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-social-icon"
+              aria-label="BVM on X"
+            >
+              <i className="fa-brands fa-x-twitter" />
+            </a>
+          </div>
+
+          <div className="footer-footprint-strip">
+            <span className="highlight">&mdash;</span>
+            <span>UAE</span>
+            <span>|</span>
+            <span>United Kingdom</span>
+            <span>|</span>
+            <span>Global Engineering &amp; Delivery</span>
+          </div>
         </div>
       </div>
     </footer>

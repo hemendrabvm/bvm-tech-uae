@@ -4,6 +4,7 @@ import LenisProvider from "@/lib/lenis-provider";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import Preloader from "@/components/Preloader/Preloader";
+import { AdvisorModalProvider } from "@/components/AdvisorModal/AdvisorModalContext";
 
 export const metadata: Metadata = {
   title: {
@@ -89,10 +90,12 @@ export default function RootLayout({
 
       <body className="loading">
         <LenisProvider>
-          <Preloader />
-          <Header />
-          <main id="main-content">{children}</main>
-          <Footer />
+          <AdvisorModalProvider>
+            <Preloader />
+            <Header />
+            <main id="main-content">{children}</main>
+            <Footer />
+          </AdvisorModalProvider>
         </LenisProvider>
       </body>
     </html>

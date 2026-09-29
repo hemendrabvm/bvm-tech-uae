@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { useAdvisorModal } from "@/components/AdvisorModal/AdvisorModalContext";
 
 function prefersReducedMotion(): boolean {
   if (typeof window === "undefined") return true;
@@ -206,6 +207,9 @@ export default function Header() {
   const headerRef = useRef<HTMLElement>(null);
   const [navOpen, setNavOpen] = useState(false);
 
+  // Hook directly into the global advisor modal
+  const { openAdvisorModal } = useAdvisorModal();
+
   // Desktop active mega menu: 'what-we-do' | 'industries' | 'platforms' | 'client-success' | 'company' | null
   const [activeMega, setActiveMega] = useState<string | null>(null);
 
@@ -238,6 +242,13 @@ export default function Header() {
     setActiveMega(null);
     setNavOpen(false);
     document.body.classList.remove("nav-open");
+  };
+
+  // Direct modal trigger — zero redirects
+  const handleAdvisorClick = (e?: React.MouseEvent) => {
+    if (e) e.preventDefault();
+    closeAll();
+    openAdvisorModal();
   };
 
   useGSAP(
@@ -291,16 +302,16 @@ export default function Header() {
 
           {/* Right Mobile Actions */}
           <div className="d-flex d-lg-none align-items-center gap-2 ms-auto">
-            <Link
-              href="/contact"
+            <button
+              type="button"
               className="btn btn-login-red rounded-pill fw-bold d-inline-flex align-items-center gap-2 mobile-direct-contact btn-advisor-mobile-header"
-              onClick={closeAll}
+              onClick={handleAdvisorClick}
             >
               <span>Talk to an Advisor</span>
               <span className="contact-angles-icon">
                 <i className="fa-solid fa-angles-right" />
               </span>
-            </Link>
+            </button>
 
             <button
               className={`navbar-toggler custom-toggler ${navOpen ? "active" : ""}`}
@@ -394,19 +405,7 @@ export default function Header() {
                 </button>
               </li>
 
-              {/* 5. Insights */}
-              <li className="nav-item">
-                <Link
-                  className={`nav-link ${pathname === "/blog" ? "active" : ""}`}
-                  href="/blog"
-                  onMouseEnter={() => handleMouseEnter("insights")}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  Insights
-                </Link>
-              </li>
-
-              {/* 6. Company */}
+              {/* 5. Company */}
               <li
                 className="nav-item"
                 onMouseEnter={() => handleMouseEnter("company")}
@@ -425,24 +424,25 @@ export default function Header() {
               </li>
             </ul>
 
-            {/* Desktop Persistent CTA */}
+            {/* Desktop Persistent CTA Button (Direct Modal Open) */}
             <div className="d-flex align-items-center">
-              <Link
-                href="/contact"
+              <button
+                type="button"
                 className="btn btn-login-red rounded-pill fw-semibold magnetic-btn d-inline-flex align-items-center gap-2 btn-advisor-desktop"
+                onClick={handleAdvisorClick}
               >
                 <span className="btn-text">Talk to an Advisor</span>
                 <span className="contact-angles-icon">
                   <i className="fa-solid fa-angles-right" />
                 </span>
                 <span className="btn-sheen" />
-              </Link>
+              </button>
             </div>
           </div>
         </nav>
 
         {/* ==================================================================
-            DESKTOP MEGA MENU 1: WHAT WE DO (9 Pillars & 62 Sub-services)
+            DESKTOP MEGA MENU 1: WHAT WE DO
             ================================================================== */}
         <div
           className={`bvm-mega-menu ${activeMega === "what-we-do" ? "is-active" : ""}`}
@@ -450,7 +450,6 @@ export default function Header() {
           onMouseLeave={handleMouseLeave}
         >
           <div className="row g-0">
-            {/* Left Pillar Rail */}
             <div className="col-4 mega-rail-col">
               <div className="mega-rail-header">
                 <span className="mega-category-badge d-block mb-1">CORE PRACTICES</span>
@@ -470,23 +469,22 @@ export default function Header() {
               ))}
             </div>
 
-            {/* Right Sub-services Area */}
             <div className="col-8 mega-content-area">
               <div className="mega-content-header d-flex align-items-center justify-content-between">
                 <div>
                   <span className="mega-category-badge">{activePillar.name}</span>
                   <h4 className="text-white fs-5 fw-bold mb-0 mt-1">{activePillar.tagline}</h4>
                 </div>
-                <Link
-                  href="/contact"
+                <button
+                  type="button"
                   className="btn btn-sm btn-consult-red rounded-pill px-3 py-1 fw-semibold d-inline-flex align-items-center gap-2"
-                  onClick={closeAll}
+                  onClick={handleAdvisorClick}
                 >
                   <span>Schedule Advisory</span>
                   <span className="contact-angles-icon">
                     <i className="fa-solid fa-angles-right" />
                   </span>
-                </Link>
+                </button>
               </div>
 
               <div className="mega-grid-2col mb-4">
@@ -505,7 +503,6 @@ export default function Header() {
                 ))}
               </div>
 
-              {/* Bottom Value Stream Ribbon */}
               <div className="mega-callout-card d-flex align-items-center justify-content-between">
                 <div>
                   <span className="text-cyan small fw-bold d-block">BVM ENTERPRISE LIFECYCLE</span>
@@ -520,7 +517,7 @@ export default function Header() {
         </div>
 
         {/* ==================================================================
-            DESKTOP MEGA MENU 2: INDUSTRIES (11 Sector Domains)
+            DESKTOP MEGA MENU 2: INDUSTRIES
             ================================================================== */}
         <div
           className={`bvm-mega-menu ${activeMega === "industries" ? "is-active" : ""}`}
@@ -569,15 +566,19 @@ export default function Header() {
               <span className="text-bright-muted small">
                 Compliant with UAE &amp; GCC regulatory frameworks: <strong className="text-white">DHA/DOH</strong>, <strong className="text-white">Ejari</strong>, <strong className="text-white">Central Bank</strong> &amp; <strong className="text-white">FTA E-Invoicing</strong>.
               </span>
-              <Link href="/contact" className="text-cyan fw-bold small text-decoration-none" onClick={closeAll}>
+              <button
+                type="button"
+                className="btn btn-link text-cyan fw-bold small text-decoration-none p-0"
+                onClick={handleAdvisorClick}
+              >
                 Consult an Industry Specialist &rarr;
-              </Link>
+              </button>
             </div>
           </div>
         </div>
 
         {/* ==================================================================
-            DESKTOP MEGA MENU 3: PLATFORMS & ECOSYSTEMS (10 Categories)
+            DESKTOP MEGA MENU 3: PLATFORMS & ECOSYSTEMS
             ================================================================== */}
         <div
           className={`bvm-mega-menu ${activeMega === "platforms" ? "is-active" : ""}`}
@@ -625,9 +626,13 @@ export default function Header() {
               <span className="text-bright-muted small">
                 We design solutions around business requirements rather than forcing challenges into a single platform.
               </span>
-              <Link href="/contact" className="text-cyan fw-bold small text-decoration-none" onClick={closeAll}>
+              <button
+                type="button"
+                className="btn btn-link text-cyan fw-bold small text-decoration-none p-0"
+                onClick={handleAdvisorClick}
+              >
                 Discuss Platform Advisory &rarr;
-              </Link>
+              </button>
             </div>
           </div>
         </div>
@@ -740,12 +745,16 @@ export default function Header() {
                     <h5 className="text-white fw-bold mb-2">Dubai (DIFC) &amp; United Kingdom</h5>
                     <p className="text-bright-muted small mb-0">DIFC Innovation One, Dubai headquarters with global capabilities centers across UK and India.</p>
                   </div>
-                  <Link href="/contact" className="btn btn-consult-red rounded-pill px-3 py-2 fw-semibold mt-3" onClick={closeAll}>
+                  <button
+                    type="button"
+                    className="btn btn-consult-red rounded-pill px-3 py-2 fw-semibold mt-3 d-inline-flex align-items-center gap-2"
+                    onClick={handleAdvisorClick}
+                  >
                     <span>Talk to an Advisor</span>
-                    <span className="contact-angles-icon ms-2">
+                    <span className="contact-angles-icon">
                       <i className="fa-solid fa-angles-right" />
                     </span>
-                  </Link>
+                  </button>
                 </div>
               </div>
             </div>
@@ -753,11 +762,11 @@ export default function Header() {
         </div>
 
         {/* ==================================================================
-            MOBILE DRAWER (TABLET & PHONE ACCORDIONS - ZERO INLINE CSS)
+            MOBILE DRAWER
             ================================================================== */}
         <div className={`collapse navbar-collapse d-lg-none ${navOpen ? "show" : ""}`} id="mainNavbarMobile">
           <div className="mobile-menu-drawer">
-            {/* 1. What We Do Mobile Accordion */}
+            {/* 1. What We Do */}
             <div className="mobile-nav-group">
               <button
                 type="button"
@@ -801,7 +810,7 @@ export default function Header() {
               )}
             </div>
 
-            {/* 2. Industries Mobile Accordion */}
+            {/* 2. Industries */}
             <div className="mobile-nav-group">
               <button
                 type="button"
@@ -828,7 +837,7 @@ export default function Header() {
               )}
             </div>
 
-            {/* 3. Platforms & Ecosystems Mobile Accordion */}
+            {/* 3. Platforms & Ecosystems */}
             <div className="mobile-nav-group">
               <button
                 type="button"
@@ -851,7 +860,7 @@ export default function Header() {
               )}
             </div>
 
-            {/* 4. Client Success Mobile */}
+            {/* 4. Client Success */}
             <div className="mobile-nav-group">
               <Link href="/projects" className="mobile-accordion-trigger text-decoration-none" onClick={closeAll}>
                 <span>Client Success</span>
@@ -859,15 +868,7 @@ export default function Header() {
               </Link>
             </div>
 
-            {/* 5. Insights Mobile */}
-            <div className="mobile-nav-group">
-              <Link href="/blog" className="mobile-accordion-trigger text-decoration-none" onClick={closeAll}>
-                <span>Insights</span>
-                <i className="fa-solid fa-angles-right text-cyan mobile-chevron-icon" />
-              </Link>
-            </div>
-
-            {/* 6. Company Mobile */}
+            {/* 5. Company */}
             <div className="mobile-nav-group">
               <button
                 type="button"
@@ -890,19 +891,19 @@ export default function Header() {
               )}
             </div>
 
-            {/* Mobile Drawer Bottom Persistent CTA */}
+            {/* Mobile Drawer Bottom Persistent CTA (Direct Modal Open) */}
             <div className="mobile-drawer-cta">
-              <Link
-                href="/contact"
+              <button
+                type="button"
                 className="btn btn-consult-red rounded-pill w-100 py-3 fw-bold d-inline-flex align-items-center justify-content-center gap-2"
-                onClick={closeAll}
+                onClick={handleAdvisorClick}
               >
                 <span>Talk to an Advisor</span>
                 <span className="contact-angles-icon">
                   <i className="fa-solid fa-angles-right" />
                 </span>
                 <span className="btn-sheen" />
-              </Link>
+              </button>
             </div>
           </div>
         </div>
