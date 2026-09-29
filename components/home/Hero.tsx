@@ -34,27 +34,24 @@ export default function Hero() {
       <div className="container position-relative z-10">
         <div className="row min-vh-80 align-items-center">
           <div className="col-12 col-lg-12 text-start position-relative hero-text-container">
-            {/* Supporting Line / Capability Pillars Badge */}
-            <div className="hero-shimmer-badge hero-supporting-badge hero-anim-badge d-inline-flex align-items-center gap-2 mb-4">
-              <span className="badge-dot" />
-              <span className="badge-text">
-                Strategy | Enterprise Platforms | AI &amp; Data | Digital Engineering | Managed Delivery
-              </span>
+            {/* Top Eyebrow Badge with Original Icon */}
+            <div className="hero-shimmer-badge hero-anim-badge d-inline-flex align-items-center gap-2 mb-4">
+              <img src="/images/h.png" alt="Icon" />
+              <span className="badge-text">ENTERPRISE TECHNOLOGY &amp; CONSULTING</span>
               <span className="shimmer-line" aria-hidden="true" />
             </div>
 
-            {/* Headline with Signature Skyline Animated Pill */}
+          {/* Headline with Signature Skyline Animated Pill before "Engineered" */}
             <h1 className="hero-headline text-white mb-4">
               <span className="hero-line-mask">
                 <span className="hero-line-inner">Technology transformation.</span>
               </span>
               <span className="hero-line-mask">
                 <span className="hero-line-inner">
-                   <span className="skyline-pill-container">
+                  <span className="skyline-pill-container">
                     <span className="skyline-pill" />
-                  </span>
-                  Engineered around{" "}
-                 
+                  </span>{" "}
+                  Engineered around
                 </span>
               </span>
               <span className="hero-line-mask">
@@ -63,13 +60,32 @@ export default function Hero() {
             </h1>
 
             {/* Supporting Content */}
-            <p className="hero-subtext mb-5 hero-anim-subtext">
+            <p className="hero-subtext mb-4 hero-anim-subtext">
               BVM Tech helps organizations modernize enterprise systems, adopt AI, connect technology ecosystems, build digital platforms and scale technology delivery across the GCC and global markets.
             </p>
 
-           {/* Action Buttons */}
+            {/* Supporting Line: 5 Core Capabilities */}
+            <div className="hero-capabilities-strip hero-anim-subtext">
+              <span className="hero-cap-item">
+                Strategy <span className="hero-cap-sep">|</span>
+              </span>
+              <span className="hero-cap-item">
+                Enterprise Platforms <span className="hero-cap-sep">|</span>
+              </span>
+              <span className="hero-cap-item">
+                AI &amp; Data <span className="hero-cap-sep">|</span>
+              </span>
+              <span className="hero-cap-item">
+                Digital Engineering <span className="hero-cap-sep">|</span>
+              </span>
+              <span className="hero-cap-item">
+                Managed Delivery
+              </span>
+            </div>
+
+            {/* Action Buttons */}
             <div className="hero-actions d-flex flex-wrap gap-3">
-              {/* Primary CTA: Talk to an Advisor */}
+              {/* Primary CTA */}
               <Link
                 href="/contact"
                 className="btn btn-consult-red hero-anim-btn d-inline-flex align-items-center justify-content-center px-4 py-3 rounded-pill fw-semibold magnetic-btn"
@@ -97,7 +113,7 @@ export default function Hero() {
                 <span className="btn-sheen" />
               </Link>
 
-              {/* Secondary CTA: Explore What We Do */}
+              {/* Secondary CTA */}
               <Link
                 href="#what-we-do"
                 className="btn btn-sky-blue hero-anim-btn d-inline-flex align-items-center justify-content-center px-4 py-3 rounded-pill fw-semibold magnetic-btn"
@@ -128,11 +144,11 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right-Hand Floating Hero Visual Asset */}
+        {/* Right Floating Hero Banner */}
         <div className="hero-banner-absolute">
           <img
             src="/images/zzz.png"
-            alt="Enterprise Technology & Architecture Transformation"
+            alt="Enterprise Technology Transformation"
             className="img-fluid hero-banner-img"
           />
         </div>
