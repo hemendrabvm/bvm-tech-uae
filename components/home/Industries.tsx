@@ -137,12 +137,17 @@ export default function Industries() {
 
         {/* Headline strictly on one line on desktop */}
         <h2 className="industries-title text-white mb-3">
-          <span className="industries-line-mask">
-            <span className="industries-line-inner anim-text-reveal">
-              Technology Grounded in Industry Context.
-            </span>
-          </span>
-        </h2>
+  <span className="industries-line-mask">
+    <span className="industries-line-inner anim-text-reveal">
+      Technology Grounded in
+    </span>
+  </span>
+  <span className="industries-line-mask">
+    <span className="industries-line-inner anim-text-reveal headline-cyan">
+      Industry Context.
+    </span>
+  </span>
+</h2>
 
         {/* Section Description */}
         <p className="industries-subtext anim-reveal">

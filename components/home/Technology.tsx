@@ -152,7 +152,7 @@ export default function Technology() {
             <span className="tech-line-inner">Connected Across the Enterprise</span>
           </span>
           <span className="tech-line-mask">
-            <span className="tech-line-inner">Technology Ecosystem.</span>
+            <span className="tech-line-inner headline-cyan">Technology Ecosystem.</span>
           </span>
         </h2>
 

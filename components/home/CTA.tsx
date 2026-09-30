@@ -74,7 +74,7 @@ export default function CTA() {
                 </span>
               </span>
               <span className="cta-line-mask">
-                <span className="cta-line-inner anim-text-reveal">
+                <span className="cta-line-inner anim-text-reveal headline-cyan">
                   priority into progress.
                 </span>
               </span>

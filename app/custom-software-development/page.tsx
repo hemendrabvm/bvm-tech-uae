@@ -1,15 +1,12 @@
 import type { Metadata } from "next";
-import ServicePage from "@/components/services/ServicePage";
-import { servicePages } from "@/data/servicePages";
-
-const data = servicePages["custom-software-development"];
+import DigitalEngineeringPageContent from "@/components/digital-engineering/DigitalEngineeringPageContent";
 
 export const metadata: Metadata = {
-  title: data.metaTitle,
-  description: data.metaDesc,
+  title: "Digital & Product Engineering | BVM Tech Limited",
+  description:
+    "BVM designs, builds and modernizes digital products and enterprise applications where packaged platforms alone are not enough.",
 };
 
 export default function Page() {
-  const { metaTitle: _t, metaDesc: _d, ...pageData } = data;
-  return <ServicePage data={pageData} />;
+  return <DigitalEngineeringPageContent />;
 }

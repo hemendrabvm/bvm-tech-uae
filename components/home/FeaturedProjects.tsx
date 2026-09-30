@@ -96,8 +96,8 @@ export default function FeaturedProjects() {
                 </span>
               </span>
               <span className="projects-line-mask">
-                <span className="projects-line-inner anim-text-reveal">
-                  Than Capabilities.
+                <span className="projects-line-inner anim-text-reveal headline-cyan">
+                  Than Capabilities
                 </span>
               </span>
             </h2>

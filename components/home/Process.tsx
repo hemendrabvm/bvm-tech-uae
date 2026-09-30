@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { useProcessStack, useImageReveals } from "@/animations/usePageAnimations";
+import { useAdvisorModal } from "@/components/AdvisorModal/AdvisorModalContext";
 
 const OUTCOME_STAGES = [
   {
@@ -46,15 +47,24 @@ const OUTCOME_STAGES = [
   },
 ];
 
-export default function Process() {
+type ProcessProps = {
+  badgeText?: string;
+  className?: string;
+};
+
+export default function Process({
+  badgeText = "HOW BVM WORKS",
+  className = "",
+}: ProcessProps) {
   const sectionRef = useRef<HTMLElement>(null);
+  const { openAdvisorModal } = useAdvisorModal();
 
   // Hook into the site's master GSAP animations
   useProcessStack(sectionRef);
   useImageReveals(sectionRef);
 
   return (
-    <section className="process-section position-relative" ref={sectionRef}>
+    <section className={`process-section position-relative ${className}`} ref={sectionRef}>
       {/* Background Ambient Glow */}
       <img
         src="/images/6.png"
@@ -72,7 +82,7 @@ export default function Process() {
             <div className="process-sticky-left">
               <div className="process-badge d-inline-flex align-items-center gap-2 mb-3 process-anim-badge anim-reveal">
                 <img src="/images/h.png" alt="Icon" />
-                <span>HOW BVM WORKS</span>
+                <span>{badgeText}</span>
               </div>
 
               <h2 className="process-title text-white">
@@ -82,15 +92,46 @@ export default function Process() {
                   </span>
                 </span>
                 <span className="process-line-mask">
-                  <span className="process-line-inner anim-text-reveal">
+                  <span className="process-line-inner anim-text-reveal headline-cyan">
                     Sustained Outcomes
                   </span>
                 </span>
               </h2>
 
-              <p className="text-bright-muted mt-4">
+              <p className="text-bright-muted mt-4 anim-reveal">
                 BVM combines advisory, enterprise technology and digital engineering to help organizations move from strategy and implementation to optimization, scale and long-term value.
               </p>
+
+              {/* Theme-native Button */}
+              <div className="mt-4 anim-reveal">
+                <button
+                  type="button"
+                  onClick={openAdvisorModal}
+                  className="btn btn-explore-services rounded-pill fw-semibold magnetic-btn"
+                >
+                  <span className="btn-text">Talk to an Advisor</span>
+                  <span className="arrow-icon-wrapper">
+                    <svg
+                      className="diagonal-arrow-svg"
+                      width="12"
+                      height="12"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M1.5 10.5L10.5 1.5M10.5 1.5H3.5M10.5 1.5V8.5"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                  <span className="btn-sheen" />
+                </button>
+              </div>
             </div>
           </div>
 

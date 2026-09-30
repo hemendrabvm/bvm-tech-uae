@@ -65,7 +65,7 @@ export default function GlobalCapability() {
               </span>
             </span>
             <span className="services-line-mask">
-              <span className="services-line-inner anim-text-reveal text-cyan-highlight">
+              <span className="services-line-inner anim-text-reveal text-cyan-highlight headline-cyan">
                 Global engineering.
               </span>
             </span>

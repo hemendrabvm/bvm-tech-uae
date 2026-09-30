@@ -11,7 +11,7 @@ export default function Footer() {
       <div className="footer-container">
         {/* 6 Responsive Grid Columns with Natural Content Widths */}
         <div className="footer-grid-layout">
-          {/* Column 1: Brand Block */}
+          {/* Column 1: Brand Area */}
           <div className="footer-brand-block anim-reveal">
             <Link href="/" className="d-inline-block mb-3">
               <img
@@ -23,11 +23,11 @@ export default function Footer() {
             </Link>
 
             <h4 className="footer-tagline">
-              Enterprise technology. Engineered around your business.
+              Enterprise Technology. Engineered Around Your Business.
             </h4>
 
             <p className="footer-desc">
-              BVM brings together advisory, enterprise platforms, AI, digital engineering and global delivery to help organizations modernize, connect and scale technology.
+              From strategy to scale, BVM brings together enterprise platforms, AI, digital engineering and global delivery to help organizations modernize technology and create measurable business outcomes.
             </p>
 
             <a
@@ -61,9 +61,9 @@ export default function Footer() {
             </a>
           </div>
 
-          {/* Column 2: Capabilities */}
+          {/* Column 2: What We Do */}
           <div className="footer-capabilities-col anim-reveal">
-            <h5 className="footer-col-title">Capabilities</h5>
+            <h5 className="footer-col-title">What We Do</h5>
             <ul className="footer-links-list">
               <li>
                 <Link href="/contact">Advisory &amp; Transformation</Link>
@@ -81,7 +81,10 @@ export default function Footer() {
                 <Link href="/security">Cloud, Cybersecurity &amp; Integration</Link>
               </li>
               <li>
-                <Link href="/contact">Managed Services &amp; Global Delivery</Link>
+                <Link href="/faq#faq-ownership">Managed Services</Link>
+              </li>
+              <li>
+                <Link href="/contact">Technology Talent &amp; Global Delivery</Link>
               </li>
             </ul>
           </div>
@@ -91,27 +94,33 @@ export default function Footer() {
             <h5 className="footer-col-title">Platforms &amp; Ecosystems</h5>
             <ul className="footer-links-list">
               <li>
-                <Link href="/erp-development">Enterprise Applications</Link>
+                <Link href="/crm-development">CRM &amp; Customer Experience</Link>
               </li>
               <li>
-                <Link href="/crm-development">Customer &amp; Service</Link>
+                <Link href="/erp-development">ERP &amp; Core Business Platforms</Link>
               </li>
               <li>
-                <Link href="/ai-automation-development">Cloud, Data &amp; AI</Link>
+                <Link href="/contact">ITSM &amp; Enterprise Workflow</Link>
               </li>
               <li>
-                <Link href="/custom-software-development">Digital Operations</Link>
+                <Link href="/ai-automation-development">Data, Analytics &amp; AI</Link>
+              </li>
+              <li>
+                <Link href="/ai-automation-development">Automation &amp; Low-Code</Link>
+              </li>
+              <li>
+                <Link href="/web-development">Digital Experience</Link>
+              </li>
+              <li>
+                <Link href="/contact">Asset &amp; Field Operations</Link>
               </li>
             </ul>
           </div>
 
-          {/* Column 4: Company */}
+          {/* Column 4: Explore BVM */}
           <div className="anim-reveal">
-            <h5 className="footer-col-title">Company</h5>
+            <h5 className="footer-col-title">Explore BVM</h5>
             <ul className="footer-links-list">
-              <li>
-                <Link href="/about">About BVM</Link>
-              </li>
               <li>
                 <Link href="/industries">Industries</Link>
               </li>
@@ -119,7 +128,10 @@ export default function Footer() {
                 <Link href="/projects">Client Success</Link>
               </li>
               <li>
-                <Link href="/about">Global Presence</Link>
+                <Link href="/about">About BVM</Link>
+              </li>
+              <li>
+                <Link href="/about#who-we-are">Global Presence</Link>
               </li>
               <li>
                 <Link href="/contact">Careers</Link>
@@ -130,7 +142,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 5: Legal & Trust (No More Squeezed Line Breaks) */}
+          {/* Column 5: Legal & Trust */}
           <div className="anim-reveal">
             <h5 className="footer-col-title">Legal &amp; Trust</h5>
             <ul className="footer-links-list">
@@ -141,22 +153,29 @@ export default function Footer() {
                 <Link href="/terms-of-service">Terms of Use</Link>
               </li>
               <li>
+                <Link href="/security">Security</Link>
+              </li>
+              <li>
                 <Link href="/privacy-policy">Cookie Policy</Link>
               </li>
             </ul>
           </div>
 
-          {/* Column 6: Headquarters Card */}
+          {/* Column 6: Dubai Headquarters Card */}
           <div className="anim-reveal">
             <div className="footer-hq-card">
               <div className="footer-hq-header">
-                <h5 className="footer-hq-title">Headquarters</h5>
+                <h5 className="footer-hq-title">Dubai Headquarters</h5>
               </div>
 
               <ul className="footer-hq-list">
                 <li className="footer-hq-item">
+                  <i className="fa-solid fa-building" />
+                  <span className="text-white fw-semibold">BVM Tech Limited</span>
+                </li>
+                <li className="footer-hq-item">
                   <i className="fa-solid fa-location-dot" />
-                  <span>DIFC Innovation One, Dubai, UAE, Dubai, United Arab Emirates</span>
+                  <span>DIFC Innovation One, Dubai, United Arab Emirates</span>
                 </li>
                 <li className="footer-hq-item">
                   <i className="fa-solid fa-phone" />
@@ -184,7 +203,7 @@ export default function Footer() {
         {/* Bottom Bar: Copyright on Left, Social Icons in Center, Regional Footprint on Right */}
         <div className="footer-bottom-row anim-reveal">
           <p className="footer-copy-text">
-            &copy; 2026 BVM Tech Limited. All rights reserved.
+            &copy; 2026 BVM Tech Limited DIFC. All rights reserved.
           </p>
 
           <div className="footer-social-group">

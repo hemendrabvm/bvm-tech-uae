@@ -13,134 +13,377 @@ function prefersReducedMotion(): boolean {
 }
 
 /* ==========================================================================
-   ORIGINAL HIERARCHY FROM STRATEGY DOCUMENT
+   WHAT WE DO DATA (UPDATED FROM SEPT 30 SPECIFICATION)
    ========================================================================== */
-
 export const WHAT_WE_DO_DATA = [
+  /* 1. Advisory & Transformation -> /advisory-transformation */
   {
     id: "advisory",
     name: "Advisory & Transformation",
-    tagline: "Strategic Consulting & Operating Model Design",
+    icon: "fa-solid fa-compass-drafting",
+    eyebrow: "ADVISORY & TRANSFORMATION",
+    headline: "Shape the right strategy for transformation.",
+    description:
+      "Align business priorities, technology architecture and transformation decisions around measurable outcomes.",
+    bottomCta: {
+      label: "Explore Advisory & Transformation",
+      href: "/advisory-transformation",
+    },
     items: [
-      { title: "Digital & Technology Strategy", href: "/contact" },
-      { title: "Enterprise Architecture", href: "/contact" },
-      { title: "Business Process Transformation", href: "/contact" },
-      { title: "Platform Advisory & Selection", href: "/contact" },
-      { title: "AI & Data Strategy", href: "/contact" },
-      { title: "Transformation & Program Advisory", href: "/contact" },
+      {
+        title: "Digital & Technology Strategy",
+        desc: "Define technology vision, priorities and roadmaps aligned to business goals.",
+        icon: "fa-solid fa-laptop-code",
+        href: "/advisory-transformation#capabilities",
+      },
+      {
+        title: "Enterprise Architecture",
+        desc: "Design scalable, secure and future-ready technology environments across applications, data, integration and infrastructure.",
+        icon: "fa-solid fa-sitemap",
+        href: "/advisory-transformation#capabilities",
+      },
+      {
+        title: "Business Process Transformation",
+        desc: "Simplify and redesign processes to improve efficiency and business performance.",
+        icon: "fa-solid fa-gear",
+        href: "/advisory-transformation#capabilities",
+      },
+      {
+        title: "Platform Advisory & Selection",
+        desc: "Evaluate enterprise platforms against business, technical, operational and commercial requirements.",
+        icon: "fa-solid fa-bullseye",
+        href: "/advisory-transformation#capabilities",
+      },
+      {
+        title: "AI & Data Strategy",
+        desc: "Define practical AI and data strategies that create measurable business value.",
+        icon: "fa-solid fa-chart-simple",
+        href: "/ai-automation-development",
+      },
+      {
+        title: "Transformation & Program Advisory",
+        desc: "Plan, govern and execute complex technology transformation initiatives.",
+        icon: "fa-solid fa-users-gear",
+        href: "/advisory-transformation#capabilities",
+      },
     ],
   },
+
+  /* 2. Enterprise Applications -> /enterprise-applications */
   {
     id: "enterprise-apps",
     name: "Enterprise Applications",
-    tagline: "Core Business Systems & Digital Experience",
+    icon: "fa-solid fa-layer-group",
+    eyebrow: "ENTERPRISE APPLICATIONS",
+    headline: "Modernize the systems that run the business.",
+    description:
+      "Implement, integrate and optimize enterprise platforms around your processes, people and operating model.",
+    bottomCta: {
+      label: "Explore Enterprise Applications",
+      href: "/enterprise-applications",
+    },
     items: [
-      { title: "ERP & Core Business Systems", href: "/erp-development" },
-      { title: "CRM & Customer Experience", href: "/crm-development" },
-      { title: "ITSM & Enterprise Workflow", href: "/contact" },
-      { title: "HCM & Workforce Technology", href: "/erp-development" },
-      { title: "EAM, FSM & Asset Operations", href: "/contact" },
-      { title: "Digital Experience Platforms", href: "/web-development" },
+      {
+        title: "ERP & Core Business Systems",
+        desc: "Modernize finance, operations and core business processes through connected ERP platforms.",
+        icon: "fa-solid fa-boxes-stacked",
+        href: "/enterprise-applications",
+      },
+      {
+        title: "CRM & Customer Experience",
+        desc: "Connect sales, service and customer engagement across the enterprise.",
+        icon: "fa-solid fa-handshake",
+        href: "/crm-development",
+      },
+      {
+        title: "ITSM & Enterprise Workflow",
+        desc: "Improve service delivery through structured workflows, automation and visibility.",
+        icon: "fa-solid fa-diagram-project",
+        href: "/enterprise-applications",
+      },
+      {
+        title: "HCM & Workforce Technology",
+        desc: "Digitize workforce processes across employee administration, service and lifecycle management.",
+        icon: "fa-solid fa-id-card",
+        href: "/enterprise-applications",
+      },
+      {
+        title: "EAM, FSM & Asset Operations",
+        desc: "Connect assets, maintenance, field teams, service requests and operational workflows.",
+        icon: "fa-solid fa-wrench",
+        href: "/enterprise-applications",
+      },
+      {
+        title: "Digital Experience Platforms",
+        desc: "Build connected digital experiences across portals, content and customer touchpoints.",
+        icon: "fa-solid fa-desktop",
+        href: "/web-development",
+      },
     ],
   },
+
+  /* 3. AI, Data & Intelligent Automation -> /ai-automation-development */
   {
     id: "ai-data",
     name: "AI, Data & Intelligent Automation",
-    tagline: "From Core Data Engineering to Agentic AI",
+    icon: "fa-solid fa-brain",
+    eyebrow: "AI, DATA & INTELLIGENT AUTOMATION",
+    headline: "Turn data and AI into business value.",
+    description:
+      "Build trusted data foundations, embed intelligence into operations and automate work where it creates measurable impact.",
+    bottomCta: {
+      label: "Explore AI, Data & Automation",
+      href: "/ai-automation-development",
+    },
     items: [
-      { title: "Enterprise AI", href: "/ai-automation-development" },
-      { title: "Generative & Agentic AI", href: "/ai-automation-development" },
-      { title: "Data Platforms & Engineering", href: "/ai-automation-development" },
-      { title: "Business Intelligence & Analytics", href: "/ai-automation-development" },
-      { title: "Intelligent Automation & RPA", href: "/ai-automation-development" },
-      { title: "Data Governance", href: "/ai-automation-development" },
-      { title: "Document Intelligence", href: "/ai-automation-development" },
+      {
+        title: "Enterprise AI",
+        desc: "Apply AI to business processes, decisions and enterprise knowledge.",
+        icon: "fa-solid fa-microchip",
+        href: "/ai-automation-development",
+      },
+      {
+        title: "Generative & Agentic AI",
+        desc: "Build intelligent assistants, agents and AI-enabled enterprise experiences.",
+        icon: "fa-solid fa-robot",
+        href: "/ai-automation-development",
+      },
+      {
+        title: "Data Platforms & Engineering",
+        desc: "Create scalable data foundations that connect and prepare enterprise information.",
+        icon: "fa-solid fa-database",
+        href: "/ai-automation-development",
+      },
+      {
+        title: "Business Intelligence & Analytics",
+        desc: "Turn data into actionable insight through reporting, analytics and visualization.",
+        icon: "fa-solid fa-chart-line",
+        href: "/ai-automation-development",
+      },
+      {
+        title: "Intelligent Automation & RPA",
+        desc: "Automate repetitive processes and orchestrate workflows across systems.",
+        icon: "fa-solid fa-bolt",
+        href: "/ai-automation-development",
+      },
+      {
+        title: "Data Governance & Document Intelligence",
+        desc: "Improve data quality, governance and intelligent processing of enterprise content.",
+        icon: "fa-solid fa-shield-halved",
+        href: "/ai-automation-development",
+      },
     ],
   },
+
+  /* 4. Digital & Product Engineering */
   {
     id: "product-eng",
     name: "Digital & Product Engineering",
-    tagline: "Modern Software, SaaS Platforms & Microservices",
+    icon: "fa-solid fa-code",
+    eyebrow: "DIGITAL & PRODUCT ENGINEERING",
+    headline: "Engineer what creates differentiation.",
+    description:
+      "Build, modernize and scale digital products and applications where standard platforms alone are not enough.",
+    bottomCta: {
+      label: "Explore Digital & Product Engineering",
+      href: "/custom-software-development",
+    },
     items: [
-      { title: "Product Strategy & Engineering", href: "/custom-software-development" },
-      { title: "Enterprise Application Development", href: "/custom-software-development" },
-      { title: "Web & Mobile Engineering", href: "/mobile-apps" },
-      { title: "SaaS Engineering", href: "/saas-development" },
-      { title: "Application Modernization", href: "/custom-software-development" },
-      { title: "API & Microservices Engineering", href: "/custom-software-development" },
-      { title: "Quality Engineering", href: "/custom-software-development" },
-      { title: "UX & Experience Engineering", href: "/web-development" },
+      {
+        title: "Product Strategy & Engineering",
+        desc: "Turn business ideas into scalable digital products and technology platforms.",
+        icon: "fa-solid fa-lightbulb",
+        href: "/custom-software-development",
+      },
+      {
+        title: "Enterprise Application Development",
+        desc: "Build secure, scalable applications around enterprise requirements.",
+        icon: "fa-solid fa-laptop-code",
+        href: "/custom-software-development",
+      },
+      {
+        title: "Web, Mobile & Experience Engineering",
+        desc: "Create connected digital experiences across web, mobile and user journeys.",
+        icon: "fa-solid fa-mobile-screen",
+        href: "/mobile-apps",
+      },
+      {
+        title: "SaaS Engineering",
+        desc: "Design and develop scalable SaaS products and multi-tenant platforms.",
+        icon: "fa-solid fa-cloud",
+        href: "/saas-development",
+      },
+      {
+        title: "Application Modernization",
+        desc: "Modernize legacy applications for improved performance, agility and scalability.",
+        icon: "fa-solid fa-recycle",
+        href: "/custom-software-development",
+      },
+      {
+        title: "API, Microservices & Quality Engineering",
+        desc: "Build modular architectures and strengthen software quality across the delivery lifecycle.",
+        icon: "fa-solid fa-network-wired",
+        href: "/custom-software-development",
+      },
     ],
   },
+
+  /* 5. Cloud, Cybersecurity & Integration */
   {
-    id: "cloud-cyber",
-    name: "Cloud, Infrastructure & Cybersecurity",
-    tagline: "Resilient Cloud Foundations & Zero-Trust Security",
+  id: "cloud-cyber",
+  name: "Cloud, Cybersecurity & Integration",
+  icon: "fa-solid fa-shield-halved",
+  eyebrow: "CLOUD, CYBERSECURITY & INTEGRATION",
+  headline: "Modernize, secure and connect the enterprise.",
+  description:
+    "Build resilient technology foundations, strengthen security and connect applications, platforms and data across the enterprise.",
+  bottomCta: {
+    label: "Explore Cloud, Security & Integration",
+    href: "/cloud-cybersecurity-integration",
+  },
     items: [
-      { title: "Cloud Strategy & Migration", href: "/contact" },
-      { title: "Cloud-Native Engineering", href: "/contact" },
-      { title: "Infrastructure Modernization", href: "/contact" },
-      { title: "DevOps & DevSecOps", href: "/contact" },
-      { title: "Cybersecurity Advisory", href: "/security" },
-      { title: "Application & Cloud Security", href: "/security" },
-      { title: "Identity & Access Management", href: "/security" },
-      { title: "Resilience & Disaster Recovery", href: "/contact" },
+      {
+        title: "Cloud Strategy & Modernization",
+        desc: "Define and execute the right cloud migration and modernization path.",
+        icon: "fa-solid fa-cloud-arrow-up",
+        href: "/contact",
+      },
+      {
+        title: "Cloud-Native Engineering",
+        desc: "Build scalable cloud-native applications, services and technology environments.",
+        icon: "fa-solid fa-server",
+        href: "/contact",
+      },
+      {
+        title: "Cybersecurity & Resilience",
+        desc: "Strengthen application, cloud and infrastructure security while improving continuity.",
+        icon: "fa-solid fa-shield-virus",
+        href: "/security",
+      },
+      {
+        title: "Identity & Access Management",
+        desc: "Secure access to systems, applications and enterprise resources.",
+        icon: "fa-solid fa-id-badge",
+        href: "/security",
+      },
+      {
+        title: "Enterprise Integration",
+        desc: "Connect applications, platforms and processes across the technology landscape.",
+        icon: "fa-solid fa-arrows-split-up-and-left",
+        href: "/contact",
+      },
+      {
+        title: "API, Data & Middleware Integration",
+        desc: "Enable interoperability through APIs, data integration, middleware and iPaaS.",
+        icon: "fa-solid fa-plug",
+        href: "/contact",
+      },
     ],
   },
+
+  /* 6. Managed Services */
   {
-    id: "integration",
-    name: "Enterprise Integration & Interoperability",
-    tagline: "API Management, Middleware & Legacy Unification",
+  id: "managed-services",
+  name: "Managed Services",
+  icon: "fa-solid fa-gear",
+  eyebrow: "MANAGED SERVICES",
+  headline: "Keep critical technology performing.",
+  description:
+    "Operate, support and continuously improve enterprise platforms, applications and infrastructure.",
+  bottomCta: {
+    label: "Explore Managed Services",
+    href: "/managed-services",
+  },
     items: [
-      { title: "Integration Strategy", href: "/contact" },
-      { title: "API Management", href: "/contact" },
-      { title: "Application Integration", href: "/contact" },
-      { title: "Data Integration", href: "/contact" },
-      { title: "Middleware & iPaaS", href: "/contact" },
-      { title: "Legacy Integration", href: "/contact" },
+      {
+        title: "Application Managed Services",
+        desc: "Maintain and optimize business-critical applications across their lifecycle.",
+        icon: "fa-solid fa-laptop-file",
+        href: "/faq#faq-ownership",
+      },
+      {
+        title: "Enterprise Platform Support",
+        desc: "Support enterprise platforms, configurations, integrations and ongoing enhancement.",
+        icon: "fa-solid fa-cubes-stacked",
+        href: "/faq#faq-ownership",
+      },
+      {
+        title: "Cloud & Infrastructure Operations",
+        desc: "Operate cloud and infrastructure environments for availability and performance.",
+        icon: "fa-solid fa-cloud",
+        href: "/faq#faq-ownership",
+      },
+      {
+        title: "Platform Administration",
+        desc: "Manage day-to-day administration, configurations and platform governance.",
+        icon: "fa-solid fa-user-gear",
+        href: "/faq#faq-ownership",
+      },
+      {
+        title: "L1 / L2 / L3 Support",
+        desc: "Provide structured technical support across functional and technical requirements.",
+        icon: "fa-solid fa-headset",
+        href: "/faq#faq-ownership",
+      },
+      {
+        title: "Continuous Improvement & Optimization",
+        desc: "Improve platform performance, adoption and business value over time.",
+        icon: "fa-solid fa-chart-line",
+        href: "/faq#faq-ownership",
+      },
     ],
   },
+
+  /* 7. Technology Talent & Global Delivery */
   {
-    id: "managed-services",
-    name: "Managed Services",
-    tagline: "Enterprise Platform Support & L1/L2/L3 SLAs",
-    items: [
-      { title: "Applications Managed Services", href: "/faq#faq-ownership" },
-      { title: "Enterprise Platform Support", href: "/faq#faq-ownership" },
-      { title: "Cloud & Infrastructure Operations", href: "/faq#faq-ownership" },
-      { title: "Platform Administrations", href: "/faq#faq-ownership" },
-      { title: "L1/L2/L3 Support", href: "/faq#faq-ownership" },
-      { title: "Continuous Improvement & Optimization", href: "/faq#faq-ownership" },
-    ],
+  id: "talent-delivery",
+  name: "Technology Talent & Global Delivery",
+  icon: "fa-solid fa-people-group",
+  eyebrow: "TECHNOLOGY TALENT & GLOBAL DELIVERY",
+  headline: "The right technology capability. When and where you need it.",
+  description:
+    "Extend technology capacity through specialist resources, dedicated teams and flexible global delivery models.",
+  bottomCta: {
+    label: "Explore Technology Talent & Global Delivery",
+    href: "/technology-talent-delivery",
   },
-  {
-    id: "talent-delivery",
-    name: "Technology Talent & Delivery",
-    tagline: "Dedicated Squads, ODCs & Build-Operate-Transfer",
     items: [
-      { title: "Remote Technology Specialists", href: "/contact" },
-      { title: "On-site & Hybrid Specialists", href: "/contact" },
-      { title: "Dedicated Technology Teams", href: "/contact" },
-      { title: "Project Delivery Squads", href: "/contact" },
-      { title: "Offshore Development Centre", href: "/contact" },
-      { title: "Global Capabilities Centers", href: "/contact" },
-      { title: "AI & Digital Centres of Excellence", href: "/contact" },
-      { title: "Build-Operate-Transfer", href: "/contact" },
-    ],
-  },
-  {
-    id: "transformation-solutions",
-    name: "Transformation Solutions",
-    tagline: "Focused Programs Delivering Measurable Business Value",
-    items: [
-      { title: "Enterprise AI Adoption", href: "/ai-automation-development" },
-      { title: "ERP Modernization", href: "/erp-development" },
-      { title: "CRM Transformation", href: "/crm-development" },
-      { title: "Application Modernization", href: "/custom-software-development" },
-      { title: "Enterprise Integration", href: "/contact" },
-      { title: "Intelligent Asset & Field Operations", href: "/contact" },
-      { title: "UAE E-Invoicing Integration", href: "/faq#faq-einvoicing" },
-      { title: "Data & Analytics Modernization", href: "/contact" },
+      {
+        title: "Remote Technology Specialists",
+        desc: "Access specialized technology expertise through flexible remote delivery.",
+        icon: "fa-solid fa-user-tie",
+        href: "/contact",
+      },
+      {
+        title: "On-site & Hybrid Specialists",
+        desc: "Deploy technology specialists closer to the business where required.",
+        icon: "fa-solid fa-building-user",
+        href: "/contact",
+      },
+      {
+        title: "Dedicated Technology Teams",
+        desc: "Build cross-functional teams aligned to your technology roadmap and priorities.",
+        icon: "fa-solid fa-users-gear",
+        href: "/contact",
+      },
+      {
+        title: "Project Delivery Squads",
+        desc: "Assemble focused teams to deliver defined technology outcomes.",
+        icon: "fa-solid fa-cubes",
+        href: "/contact",
+      },
+      {
+        title: "Global Delivery Centres",
+        desc: "Scale delivery through offshore, nearshore and global capability models.",
+        icon: "fa-solid fa-earth-americas",
+        href: "/contact",
+      },
+      {
+        title: "Build-Operate-Transfer",
+        desc: "Establish technology capability with a structured path toward client ownership.",
+        icon: "fa-solid fa-handshake",
+        href: "/contact",
+      },
     ],
   },
 ];
@@ -207,7 +450,7 @@ export default function Header() {
   const headerRef = useRef<HTMLElement>(null);
   const [navOpen, setNavOpen] = useState(false);
 
-  // Hook directly into the global advisor modal
+  // Hook directly into global advisor modal
   const { openAdvisorModal } = useAdvisorModal();
 
   // Desktop active mega menu: 'what-we-do' | 'industries' | 'platforms' | 'client-success' | 'company' | null
@@ -244,7 +487,6 @@ export default function Header() {
     document.body.classList.remove("nav-open");
   };
 
-  // Direct modal trigger — zero redirects
   const handleAdvisorClick = (e?: React.MouseEvent) => {
     if (e) e.preventDefault();
     closeAll();
@@ -424,7 +666,7 @@ export default function Header() {
               </li>
             </ul>
 
-            {/* Desktop Persistent CTA Button (Direct Modal Open) */}
+            {/* Desktop Persistent CTA Button */}
             <div className="d-flex align-items-center">
               <button
                 type="button"
@@ -442,7 +684,7 @@ export default function Header() {
         </nav>
 
         {/* ==================================================================
-            DESKTOP MEGA MENU 1: WHAT WE DO
+            DESKTOP MEGA MENU 1: WHAT WE DO (UPDATED TO MATCH PDF DESIGN)
             ================================================================== */}
         <div
           className={`bvm-mega-menu ${activeMega === "what-we-do" ? "is-active" : ""}`}
@@ -450,67 +692,84 @@ export default function Header() {
           onMouseLeave={handleMouseLeave}
         >
           <div className="row g-0">
+            {/* Left Rail: 7 Core Practices */}
             <div className="col-4 mega-rail-col">
               <div className="mega-rail-header">
-                <span className="mega-category-badge d-block mb-1">CORE PRACTICES</span>
-                <span className="text-white fw-bold fs-6">What We Do</span>
-              </div>
-              {WHAT_WE_DO_DATA.map((p) => (
-                <button
-                  key={p.id}
-                  type="button"
-                  className={`mega-rail-item ${activePillarId === p.id ? "active" : ""}`}
-                  onMouseEnter={() => setActivePillarId(p.id)}
-                  onClick={() => setActivePillarId(p.id)}
-                >
-                  <span>{p.name}</span>
-                  <i className="fa-solid fa-chevron-right rail-arrow" />
-                </button>
-              ))}
-            </div>
-
-            <div className="col-8 mega-content-area">
-              <div className="mega-content-header d-flex align-items-center justify-content-between">
-                <div>
-                  <span className="mega-category-badge">{activePillar.name}</span>
-                  <h4 className="text-white fs-5 fw-bold mb-0 mt-1">{activePillar.tagline}</h4>
-                </div>
-                <button
-                  type="button"
-                  className="btn btn-sm btn-consult-red rounded-pill px-3 py-1 fw-semibold d-inline-flex align-items-center gap-2"
-                  onClick={handleAdvisorClick}
-                >
-                  <span>Schedule Advisory</span>
-                  <span className="contact-angles-icon">
-                    <i className="fa-solid fa-angles-right" />
-                  </span>
-                </button>
+                <span className="mega-category-badge d-block mb-1">&mdash; WHAT WE DO</span>
+                <p className="mega-rail-subtext mb-0">
+                  From strategy to scale, BVM helps organizations modernize technology, transform operations and build the capabilities needed for what comes next.
+                </p>
               </div>
 
-              <div className="mega-grid-2col mb-4">
-                {activePillar.items.map((item) => (
-                  <Link
-                    key={item.title}
-                    href={item.href}
-                    className="mega-sub-card"
-                    onClick={closeAll}
+              <div className="mega-rail-list">
+                {WHAT_WE_DO_DATA.map((p) => (
+                  <button
+                    key={p.id}
+                    type="button"
+                    className={`mega-rail-item ${activePillarId === p.id ? "active" : ""}`}
+                    onMouseEnter={() => setActivePillarId(p.id)}
+                    onClick={() => setActivePillarId(p.id)}
                   >
-                    <span className="mega-sub-dot" />
-                    <div>
-                      <div className="mega-sub-title">{item.title}</div>
+                    <div className="d-flex align-items-center gap-2 text-start">
+                      <span className="mega-rail-icon">
+                        <i className={p.icon} />
+                      </span>
+                      <span className="mega-rail-name">{p.name}</span>
                     </div>
-                  </Link>
+                    <i className="fa-solid fa-chevron-right rail-arrow" />
+                  </button>
                 ))}
               </div>
+            </div>
 
-              <div className="mega-callout-card d-flex align-items-center justify-content-between">
-                <div>
-                  <span className="text-cyan small fw-bold d-block">BVM ENTERPRISE LIFECYCLE</span>
-                  <span className="text-white small">ADVISE &bull; TRANSFORM &bull; ENGINEER &bull; OPERATE &bull; SCALE</span>
+            {/* Right Content Area: Active Pillar Showcase */}
+            <div className="col-8 mega-content-area position-relative">
+              {/* Subtle Architectural Backdrop */}
+              <div className="mega-skyline-backdrop" aria-hidden="true" />
+
+              <div className="position-relative z-2">
+                <div className="mega-content-header mb-4">
+                  <span className="mega-category-badge">{activePillar.eyebrow}</span>
+                  <h3 className="mega-content-headline text-white mt-1 mb-2">
+                    {activePillar.headline}
+                  </h3>
+                  <p className="mega-content-desc mb-0">
+                    {activePillar.description}
+                  </p>
                 </div>
-                <Link href="/about" className="text-bright-muted small text-decoration-none" onClick={closeAll}>
-                  Learn more &rarr;
-                </Link>
+
+                {/* 2-Column Capability Grid with Icons & Supporting Text */}
+                <div className="mega-grid-2col mb-4">
+                  {activePillar.items.map((item) => (
+                    <Link
+                      key={item.title}
+                      href={item.href}
+                      className="mega-sub-card"
+                      onClick={closeAll}
+                    >
+                      <div className="mega-sub-icon-box">
+                        <i className={item.icon} />
+                      </div>
+                      <div className="mega-sub-info flex-grow-1">
+                        <div className="mega-sub-title">{item.title}</div>
+                        <div className="mega-sub-desc">{item.desc}</div>
+                      </div>
+                      <i className="fa-solid fa-chevron-right mega-sub-arrow" />
+                    </Link>
+                  ))}
+                </div>
+
+                {/* Bottom CTA Link Matching PDF */}
+                <div className="mega-bottom-cta-wrap pt-2">
+                  <Link
+                    href={activePillar.bottomCta.href}
+                    className="mega-bottom-cta d-inline-flex align-items-center gap-2"
+                    onClick={closeAll}
+                  >
+                    <span>{activePillar.bottomCta.label}</span>
+                    <i className="fa-solid fa-arrow-right" />
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -762,7 +1021,7 @@ export default function Header() {
         </div>
 
         {/* ==================================================================
-            MOBILE DRAWER
+            MOBILE DRAWER (UPDATED ACCORDION WITH SUPPORTING TEXT)
             ================================================================== */}
         <div className={`collapse navbar-collapse d-lg-none ${navOpen ? "show" : ""}`} id="mainNavbarMobile">
           <div className="mobile-menu-drawer">
@@ -786,7 +1045,10 @@ export default function Header() {
                         className={`mobile-sub-accordion-trigger ${mobileExpanded[`pillar-${pillar.id}`] ? "is-open" : ""}`}
                         onClick={() => toggleMobileCategory(`pillar-${pillar.id}`)}
                       >
-                        <span>{pillar.name}</span>
+                        <span className="d-flex align-items-center gap-2">
+                          <i className={`${pillar.icon} text-cyan`} />
+                          <span>{pillar.name}</span>
+                        </span>
                         <i className="fa-solid fa-chevron-down mobile-chevron-icon" />
                       </button>
 
@@ -799,7 +1061,8 @@ export default function Header() {
                               className="mobile-sub-link"
                               onClick={closeAll}
                             >
-                              &bull; {sub.title}
+                              <div className="text-white fw-semibold mb-1">&bull; {sub.title}</div>
+                              <div className="text-bright-muted extra-small">{sub.desc}</div>
                             </Link>
                           ))}
                         </div>
@@ -891,7 +1154,7 @@ export default function Header() {
               )}
             </div>
 
-            {/* Mobile Drawer Bottom Persistent CTA (Direct Modal Open) */}
+            {/* Mobile Drawer Bottom Persistent CTA */}
             <div className="mobile-drawer-cta">
               <button
                 type="button"

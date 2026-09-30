@@ -1,15 +1,12 @@
 import type { Metadata } from "next";
-import ServicePage from "@/components/services/ServicePage";
-import { servicePages } from "@/data/servicePages";
-
-const data = servicePages["ai-automation-development"];
+import AIDataAutomationPageContent from "@/components/ai-automation/AIDataAutomationPageContent";
 
 export const metadata: Metadata = {
-  title: data.metaTitle,
-  description: data.metaDesc,
+  title: "AI, Data & Intelligent Automation | Enterprise AI Solutions",
+  description:
+    "BVM helps organizations build trusted data foundations, apply enterprise AI and automate work where technology can create measurable business value.",
 };
 
 export default function Page() {
-  const { metaTitle: _t, metaDesc: _d, ...pageData } = data;
-  return <ServicePage data={pageData} />;
+  return <AIDataAutomationPageContent />;
 }

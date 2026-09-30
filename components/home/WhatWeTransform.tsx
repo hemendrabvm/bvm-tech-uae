@@ -9,6 +9,7 @@ import { useAdvisorModal } from "@/components/AdvisorModal/AdvisorModalContext";
 const TRANSFORMATION_CARDS = [
   {
     idx: "01",
+    icon: "/images/b1.png",
     title: "Modernize Core Systems",
     desc: "Modernize legacy applications and enterprise platforms for greater agility and scale.",
     capabilities: [
@@ -18,11 +19,12 @@ const TRANSFORMATION_CARDS = [
     ],
     ctaText: "Explore Modernization",
     ctaHref: "/erp-development",
-    bg: "/images/s1.png",
+    bg: "/images/bp1.png",
     active: true,
   },
   {
     idx: "02",
+    icon: "/images/b2.png",
     title: "Unlock AI & Data",
     desc: "Turn data into intelligence, automation and better business decisions.",
     capabilities: [
@@ -33,11 +35,12 @@ const TRANSFORMATION_CARDS = [
     ],
     ctaText: "Explore AI & Data",
     ctaHref: "/ai-automation-development",
-    bg: "/images/s3.png",
+    bg: "/images/bp2.png",
     active: false,
   },
   {
     idx: "03",
+    icon: "/images/b3.png",
     title: "Connect the Enterprise",
     desc: "Integrate applications, workflows and data into one connected environment.",
     capabilities: [
@@ -48,11 +51,12 @@ const TRANSFORMATION_CARDS = [
     ],
     ctaText: "Explore Integration",
     ctaHref: "/contact",
-    bg: "/images/s2.png",
+    bg: "/images/bp3.png",
     active: false,
   },
   {
     idx: "04",
+    icon: "/images/b4.png",
     title: "Digitize Operations",
     desc: "Replace manual processes with connected digital workflows and automation.",
     capabilities: [
@@ -63,11 +67,12 @@ const TRANSFORMATION_CARDS = [
     ],
     ctaText: "Explore Digital Operations",
     ctaHref: "/custom-software-development",
-    bg: "/images/s4.png",
+    bg: "/images/bp4.png",
     active: false,
   },
   {
     idx: "05",
+    icon: "/images/b5.png",
     title: "Strengthen Technology Resilience",
     desc: "Improve cloud, security, infrastructure and continuity across critical systems.",
     capabilities: [
@@ -78,11 +83,12 @@ const TRANSFORMATION_CARDS = [
     ],
     ctaText: "Explore Resilience",
     ctaHref: "/security",
-    bg: "/images/s5.png",
+    bg: "/images/bp5.png",
     active: false,
   },
   {
     idx: "06",
+    icon: "/images/b6.png",
     title: "Scale Technology Delivery",
     desc: "Extend capability with specialists, dedicated teams and global delivery.",
     capabilities: [
@@ -93,7 +99,7 @@ const TRANSFORMATION_CARDS = [
     ],
     ctaText: "Explore Global Delivery",
     ctaHref: "/contact",
-    bg: "/images/s1.png",
+    bg: "/images/bp6.png",
     active: false,
   },
 ];
@@ -128,13 +134,13 @@ export default function WhatWeTransform() {
 
             <h2 className="services-title text-white mb-3">
               <span className="services-line-mask">
-                <span className="services-line-inner">
-                  What Do You Want
+                <span className="services-line-inner ">
+                  What Do You Want to
                 </span>
               </span>
               <span className="services-line-mask">
-                <span className="services-line-inner">
-                  to Transform?
+                <span className="services-line-inner headline-cyan">
+                  Transform?
                 </span>
               </span>
             </h2>
@@ -194,33 +200,57 @@ export default function WhatWeTransform() {
               {/* Index Tag */}
               <div className="card-index-tag">{card.idx}</div>
 
-              {/* Collapsed State: Vertical Title Only */}
+              {/* COLLAPSED STATE ONLY: Icon Box */}
+              <div className="collapsed-icon-box">
+                <img
+                  src={card.icon}
+                  alt={`${card.title} Icon`}
+                  className="collapsed-icon-img"
+                />
+              </div>
+
+              {/* COLLAPSED STATE ONLY: Vertical Title */}
               <div className="collapsed-title-wrapper">
                 <span className="vertical-title">{card.title}</span>
               </div>
 
-              {/* Expanded State: Full Heading + Description + Tags + CTA */}
+              {/* EXPANDED STATE ONLY: Full Content View */}
               <div className="expanded-content-wrapper">
+                {/* Icon Box in Expanded State */}
+                <div className="accordion-card-icon-box">
+                  <img
+                    src={card.icon}
+                    alt={`${card.title} Icon`}
+                    className="accordion-card-icon-img"
+                  />
+                </div>
+
+                {/* Title */}
                 <div className="card-text-mask">
                   <h3 className="expanded-title">{card.title}</h3>
                 </div>
+
+                {/* Description */}
                 <div className="card-text-mask">
                   <p className="expanded-desc">{card.desc}</p>
                 </div>
 
-                {/* Capabilities Chips */}
-                <div className="accordion-capabilities-tags">
+                {/* Capabilities Pills using the theme's .spec-tag */}
+                <div className="d-flex flex-wrap gap-2 my-3">
                   {card.capabilities.map((cap) => (
-                    <span className="accordion-cap-tag" key={cap}>
+                    <span className="spec-tag" key={cap}>
                       {cap}
                     </span>
                   ))}
                 </div>
 
                 {/* Card CTA Link */}
-                <div>
-                  <Link href={card.ctaHref} className="accordion-card-cta">
-                    <span>{card.ctaText}</span>
+                <div className="mt-2">
+                  <Link
+                    href={card.ctaHref}
+                    className="btn btn-consult-red rounded-pill px-4 py-2 fw-semibold magnetic-btn d-inline-flex align-items-center gap-2"
+                  >
+                    <span className="btn-text">{card.ctaText}</span>
                     <span className="arrow-icon-wrapper">
                       <svg
                         className="diagonal-arrow-svg"
@@ -240,6 +270,7 @@ export default function WhatWeTransform() {
                         />
                       </svg>
                     </span>
+                    <span className="btn-sheen" />
                   </Link>
                 </div>
               </div>

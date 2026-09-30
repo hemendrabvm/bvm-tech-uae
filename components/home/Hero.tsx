@@ -37,9 +37,19 @@ export default function Hero() {
         <div className="row min-vh-80 align-items-center">
           <div className="col-12 col-lg-12 text-start position-relative hero-text-container">
             {/* 1. Compact Eyebrow Badge */}
-            <div className="hero-shimmer-badge hero-anim-badge d-inline-flex align-items-center gap-2 mb-4">
+            <div className="hero-shimmer-badge hero-anim-badge d-inline-flex align-items-center gap-2 mb-lg-4">
               <img src="/images/h.png" alt="Icon" />
-              <span className="badge-text">GLOBAL ADVISORY &amp; DIGITAL ENGINEERING</span>
+              <span className="badge-text"> <div className="hero-pillars-bar ">
+              <span className="hero-pillar-item">Advisory</span>
+              <span className="hero-pillar-sep">&bull;</span>
+              <span className="hero-pillar-item">Enterprise Platforms</span>
+              <span className="hero-pillar-sep">&bull;</span>
+              <span className="hero-pillar-item">AI &amp; Data</span>
+              <span className="hero-pillar-sep">&bull;</span>
+              <span className="hero-pillar-item">Digital Engineering</span>
+              <span className="hero-pillar-sep">&bull;</span>
+              <span className="hero-pillar-item">Global Delivery</span>
+            </div></span>
               <span className="shimmer-line" aria-hidden="true" />
             </div>
 
@@ -51,28 +61,16 @@ export default function Hero() {
               <span className="hero-line-mask">
                 <span className="hero-line-inner">
                   <span className="skyline-pill-container">
-                    <span className="skyline-pill" />
-                  </span>{" "}
-                  to Scale.
+                    {/* <span className="skyline-pill" /> */}
+                  </span>to Scale.
                 </span>
               </span>
-              <span className="hero-line-mask">
-                <span className="hero-line-inner">Built for Business.</span>
-              </span>
+             <span className="hero-line-mask">
+  <span className="hero-line-inner headline-cyan">Built for Business.</span>
+</span>
             </h1>
 
-            {/* 3. Five Core Enterprise Pillars */}
-            <div className="hero-pillars-bar hero-anim-subtext">
-              <span className="hero-pillar-item">Advisory</span>
-              <span className="hero-pillar-sep">&bull;</span>
-              <span className="hero-pillar-item">Enterprise Platforms</span>
-              <span className="hero-pillar-sep">&bull;</span>
-              <span className="hero-pillar-item">AI &amp; Data</span>
-              <span className="hero-pillar-sep">&bull;</span>
-              <span className="hero-pillar-item">Digital Engineering</span>
-              <span className="hero-pillar-sep">&bull;</span>
-              <span className="hero-pillar-item">Global Delivery</span>
-            </div>
+          
 
             {/* 4. Supporting Content */}
             <p className="hero-subtext mb-5 hero-anim-subtext">
