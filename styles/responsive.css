@@ -543,7 +543,7 @@
 @media (max-width: 480px) {
   .hero-headline { font-size: 34px; }
   .skyline-pill { width: 84px; height: 32px; }
-  .hero-shimmer-badge { padding: 6px 12px; }
+  .hero-shimmer-badge { padding: 6px 12px;margin-bottom:20px }
   .badge-text { font-size: 0.72rem; }
 
   .who-title,

@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useAdvisorModal } from "@/components/AdvisorModal/AdvisorModalContext";
 
 function prefersReducedMotion(): boolean {
   if (typeof window === "undefined") return true;
@@ -13,8 +12,9 @@ function prefersReducedMotion(): boolean {
 }
 
 /* ==========================================================================
-   WHAT WE DO DATA (UPDATED FROM SEPT 30 SPECIFICATION)
+   WHAT WE DO DATA (ALL 7 PRACTICES & CHILD ITEMS CONNECTED TO THEIR PAGES)
    ========================================================================== */
+
 export const WHAT_WE_DO_DATA = [
   /* 1. Advisory & Transformation -> /advisory-transformation */
   {
@@ -34,37 +34,37 @@ export const WHAT_WE_DO_DATA = [
         title: "Digital & Technology Strategy",
         desc: "Define technology vision, priorities and roadmaps aligned to business goals.",
         icon: "fa-solid fa-laptop-code",
-        href: "/advisory-transformation#capabilities",
+        href: "/advisory-transformation",
       },
       {
         title: "Enterprise Architecture",
         desc: "Design scalable, secure and future-ready technology environments across applications, data, integration and infrastructure.",
         icon: "fa-solid fa-sitemap",
-        href: "/advisory-transformation#capabilities",
+        href: "/advisory-transformation",
       },
       {
         title: "Business Process Transformation",
         desc: "Simplify and redesign processes to improve efficiency and business performance.",
         icon: "fa-solid fa-gear",
-        href: "/advisory-transformation#capabilities",
+        href: "/advisory-transformation",
       },
       {
         title: "Platform Advisory & Selection",
         desc: "Evaluate enterprise platforms against business, technical, operational and commercial requirements.",
         icon: "fa-solid fa-bullseye",
-        href: "/advisory-transformation#capabilities",
+        href: "/advisory-transformation",
       },
       {
         title: "AI & Data Strategy",
         desc: "Define practical AI and data strategies that create measurable business value.",
         icon: "fa-solid fa-chart-simple",
-        href: "/ai-automation-development",
+        href: "/advisory-transformation",
       },
       {
         title: "Transformation & Program Advisory",
         desc: "Plan, govern and execute complex technology transformation initiatives.",
         icon: "fa-solid fa-users-gear",
-        href: "/advisory-transformation#capabilities",
+        href: "/advisory-transformation",
       },
     ],
   },
@@ -93,7 +93,7 @@ export const WHAT_WE_DO_DATA = [
         title: "CRM & Customer Experience",
         desc: "Connect sales, service and customer engagement across the enterprise.",
         icon: "fa-solid fa-handshake",
-        href: "/crm-development",
+        href: "/enterprise-applications",
       },
       {
         title: "ITSM & Enterprise Workflow",
@@ -117,7 +117,7 @@ export const WHAT_WE_DO_DATA = [
         title: "Digital Experience Platforms",
         desc: "Build connected digital experiences across portals, content and customer touchpoints.",
         icon: "fa-solid fa-desktop",
-        href: "/web-development",
+        href: "/enterprise-applications",
       },
     ],
   },
@@ -175,7 +175,7 @@ export const WHAT_WE_DO_DATA = [
     ],
   },
 
-  /* 4. Digital & Product Engineering */
+  /* 4. Digital & Product Engineering -> /digital-product-engineering */
   {
     id: "product-eng",
     name: "Digital & Product Engineering",
@@ -186,203 +186,203 @@ export const WHAT_WE_DO_DATA = [
       "Build, modernize and scale digital products and applications where standard platforms alone are not enough.",
     bottomCta: {
       label: "Explore Digital & Product Engineering",
-      href: "/custom-software-development",
+      href: "/digital-product-engineering",
     },
     items: [
       {
         title: "Product Strategy & Engineering",
         desc: "Turn business ideas into scalable digital products and technology platforms.",
         icon: "fa-solid fa-lightbulb",
-        href: "/custom-software-development",
+        href: "/digital-product-engineering",
       },
       {
         title: "Enterprise Application Development",
         desc: "Build secure, scalable applications around enterprise requirements.",
         icon: "fa-solid fa-laptop-code",
-        href: "/custom-software-development",
+        href: "/digital-product-engineering",
       },
       {
         title: "Web, Mobile & Experience Engineering",
         desc: "Create connected digital experiences across web, mobile and user journeys.",
         icon: "fa-solid fa-mobile-screen",
-        href: "/mobile-apps",
+        href: "/digital-product-engineering",
       },
       {
         title: "SaaS Engineering",
         desc: "Design and develop scalable SaaS products and multi-tenant platforms.",
         icon: "fa-solid fa-cloud",
-        href: "/saas-development",
+        href: "/digital-product-engineering",
       },
       {
         title: "Application Modernization",
         desc: "Modernize legacy applications for improved performance, agility and scalability.",
         icon: "fa-solid fa-recycle",
-        href: "/custom-software-development",
+        href: "/digital-product-engineering",
       },
       {
         title: "API, Microservices & Quality Engineering",
         desc: "Build modular architectures and strengthen software quality across the delivery lifecycle.",
         icon: "fa-solid fa-network-wired",
-        href: "/custom-software-development",
+        href: "/digital-product-engineering",
       },
     ],
   },
 
-  /* 5. Cloud, Cybersecurity & Integration */
+  /* 5. Cloud, Cybersecurity & Integration -> /cloud-cybersecurity-integration */
   {
-  id: "cloud-cyber",
-  name: "Cloud, Cybersecurity & Integration",
-  icon: "fa-solid fa-shield-halved",
-  eyebrow: "CLOUD, CYBERSECURITY & INTEGRATION",
-  headline: "Modernize, secure and connect the enterprise.",
-  description:
-    "Build resilient technology foundations, strengthen security and connect applications, platforms and data across the enterprise.",
-  bottomCta: {
-    label: "Explore Cloud, Security & Integration",
-    href: "/cloud-cybersecurity-integration",
-  },
+    id: "cloud-cyber",
+    name: "Cloud, Cybersecurity & Integration",
+    icon: "fa-solid fa-shield-halved",
+    eyebrow: "CLOUD, CYBERSECURITY & INTEGRATION",
+    headline: "Modernize, secure and connect the enterprise.",
+    description:
+      "Build resilient technology foundations, strengthen security and connect applications, platforms and data across the enterprise.",
+    bottomCta: {
+      label: "Explore Cloud, Security & Integration",
+      href: "/cloud-cybersecurity-integration",
+    },
     items: [
       {
         title: "Cloud Strategy & Modernization",
         desc: "Define and execute the right cloud migration and modernization path.",
         icon: "fa-solid fa-cloud-arrow-up",
-        href: "/contact",
+        href: "/cloud-cybersecurity-integration",
       },
       {
         title: "Cloud-Native Engineering",
         desc: "Build scalable cloud-native applications, services and technology environments.",
         icon: "fa-solid fa-server",
-        href: "/contact",
+        href: "/cloud-cybersecurity-integration",
       },
       {
         title: "Cybersecurity & Resilience",
         desc: "Strengthen application, cloud and infrastructure security while improving continuity.",
         icon: "fa-solid fa-shield-virus",
-        href: "/security",
+        href: "/cloud-cybersecurity-integration",
       },
       {
         title: "Identity & Access Management",
         desc: "Secure access to systems, applications and enterprise resources.",
         icon: "fa-solid fa-id-badge",
-        href: "/security",
+        href: "/cloud-cybersecurity-integration",
       },
       {
         title: "Enterprise Integration",
         desc: "Connect applications, platforms and processes across the technology landscape.",
         icon: "fa-solid fa-arrows-split-up-and-left",
-        href: "/contact",
+        href: "/cloud-cybersecurity-integration",
       },
       {
         title: "API, Data & Middleware Integration",
         desc: "Enable interoperability through APIs, data integration, middleware and iPaaS.",
         icon: "fa-solid fa-plug",
-        href: "/contact",
+        href: "/cloud-cybersecurity-integration",
       },
     ],
   },
 
-  /* 6. Managed Services */
+  /* 6. Managed Services -> /managed-services */
   {
-  id: "managed-services",
-  name: "Managed Services",
-  icon: "fa-solid fa-gear",
-  eyebrow: "MANAGED SERVICES",
-  headline: "Keep critical technology performing.",
-  description:
-    "Operate, support and continuously improve enterprise platforms, applications and infrastructure.",
-  bottomCta: {
-    label: "Explore Managed Services",
-    href: "/managed-services",
-  },
+    id: "managed-services",
+    name: "Managed Services",
+    icon: "fa-solid fa-gear",
+    eyebrow: "MANAGED SERVICES",
+    headline: "Keep critical technology performing.",
+    description:
+      "Operate, support and continuously improve enterprise platforms, applications and infrastructure.",
+    bottomCta: {
+      label: "Explore Managed Services",
+      href: "/managed-services",
+    },
     items: [
       {
         title: "Application Managed Services",
         desc: "Maintain and optimize business-critical applications across their lifecycle.",
         icon: "fa-solid fa-laptop-file",
-        href: "/faq#faq-ownership",
+        href: "/managed-services",
       },
       {
         title: "Enterprise Platform Support",
         desc: "Support enterprise platforms, configurations, integrations and ongoing enhancement.",
         icon: "fa-solid fa-cubes-stacked",
-        href: "/faq#faq-ownership",
+        href: "/managed-services",
       },
       {
         title: "Cloud & Infrastructure Operations",
         desc: "Operate cloud and infrastructure environments for availability and performance.",
         icon: "fa-solid fa-cloud",
-        href: "/faq#faq-ownership",
+        href: "/managed-services",
       },
       {
         title: "Platform Administration",
         desc: "Manage day-to-day administration, configurations and platform governance.",
         icon: "fa-solid fa-user-gear",
-        href: "/faq#faq-ownership",
+        href: "/managed-services",
       },
       {
         title: "L1 / L2 / L3 Support",
         desc: "Provide structured technical support across functional and technical requirements.",
         icon: "fa-solid fa-headset",
-        href: "/faq#faq-ownership",
+        href: "/managed-services",
       },
       {
         title: "Continuous Improvement & Optimization",
         desc: "Improve platform performance, adoption and business value over time.",
         icon: "fa-solid fa-chart-line",
-        href: "/faq#faq-ownership",
+        href: "/managed-services",
       },
     ],
   },
 
-  /* 7. Technology Talent & Global Delivery */
+  /* 7. Technology Talent & Global Delivery -> /technology-talent-delivery */
   {
-  id: "talent-delivery",
-  name: "Technology Talent & Global Delivery",
-  icon: "fa-solid fa-people-group",
-  eyebrow: "TECHNOLOGY TALENT & GLOBAL DELIVERY",
-  headline: "The right technology capability. When and where you need it.",
-  description:
-    "Extend technology capacity through specialist resources, dedicated teams and flexible global delivery models.",
-  bottomCta: {
-    label: "Explore Technology Talent & Global Delivery",
-    href: "/technology-talent-delivery",
-  },
+    id: "talent-delivery",
+    name: "Technology Talent & Global Delivery",
+    icon: "fa-solid fa-people-group",
+    eyebrow: "TECHNOLOGY TALENT & GLOBAL DELIVERY",
+    headline: "The right technology capability. When and where you need it.",
+    description:
+      "Extend technology capacity through specialist resources, dedicated teams and flexible global delivery models.",
+    bottomCta: {
+      label: "Explore Technology Talent & Global Delivery",
+      href: "/technology-talent-delivery",
+    },
     items: [
       {
         title: "Remote Technology Specialists",
         desc: "Access specialized technology expertise through flexible remote delivery.",
         icon: "fa-solid fa-user-tie",
-        href: "/contact",
+        href: "/technology-talent-delivery",
       },
       {
         title: "On-site & Hybrid Specialists",
         desc: "Deploy technology specialists closer to the business where required.",
         icon: "fa-solid fa-building-user",
-        href: "/contact",
+        href: "/technology-talent-delivery",
       },
       {
         title: "Dedicated Technology Teams",
         desc: "Build cross-functional teams aligned to your technology roadmap and priorities.",
         icon: "fa-solid fa-users-gear",
-        href: "/contact",
+        href: "/technology-talent-delivery",
       },
       {
         title: "Project Delivery Squads",
         desc: "Assemble focused teams to deliver defined technology outcomes.",
         icon: "fa-solid fa-cubes",
-        href: "/contact",
+        href: "/technology-talent-delivery",
       },
       {
         title: "Global Delivery Centres",
         desc: "Scale delivery through offshore, nearshore and global capability models.",
         icon: "fa-solid fa-earth-americas",
-        href: "/contact",
+        href: "/technology-talent-delivery",
       },
       {
         title: "Build-Operate-Transfer",
         desc: "Establish technology capability with a structured path toward client ownership.",
         icon: "fa-solid fa-handshake",
-        href: "/contact",
+        href: "/technology-talent-delivery",
       },
     ],
   },
@@ -390,18 +390,19 @@ export const WHAT_WE_DO_DATA = [
 
 export const INDUSTRIES_DATA = [
   { title: "Government & Public Services", icon: "fa-building-columns", href: "/industries" },
-  { title: "Banking, Financial Services & Insurance", icon: "fa-coins", href: "/industries" },
-  { title: "Real Estate, Facilities & Smart Infrastructure", icon: "fa-city", href: "/industries" },
+  { title: "Banking, Financial Services & Insurance", icon: "fa-coins", href: "/industries#fintech" },
+  { title: "Real Estate, Facilities & Smart Infrastructure", icon: "fa-city", href: "/industries#real-estate" },
   { title: "Energy & Utilities", icon: "fa-bolt-lightning", href: "/industries" },
-  { title: "Construction & Engineering", icon: "fa-helmet-safety", href: "/industries" },
-  { title: "Manufacturing & Industrial", icon: "fa-industry", href: "/industries" },
-  { title: "Logistics & Mobility", icon: "fa-truck-fast", href: "/industries" },
-  { title: "Retail & Consumer", icon: "fa-cart-shopping", href: "/industries" },
-  { title: "Travel, Hospitality & Leisure", icon: "fa-plane-departure", href: "/industries" },
-  { title: "Healthcare & Life Sciences", icon: "fa-hospital", href: "/industries" },
+  { title: "Construction & Engineering", icon: "fa-helmet-safety", href: "/industries#construction" },
+  { title: "Manufacturing & Industrial", icon: "fa-industry", href: "/industries#manufacturing" },
+  { title: "Logistics & Mobility", icon: "fa-truck-fast", href: "/industries#logistics" },
+  { title: "Retail & Consumer", icon: "fa-cart-shopping", href: "/industries#retail" },
+  { title: "Travel, Hospitality & Leisure", icon: "fa-plane-departure", href: "/industries#hospitality" },
+  { title: "Healthcare & Life Sciences", icon: "fa-hospital", href: "/industries#healthcare" },
   { title: "Technology & SaaS", icon: "fa-microchip", href: "/industries" },
 ];
 
+/* Display Data: Not linked */
 export const PLATFORMS_DATA = [
   {
     category: "CRM & Customer Experience",
@@ -450,9 +451,6 @@ export default function Header() {
   const headerRef = useRef<HTMLElement>(null);
   const [navOpen, setNavOpen] = useState(false);
 
-  // Hook directly into global advisor modal
-  const { openAdvisorModal } = useAdvisorModal();
-
   // Desktop active mega menu: 'what-we-do' | 'industries' | 'platforms' | 'client-success' | 'company' | null
   const [activeMega, setActiveMega] = useState<string | null>(null);
 
@@ -485,12 +483,6 @@ export default function Header() {
     setActiveMega(null);
     setNavOpen(false);
     document.body.classList.remove("nav-open");
-  };
-
-  const handleAdvisorClick = (e?: React.MouseEvent) => {
-    if (e) e.preventDefault();
-    closeAll();
-    openAdvisorModal();
   };
 
   useGSAP(
@@ -542,18 +534,18 @@ export default function Header() {
             </div>
           </Link>
 
-          {/* Right Mobile Actions */}
+          {/* Right Mobile Actions: Directly redirects to /contact */}
           <div className="d-flex d-lg-none align-items-center gap-2 ms-auto">
-            <button
-              type="button"
+            <Link
+              href="/contact"
               className="btn btn-login-red rounded-pill fw-bold d-inline-flex align-items-center gap-2 mobile-direct-contact btn-advisor-mobile-header"
-              onClick={handleAdvisorClick}
+              onClick={closeAll}
             >
               <span>Talk to an Advisor</span>
               <span className="contact-angles-icon">
                 <i className="fa-solid fa-angles-right" />
               </span>
-            </button>
+            </Link>
 
             <button
               className={`navbar-toggler custom-toggler ${navOpen ? "active" : ""}`}
@@ -666,25 +658,25 @@ export default function Header() {
               </li>
             </ul>
 
-            {/* Desktop Persistent CTA Button */}
+            {/* Desktop Persistent CTA Button: Redirects to /contact */}
             <div className="d-flex align-items-center">
-              <button
-                type="button"
+              <Link
+                href="/contact"
                 className="btn btn-login-red rounded-pill fw-semibold magnetic-btn d-inline-flex align-items-center gap-2 btn-advisor-desktop"
-                onClick={handleAdvisorClick}
+                onClick={closeAll}
               >
                 <span className="btn-text">Talk to an Advisor</span>
                 <span className="contact-angles-icon">
                   <i className="fa-solid fa-angles-right" />
                 </span>
                 <span className="btn-sheen" />
-              </button>
+              </Link>
             </div>
           </div>
         </nav>
 
         {/* ==================================================================
-            DESKTOP MEGA MENU 1: WHAT WE DO (UPDATED TO MATCH PDF DESIGN)
+            DESKTOP MEGA MENU 1: WHAT WE DO
             ================================================================== */}
         <div
           className={`bvm-mega-menu ${activeMega === "what-we-do" ? "is-active" : ""}`}
@@ -722,9 +714,8 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Right Content Area: Active Pillar Showcase */}
+            {/* Right Content Area */}
             <div className="col-8 mega-content-area position-relative">
-              {/* Subtle Architectural Backdrop */}
               <div className="mega-skyline-backdrop" aria-hidden="true" />
 
               <div className="position-relative z-2">
@@ -738,7 +729,7 @@ export default function Header() {
                   </p>
                 </div>
 
-                {/* 2-Column Capability Grid with Icons & Supporting Text */}
+                {/* 2-Column Capability Grid: ALL CHILD ITEMS LINK DIRECTLY TO THAT PILLAR'S PAGE */}
                 <div className="mega-grid-2col mb-4">
                   {activePillar.items.map((item) => (
                     <Link
@@ -759,7 +750,7 @@ export default function Header() {
                   ))}
                 </div>
 
-                {/* Bottom CTA Link Matching PDF */}
+                {/* Bottom CTA Link directly to that pillar's page */}
                 <div className="mega-bottom-cta-wrap pt-2">
                   <Link
                     href={activePillar.bottomCta.href}
@@ -825,19 +816,20 @@ export default function Header() {
               <span className="text-bright-muted small">
                 Compliant with UAE &amp; GCC regulatory frameworks: <strong className="text-white">DHA/DOH</strong>, <strong className="text-white">Ejari</strong>, <strong className="text-white">Central Bank</strong> &amp; <strong className="text-white">FTA E-Invoicing</strong>.
               </span>
-              <button
-                type="button"
+              <Link
+                href="/contact"
                 className="btn btn-link text-cyan fw-bold small text-decoration-none p-0"
-                onClick={handleAdvisorClick}
+                onClick={closeAll}
               >
                 Consult an Industry Specialist &rarr;
-              </button>
+              </Link>
             </div>
           </div>
         </div>
 
         {/* ==================================================================
             DESKTOP MEGA MENU 3: PLATFORMS & ECOSYSTEMS
+            (ONLY ONE LINK IN ENTIRE MENU: TALK TO AN ADVISOR -> /contact)
             ================================================================== */}
         <div
           className={`bvm-mega-menu ${activeMega === "platforms" ? "is-active" : ""}`}
@@ -852,23 +844,28 @@ export default function Header() {
                   Connected Across Established Platforms
                 </h4>
               </div>
+
+              {/* The ONLY link in this entire menu */}
               <Link
-                href="/services"
+                href="/contact"
                 className="btn btn-sm btn-consult-red rounded-pill px-3 py-2 fw-semibold d-inline-flex align-items-center gap-2"
                 onClick={closeAll}
               >
-                <span>Ecosystem Overview</span>
+                <span>Talk to an Advisor</span>
                 <span className="contact-angles-icon">
                   <i className="fa-solid fa-angles-right" />
                 </span>
               </Link>
             </div>
 
+            {/* Display-Only Category Boxes: ZERO links */}
             <div className="row g-4">
               {PLATFORMS_DATA.map((group) => (
                 <div className="col-12 col-md-6 col-lg-4" key={group.category}>
-                  <div className="platform-category-box">
-                    <div className="text-white fw-bold small mb-2">{group.category}</div>
+                  <div className="platform-category-box spotlight-card h-100">
+                    <div className="text-white fw-bold small mb-2">
+                      {group.category}
+                    </div>
                     <div className="platform-chip-group">
                       {group.platforms.map((p) => (
                         <span className="platform-chip" key={p}>
@@ -881,17 +878,11 @@ export default function Header() {
               ))}
             </div>
 
-            <div className="mega-callout-card mt-4 d-flex align-items-center justify-content-between">
-              <span className="text-bright-muted small">
+            {/* Static Callout Card: ZERO extra links */}
+            <div className="mega-callout-card mt-4">
+              <p className="text-bright-muted small mb-0 text-center">
                 We design solutions around business requirements rather than forcing challenges into a single platform.
-              </span>
-              <button
-                type="button"
-                className="btn btn-link text-cyan fw-bold small text-decoration-none p-0"
-                onClick={handleAdvisorClick}
-              >
-                Discuss Platform Advisory &rarr;
-              </button>
+              </p>
             </div>
           </div>
         </div>
@@ -974,7 +965,7 @@ export default function Header() {
                     <span className="mega-sub-dot" />
                     <div><div className="mega-sub-title">About BVM</div></div>
                   </Link>
-                  <Link href="/about#leadership" className="mega-sub-card" onClick={closeAll}>
+                  <Link href="/about" className="mega-sub-card" onClick={closeAll}>
                     <span className="mega-sub-dot" />
                     <div><div className="mega-sub-title">Leadership</div></div>
                   </Link>
@@ -982,10 +973,7 @@ export default function Header() {
                     <span className="mega-sub-dot" />
                     <div><div className="mega-sub-title">Global Presence</div></div>
                   </Link>
-                  <Link href="/services" className="mega-sub-card" onClick={closeAll}>
-                    <span className="mega-sub-dot" />
-                    <div><div className="mega-sub-title">Alliance &amp; Partners</div></div>
-                  </Link>
+                  {/* Alliance & Partners commented out */}
                   <Link href="/contact" className="mega-sub-card" onClick={closeAll}>
                     <span className="mega-sub-dot" />
                     <div><div className="mega-sub-title">Careers</div></div>
@@ -997,23 +985,26 @@ export default function Header() {
                 </div>
               </div>
 
+              {/* UAE and United Kingdom in GLOBAL ENGAGEMENT */}
               <div className="col-12 col-md-5">
                 <div className="mega-feature-box d-flex flex-column justify-content-between">
                   <div>
                     <span className="badge-sub-title text-cyan mb-1 d-block">GLOBAL ENGAGEMENT</span>
-                    <h5 className="text-white fw-bold mb-2">Dubai (DIFC) &amp; United Kingdom</h5>
-                    <p className="text-bright-muted small mb-0">DIFC Innovation One, Dubai headquarters with global capabilities centers across UK and India.</p>
+                    <h5 className="text-white fw-bold mb-2">UAE &amp; United Kingdom</h5>
+                    <p className="text-bright-muted small mb-0">
+                      Regional headquarters in UAE (DIFC Innovation One, Dubai) and international presence in the United Kingdom, backed by global engineering and delivery capabilities.
+                    </p>
                   </div>
-                  <button
-                    type="button"
+                  <Link
+                    href="/contact"
                     className="btn btn-consult-red rounded-pill px-3 py-2 fw-semibold mt-3 d-inline-flex align-items-center gap-2"
-                    onClick={handleAdvisorClick}
+                    onClick={closeAll}
                   >
                     <span>Talk to an Advisor</span>
                     <span className="contact-angles-icon">
                       <i className="fa-solid fa-angles-right" />
                     </span>
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -1021,7 +1012,7 @@ export default function Header() {
         </div>
 
         {/* ==================================================================
-            MOBILE DRAWER (UPDATED ACCORDION WITH SUPPORTING TEXT)
+            MOBILE DRAWER
             ================================================================== */}
         <div className={`collapse navbar-collapse d-lg-none ${navOpen ? "show" : ""}`} id="mainNavbarMobile">
           <div className="mobile-menu-drawer">
@@ -1054,6 +1045,16 @@ export default function Header() {
 
                       {mobileExpanded[`pillar-${pillar.id}`] && (
                         <div className="mobile-sub-menu-list">
+                          {/* Main pillar link */}
+                          <Link
+                            href={pillar.bottomCta.href}
+                            className="mobile-sub-link fw-bold text-cyan mb-2 pb-1 border-bottom border-secondary border-opacity-25"
+                            onClick={closeAll}
+                          >
+                            &rarr; {pillar.bottomCta.label}
+                          </Link>
+
+                          {/* Child items linking to the same pillar page */}
                           {pillar.items.map((sub) => (
                             <Link
                               key={sub.title}
@@ -1086,6 +1087,13 @@ export default function Header() {
 
               {mobileExpanded["industries"] && (
                 <div className="mobile-sub-menu-list">
+                  <Link
+                    href="/industries"
+                    className="mobile-sub-link fw-bold text-cyan mb-2 pb-1 border-bottom border-secondary border-opacity-25"
+                    onClick={closeAll}
+                  >
+                    &rarr; View All Industries
+                  </Link>
                   {INDUSTRIES_DATA.map((ind) => (
                     <Link
                       key={ind.title}
@@ -1100,7 +1108,7 @@ export default function Header() {
               )}
             </div>
 
-            {/* 3. Platforms & Ecosystems */}
+            {/* 3. Platforms & Ecosystems: DISPLAY ONLY (NO LINKS) */}
             <div className="mobile-nav-group">
               <button
                 type="button"
@@ -1145,28 +1153,28 @@ export default function Header() {
               {mobileExpanded["company"] && (
                 <div className="mobile-sub-menu-list">
                   <Link href="/about" className="mobile-sub-link" onClick={closeAll}>&bull; About BVM</Link>
-                  <Link href="/about#leadership" className="mobile-sub-link" onClick={closeAll}>&bull; Leadership</Link>
+                  <Link href="/about" className="mobile-sub-link" onClick={closeAll}>&bull; Leadership</Link>
                   <Link href="/about#who-we-are" className="mobile-sub-link" onClick={closeAll}>&bull; Global Presence</Link>
-                  <Link href="/services" className="mobile-sub-link" onClick={closeAll}>&bull; Alliance &amp; Partners</Link>
+                  {/* Alliance & Partners commented out */}
                   <Link href="/contact" className="mobile-sub-link" onClick={closeAll}>&bull; Careers</Link>
                   <Link href="/contact" className="mobile-sub-link" onClick={closeAll}>&bull; Contact Us</Link>
                 </div>
               )}
             </div>
 
-            {/* Mobile Drawer Bottom Persistent CTA */}
+            {/* Mobile Drawer Bottom Button: Directly redirects to /contact */}
             <div className="mobile-drawer-cta">
-              <button
-                type="button"
+              <Link
+                href="/contact"
                 className="btn btn-consult-red rounded-pill w-100 py-3 fw-bold d-inline-flex align-items-center justify-content-center gap-2"
-                onClick={handleAdvisorClick}
+                onClick={closeAll}
               >
                 <span>Talk to an Advisor</span>
                 <span className="contact-angles-icon">
                   <i className="fa-solid fa-angles-right" />
                 </span>
                 <span className="btn-sheen" />
-              </button>
+              </Link>
             </div>
           </div>
         </div>

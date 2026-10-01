@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
 import { useAdvisorModal } from "@/components/AdvisorModal/AdvisorModalContext";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -87,33 +88,32 @@ export default function CTA() {
 
             {/* Action Button: Opens On-Page Advisor Modal */}
             <div className="d-flex flex-wrap justify-content-center gap-3 cta-anim-btns anim-reveal">
-              <button
-                type="button"
-                onClick={openAdvisorModal}
-                className="btn btn-consult-red d-inline-flex align-items-center justify-content-center px-4 py-3 rounded-pill fw-semibold magnetic-btn"
-              >
-                <span className="btn-text">Talk to an Advisor</span>
-                <span className="arrow-icon-wrapper">
-                  <svg
-                    className="diagonal-arrow-svg"
-                    width="14"
-                    height="14"
-                    viewBox="0 0 14 14"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                  >
-                    <path
-                      d="M2 12L12 2M12 2H4M12 2V10"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
-                <span className="btn-sheen" />
-              </button>
+             <Link
+  href="/contact"
+  className="btn btn-consult-red d-inline-flex align-items-center justify-content-center px-4 py-3 rounded-pill fw-semibold magnetic-btn"
+>
+  <span className="btn-text">Talk to an Advisor</span>
+  <span className="arrow-icon-wrapper">
+    <svg
+      className="diagonal-arrow-svg"
+      width="14"
+      height="14"
+      viewBox="0 0 14 14"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path
+        d="M2 12L12 2M12 2H4M12 2V10"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  </span>
+  <span className="btn-sheen" />
+</Link>
             </div>
           </div>
         </div>

@@ -61,30 +61,30 @@ export default function Footer() {
             </a>
           </div>
 
-          {/* Column 2: What We Do */}
+          {/* Column 2: What We Do (All 7 Pages Connected) */}
           <div className="footer-capabilities-col anim-reveal">
             <h5 className="footer-col-title">What We Do</h5>
             <ul className="footer-links-list">
               <li>
-                <Link href="/contact">Advisory &amp; Transformation</Link>
+                <Link href="/advisory-transformation">Advisory &amp; Transformation</Link>
               </li>
               <li>
-                <Link href="/erp-development">Enterprise Applications</Link>
+                <Link href="/enterprise-applications">Enterprise Applications</Link>
               </li>
               <li>
                 <Link href="/ai-automation-development">AI, Data &amp; Intelligent Automation</Link>
               </li>
               <li>
-                <Link href="/custom-software-development">Digital &amp; Product Engineering</Link>
+                <Link href="/digital-product-engineering">Digital &amp; Product Engineering</Link>
               </li>
               <li>
-                <Link href="/security">Cloud, Cybersecurity &amp; Integration</Link>
+                <Link href="/cloud-cybersecurity-integration">Cloud, Cybersecurity &amp; Integration</Link>
               </li>
               <li>
-                <Link href="/faq#faq-ownership">Managed Services</Link>
+                <Link href="/managed-services">Managed Services</Link>
               </li>
               <li>
-                <Link href="/contact">Technology Talent &amp; Global Delivery</Link>
+                <Link href="/technology-talent-delivery">Technology Talent &amp; Global Delivery</Link>
               </li>
             </ul>
           </div>
@@ -100,7 +100,7 @@ export default function Footer() {
                 <Link href="/erp-development">ERP &amp; Core Business Platforms</Link>
               </li>
               <li>
-                <Link href="/contact">ITSM &amp; Enterprise Workflow</Link>
+                <Link href="/enterprise-applications">ITSM &amp; Enterprise Workflow</Link>
               </li>
               <li>
                 <Link href="/ai-automation-development">Data, Analytics &amp; AI</Link>
@@ -112,7 +112,7 @@ export default function Footer() {
                 <Link href="/web-development">Digital Experience</Link>
               </li>
               <li>
-                <Link href="/contact">Asset &amp; Field Operations</Link>
+                <Link href="/enterprise-applications">Asset &amp; Field Operations</Link>
               </li>
             </ul>
           </div>
@@ -200,41 +200,11 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar: Copyright on Left, Social Icons in Center, Regional Footprint on Right */}
+        {/* Bottom Bar: Copyright on Left, Regional Footprint on Right */}
         <div className="footer-bottom-row anim-reveal">
           <p className="footer-copy-text">
             &copy; 2026 BVM Tech Limited DIFC. All rights reserved.
           </p>
-
-          <div className="footer-social-group">
-            <a
-              href="https://www.linkedin.com/company/bvm-tech-limited"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="footer-social-icon"
-              aria-label="BVM on LinkedIn"
-            >
-              <i className="fa-brands fa-linkedin-in" />
-            </a>
-            <a
-              href="https://www.youtube.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="footer-social-icon"
-              aria-label="BVM on YouTube"
-            >
-              <i className="fa-brands fa-youtube" />
-            </a>
-            <a
-              href="https://x.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="footer-social-icon"
-              aria-label="BVM on X"
-            >
-              <i className="fa-brands fa-x-twitter" />
-            </a>
-          </div>
 
           <div className="footer-footprint-strip">
             <span className="highlight">&mdash;</span>

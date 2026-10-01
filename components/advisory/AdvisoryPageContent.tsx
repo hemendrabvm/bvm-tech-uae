@@ -211,33 +211,32 @@ export default function AdvisoryPageContent() {
 
               {/* CTAs */}
               <div className="d-flex flex-wrap gap-3">
-                <button
-                  type="button"
-                  onClick={openAdvisorModal}
-                  className="btn btn-consult-red rounded-pill px-4 py-2 fw-semibold magnetic-btn d-inline-flex align-items-center gap-2"
-                >
-                  <span className="btn-text">Talk to an Advisor</span>
-                  <span className="arrow-icon-wrapper">
-                    <svg
-                      className="diagonal-arrow-svg"
-                      width="12"
-                      height="12"
-                      viewBox="0 0 12 12"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M1.5 10.5L10.5 1.5M10.5 1.5H3.5M10.5 1.5V8.5"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                  <span className="btn-sheen" />
-                </button>
+                <Link
+  href="/contact"
+  className="btn btn-consult-red rounded-pill px-4 py-2 fw-semibold magnetic-btn d-inline-flex align-items-center gap-2"
+>
+  <span className="btn-text">Talk to an Advisor</span>
+  <span className="arrow-icon-wrapper">
+    <svg
+      className="diagonal-arrow-svg"
+      width="12"
+      height="12"
+      viewBox="0 0 12 12"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path
+        d="M1.5 10.5L10.5 1.5M10.5 1.5H3.5M10.5 1.5V8.5"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  </span>
+  <span className="btn-sheen" />
+</Link>
 
                 <a
                   href="#capabilities"

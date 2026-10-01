@@ -19,7 +19,7 @@ const TRANSFORMATION_CARDS = [
     ],
     ctaText: "Explore Modernization",
     ctaHref: "/erp-development",
-    bg: "/images/bp1.png",
+    bg: "/images/bp1.webp",
     active: true,
   },
   {
@@ -35,7 +35,7 @@ const TRANSFORMATION_CARDS = [
     ],
     ctaText: "Explore AI & Data",
     ctaHref: "/ai-automation-development",
-    bg: "/images/bp2.png",
+    bg: "/images/bp2.jpeg",
     active: false,
   },
   {
@@ -51,7 +51,7 @@ const TRANSFORMATION_CARDS = [
     ],
     ctaText: "Explore Integration",
     ctaHref: "/contact",
-    bg: "/images/bp3.png",
+    bg: "/images/bp3.jpeg",
     active: false,
   },
   {
@@ -67,7 +67,7 @@ const TRANSFORMATION_CARDS = [
     ],
     ctaText: "Explore Digital Operations",
     ctaHref: "/custom-software-development",
-    bg: "/images/bp4.png",
+    bg: "/images/bp4.jpeg",
     active: false,
   },
   {
@@ -83,7 +83,7 @@ const TRANSFORMATION_CARDS = [
     ],
     ctaText: "Explore Resilience",
     ctaHref: "/security",
-    bg: "/images/bp5.png",
+    bg: "/images/bp5.jpeg",
     active: false,
   },
   {
@@ -99,7 +99,7 @@ const TRANSFORMATION_CARDS = [
     ],
     ctaText: "Explore Global Delivery",
     ctaHref: "/contact",
-    bg: "/images/bp6.png",
+    bg: "/images/bp6.jpeg",
     active: false,
   },
 ];
@@ -152,33 +152,32 @@ export default function WhatWeTransform() {
 
           {/* Top CTA: Triggers on-page advisor modal */}
           <div className="col-12 col-lg-4 d-flex justify-content-start justify-content-lg-end align-items-center">
-            <button
-              type="button"
-              onClick={openAdvisorModal}
-              className="btn btn-explore-services rounded-pill fw-semibold magnetic-btn services-anim-btn"
-            >
-              <span className="btn-text">Talk to an Advisor</span>
-              <span className="arrow-icon-wrapper">
-                <svg
-                  className="diagonal-arrow-svg"
-                  width="12"
-                  height="12"
-                  viewBox="0 0 12 12"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M1.5 10.5L10.5 1.5M10.5 1.5H3.5M10.5 1.5V8.5"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </span>
-              <span className="btn-sheen" />
-            </button>
+           <Link
+  href="/contact"
+  className="btn btn-explore-services rounded-pill fw-semibold magnetic-btn services-anim-btn"
+>
+  <span className="btn-text">Talk to an Advisor</span>
+  <span className="arrow-icon-wrapper">
+    <svg
+      className="diagonal-arrow-svg"
+      width="12"
+      height="12"
+      viewBox="0 0 12 12"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path
+        d="M1.5 10.5L10.5 1.5M10.5 1.5H3.5M10.5 1.5V8.5"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  </span>
+  <span className="btn-sheen" />
+</Link>
           </div>
         </div>
 

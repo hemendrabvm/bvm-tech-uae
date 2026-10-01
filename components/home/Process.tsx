@@ -1,49 +1,64 @@
 "use client";
 
-import { useRef } from "react";
-import { useProcessStack, useImageReveals } from "@/animations/usePageAnimations";
+import { useRef, type MouseEvent } from "react";
+import Link from "next/link";
 import { useAdvisorModal } from "@/components/AdvisorModal/AdvisorModalContext";
+import {
+  useAnimReveal,
+  useAnimTextReveal,
+  useImageReveals,
+} from "@/animations/usePageAnimations";
 
-const OUTCOME_STAGES = [
+const STAGES = [
   {
+    num: "01",
     name: "ADVISE",
     desc: "Define the right direction.",
-    outcome: "Clarity",
+    outcome: "CLARITY",
     img: "/images/z1.png",
-    num: "1",
-    className: "p-card-1",
+    fallbackImg: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&w=600&q=80",
+    icon: "fa-solid fa-lightbulb",
+    theme: "cyan",
   },
   {
+    num: "02",
     name: "TRANSFORM",
-    desc: "Modernize platforms and processes.",
-    outcome: "Modern Platforms",
+    desc: "Modernize and integrate.",
+    outcome: "MODERN PLATFORMS",
     img: "/images/z2.png",
-    num: "2",
-    className: "p-card-2",
+    fallbackImg: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80",
+    icon: "fa-solid fa-gear",
+    theme: "red",
   },
   {
+    num: "03",
     name: "ENGINEER",
-    desc: "Build what creates differentiation.",
-    outcome: "Tailored Solutions",
+    desc: "Build What Differentiates.",
+    outcome: "TAILORED SOLUTIONS",
     img: "/images/z3.png",
-    num: "3",
-    className: "p-card-3",
+    fallbackImg: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80",
+    icon: "fa-solid fa-code",
+    theme: "cyan",
   },
   {
+    num: "04",
     name: "OPERATE",
-    desc: "Keep critical technology performing.",
-    outcome: "Optimal Performance",
+    desc: "Keep technology performing.",
+    outcome: "OPTIMAL PERFORMANCE",
     img: "/images/z4.png",
-    num: "4",
-    className: "p-card-4",
+    fallbackImg: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80",
+    icon: "fa-solid fa-layer-group",
+    theme: "red",
   },
   {
+    num: "05",
     name: "SCALE",
-    desc: "Extend capability with global delivery.",
-    outcome: "Long-term Value",
+    desc: "Extend capability for what’s next.",
+    outcome: "LONG-TERM VALUE",
     img: "/images/z5.png",
-    num: "5",
-    className: "p-card-5",
+    fallbackImg: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80",
+    icon: "fa-solid fa-chart-line",
+    theme: "cyan",
   },
 ];
 
@@ -59,116 +74,175 @@ export default function Process({
   const sectionRef = useRef<HTMLElement>(null);
   const { openAdvisorModal } = useAdvisorModal();
 
-  // Hook into the site's master GSAP animations
-  useProcessStack(sectionRef);
+  // Scoped animations
+  useAnimReveal(sectionRef);
+  useAnimTextReveal(sectionRef);
   useImageReveals(sectionRef);
 
+  // Radial light cursor tracking for 3D card spotlight
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    card.style.setProperty("--mouse-x", `${x}px`);
+    card.style.setProperty("--mouse-y", `${y}px`);
+  };
+
   return (
-    <section className={`process-section position-relative ${className}`} ref={sectionRef}>
-      {/* Background Ambient Glow */}
-      <img
-        src="/images/6.png"
-        className="devlp-glow devlp-right"
-        alt=""
-        onError={(e) => {
-          (e.target as HTMLImageElement).style.display = "none";
-        }}
-      />
+    <section className={`process-master-section position-relative ${className}`} ref={sectionRef}>
+      {/* Background Atmosphere: Cyan & Red Radial Depth + Mountain Terrain Horizon */}
+      <div className="process-bg-glow glow-left-cyan" />
+      <div className="process-bg-glow glow-right-red" />
+      <div className="process-terrain-fog" aria-hidden="true" />
 
       <div className="container position-relative z-10">
-        <div className="row g-5">
-          {/* Pinned Left Column */}
-          <div className="col-12 col-lg-5">
-            <div className="process-sticky-left">
-              <div className="process-badge d-inline-flex align-items-center gap-2 mb-3 process-anim-badge anim-reveal">
-                <img src="/images/h.png" alt="Icon" />
-                <span>{badgeText}</span>
-              </div>
-
-              <h2 className="process-title text-white">
-                <span className="process-line-mask">
-                  <span className="process-line-inner anim-text-reveal">
-                    From Strategy to
-                  </span>
-                </span>
-                <span className="process-line-mask">
-                  <span className="process-line-inner anim-text-reveal headline-cyan">
-                    Sustained Outcomes
-                  </span>
-                </span>
-              </h2>
-
-              <p className="text-bright-muted mt-4 anim-reveal">
-                BVM combines advisory, enterprise technology and digital engineering to help organizations move from strategy and implementation to optimization, scale and long-term value.
-              </p>
-
-              {/* Theme-native Button */}
-              <div className="mt-4 anim-reveal">
-                <button
-                  type="button"
-                  onClick={openAdvisorModal}
-                  className="btn btn-explore-services rounded-pill fw-semibold magnetic-btn"
-                >
-                  <span className="btn-text">Talk to an Advisor</span>
-                  <span className="arrow-icon-wrapper">
-                    <svg
-                      className="diagonal-arrow-svg"
-                      width="12"
-                      height="12"
-                      viewBox="0 0 12 12"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M1.5 10.5L10.5 1.5M10.5 1.5H3.5M10.5 1.5V8.5"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                  <span className="btn-sheen" />
-                </button>
-              </div>
+        {/* Symmetrical Full-Width Header Row */}
+        <div className="row align-items-end justify-content-between mb-5 g-4">
+          <div className="col-12 col-lg-8">
+            <div className="who-badge d-inline-flex align-items-center gap-2 mb-3 anim-reveal">
+              <span className="hero-badge-pulse-dot" />
+              <span>{badgeText}</span>
             </div>
+
+            <h2 className="process-title text-white mb-3">
+              <span className="process-line-mask">
+                <span className="process-line-inner anim-text-reveal">From Strategy to</span>
+              </span>
+              <span className="process-line-mask">
+                <span className="process-line-inner anim-text-reveal headline-cyan">Sustained Outcomes</span>
+              </span>
+            </h2>
+
+            <p className="process-header-subtext text-bright-muted anim-reveal mb-0">
+              BVM combines advisory, enterprise technology and digital engineering to help organizations move from strategy to implementation, optimization and long-term value.
+            </p>
           </div>
 
-          {/* Stacking Cards on Right with Animated Image Reveal Thumbnails */}
-          <div className="col-12 col-lg-7">
-            <div className="process-cards-stack">
-              {OUTCOME_STAGES.map((stage) => (
+          <div className="col-12 col-lg-4 text-start text-lg-end">
+           <Link
+  href="/contact"
+  className="btn btn-explore-services rounded-pill fw-semibold magnetic-btn"
+>
+  <span className="btn-text">Talk to an Advisor</span>
+  <span className="arrow-icon-wrapper ms-2">
+    <svg
+      className="diagonal-arrow-svg"
+      width="14"
+      height="14"
+      viewBox="0 0 14 14"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path
+        d="M2 12L12 2M12 2H4M12 2V10"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  </span>
+  <span className="btn-sheen" />
+</Link>
+          </div>
+        </div>
+
+        {/* 5-Stage Sequential Pipeline Grid */}
+        <div className="process-pipeline-stage-wrap position-relative">
+          {/* Top Continuous Laser Interconnect */}
+          <div className="process-laser-rail d-none d-xl-block" aria-hidden="true" />
+
+          {/* Cards Row */}
+          <div className="row g-3 g-xl-4 align-items-stretch">
+            {STAGES.map((stage) => (
+              <div className="col-12 col-md-6 col-xl custom-col-5" key={stage.num}>
                 <div
-                  key={stage.num}
-                  className={`process-stack-card ${stage.className} process-anim-card`}
+                  className={`process-futuristic-card card-theme-${stage.theme} anim-reveal`}
+                  onMouseMove={handleMouseMove}
                 >
-                  {/* Left: Visual Thumbnail with Signature Reveal Mask */}
-                  <div className="process-card-thumb">
+                  {/* Top Specular Edge Highlight */}
+                  <div className="card-top-beam" />
+
+                  {/* Header: Stage Number & Glowing Radial Node Orb */}
+                  <div className="card-head-row d-flex align-items-center justify-content-between mb-3">
+                    <div className="stage-index-tag">
+                      <span className="index-number">{stage.num}</span>
+                      <span className="index-divider" />
+                    </div>
+
+                    <div className="stage-node-orb">
+                      <div className="orb-halo" />
+                      <i className={stage.icon} />
+                    </div>
+                  </div>
+
+                  {/* Body Content */}
+                  <div className="card-copy-block mb-3">
+                    <h3 className="stage-heading text-white mb-1">{stage.name}</h3>
+                    <p className="stage-lead-desc text-bright-muted mb-0">{stage.desc}</p>
+                  </div>
+
+                  {/* Action Micro-Indicator */}
+                  <div className="card-action-row mb-3">
+                    <span className="stage-action-arrow">
+                      <i className="fa-solid fa-arrow-right" />
+                    </span>
+                  </div>
+
+                  {/* Cinematic Masked Photo Frame */}
+                  <div className="stage-photo-viewport rounded-3 position-relative overflow-hidden">
                     <div className="image-reveal-wrapper">
                       <div className="image-reveal-mask" />
                       <img
                         src={stage.img}
-                        alt={stage.name}
-                        className="img-fluid image-reveal-img process-thumb-img"
+                        alt={`${stage.name} - ${stage.outcome}`}
+                        className="img-fluid image-reveal-img stage-photo-asset"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src = stage.fallbackImg;
+                        }}
                       />
                     </div>
+                    <div className="photo-dark-vignette" />
                   </div>
-
-                  {/* Center: Stage Content & Outcome Tag */}
-                  <div className="process-card-content">
-                    <div className="process-card-header">
-                      <h3 className="process-card-name text-white mb-0">{stage.name}</h3>
-                      <span className="process-outcome-tag">{stage.outcome}</span>
-                    </div>
-                    <p className="process-card-desc text-bright-muted">{stage.desc}</p>
-                  </div>
-
-                  {/* Right: Watermark Number */}
-                  <div className="process-card-number">{stage.num}</div>
                 </div>
-              ))}
-            </div>
+
+                {/* Milestone Node on Bottom Waveguide */}
+                <div className={`stage-milestone-station text-center mt-3 station-theme-${stage.theme}`}>
+                  <span className="milestone-pulse-point" />
+                  <span className="milestone-title">{stage.outcome}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Bottom Continuous Glowing Laser Waveguide (SVG Curved Beam) */}
+          <div className="process-bottom-wave-rail d-none d-xl-block" aria-hidden="true">
+            <svg
+              className="bottom-laser-svg"
+              width="100%"
+              height="40"
+              viewBox="0 0 1140 40"
+              fill="none"
+              preserveAspectRatio="none"
+            >
+              <path
+                d="M 20 20 Q 140 32, 240 20 T 460 20 T 680 20 T 900 20 T 1120 20"
+                stroke="url(#bvmLaserGrad)"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+              />
+              <defs>
+                <linearGradient id="bvmLaserGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#00d2ff" stopOpacity="0.85" />
+                  <stop offset="25%" stopColor="#e40d17" stopOpacity="0.85" />
+                  <stop offset="50%" stopColor="#00d2ff" stopOpacity="0.95" />
+                  <stop offset="75%" stopColor="#e40d17" stopOpacity="0.85" />
+                  <stop offset="100%" stopColor="#00d2ff" stopOpacity="0.85" />
+                </linearGradient>
+              </defs>
+            </svg>
           </div>
         </div>
       </div>
