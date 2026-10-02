@@ -31,7 +31,7 @@ export default function Footer() {
             </p>
 
             <a
-              href="/profile/profile.html"
+              href="/images/BVM_Tech_Corporate_Deck_2026.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-consult-red rounded-pill px-4 py-2 fw-semibold magnetic-btn d-inline-flex align-items-center gap-2"
