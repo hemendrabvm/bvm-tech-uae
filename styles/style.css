@@ -641,7 +641,7 @@ html, body, body *,
 .hero-section {
     min-height: 100vh;
     background-color: var(--bg-dark);
-    padding-top: 150px;
+    padding-top: 140px;
     padding-bottom: 80px;
     position: relative;
     overflow: hidden;
@@ -737,8 +737,8 @@ html, body, body *,
 }
 
 .hero-subtext {
-    font-size: 1.18rem;
-    line-height: 1.75;
+    font-size: 1.12rem;
+    line-height: 1.65;
     color: var(--text-nav-muted);
     max-width: 680px;
     position: relative;
@@ -6899,7 +6899,7 @@ body:not(.reduce-motion) .tech-anim-orbit {
    HERO: LOCATION FOOTPRINT STRIP (PIXEL-PERFECT FROM MOCKUP)
    ========================================================================== */
 .hero-footprint-dock {
-  margin-top: 32px;
+  margin-top: 25px;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -6911,6 +6911,7 @@ body:not(.reduce-motion) .tech-anim-orbit {
   flex-wrap: wrap;
   align-items: center;
   gap: 8px 14px;
+  margin-bottom: 5px;
 }
 
 .hero-footprint-node {

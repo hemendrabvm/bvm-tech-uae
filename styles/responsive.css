@@ -7,7 +7,7 @@
    ≥1400px — large desktop
    -------------------------------------------------------------------------- */
 @media (min-width: 1400px) {
-  .hero-headline { font-size: 75px; }
+  .hero-headline { font-size: 70px; }
   .skyline-pill { width: 260px; height: 76px; }
   .hero-banner-absolute { width: 45%; right: 0; }
   .footer-huge-bvm { font-size: 180px; }
@@ -17,7 +17,7 @@
    ≤1399px — standard desktop scale
    -------------------------------------------------------------------------- */
 @media (max-width: 1399px) {
-  .hero-headline { font-size: 70px; }
+  .hero-headline { font-size: 65px; }
   .skyline-pill { width: 210px; height: 68px; }
   .hero-subtext { max-width: 620px; }
   .hero-banner-absolute { width: 52%; right: 0; }
@@ -29,7 +29,7 @@
    -------------------------------------------------------------------------- */
 @media (max-width: 1199px) {
   .hero-section { padding-top: 130px; }
-  .hero-headline { font-size: 55px; }
+  .hero-headline { font-size: 50px; }
   .skyline-pill { width: 170px; height: 56px; }
   .hero-subtext { font-size: 1.05rem; max-width: 540px; }
   .hero-banner-absolute { width: 48%; opacity: 0.85; }

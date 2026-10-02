@@ -155,10 +155,10 @@ export default function Hero() {
       />
 
       <div className="container position-relative z-10">
-        <div className="row min-vh-80 align-items-start">
+        <div className="row min-vh-80 align-items-center">
           {/* LEFT: unchanged content */}
           <div className="col-12 col-lg-7 text-start position-relative hero-text-container">
-            <div className="hero-shimmer-badge hero-anim-badge d-inline-flex align-items-center gap-2 mb-lg-4">
+            <div className="hero-shimmer-badge hero-anim-badge d-inline-flex align-items-center gap-2 mb-lg-3">
               <img src="/images/h.png" alt="Icon" />
               <span className="badge-text">
                 <span className="hero-pillars-bar">
@@ -176,7 +176,7 @@ export default function Hero() {
               <span className="shimmer-line" aria-hidden="true" />
             </div>
 
-            <h1 className="hero-headline text-white mb-4">
+            <h1 className="hero-headline text-white mb-3">
               <span className="hero-line-mask">
                 <span className="hero-line-inner">From Strategy</span>
               </span>
@@ -188,7 +188,7 @@ export default function Hero() {
               </span>
             </h1>
 
-            <p className="hero-subtext mb-5 hero-anim-subtext">
+            <p className="hero-subtext mb-4 hero-anim-subtext">
               BVM brings together enterprise platforms, AI, digital engineering and global delivery to modernize technology, accelerate transformation and create measurable business outcomes.
             </p>
 
