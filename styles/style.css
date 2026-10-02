@@ -9412,8 +9412,11 @@ body:not(.reduce-motion) .tech-anim-orbit {
     max-width: 100%;
   }
   .hc-card {
-    aspect-ratio: 4 / 3.4;
+    aspect-ratio: 4 / 4;
   }
+  .hc-vertical {
+  top: 67%;
+}
 }
 
 @media (max-width: 575px) {
