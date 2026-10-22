@@ -6977,7 +6977,7 @@ body:not(.reduce-motion) .tech-anim-orbit {
   .bvz-pin { position: relative; height: auto; min-height: 0; display: block; padding: calc(var(--nav) + 28px) 0 48px; }
   .bvz-grid { display: flex; flex-direction: column; gap: 32px; }
   .bvz-copy { display: contents; }
-  .bvz-intro { order: 1; opacity: 1; transform: none; max-width: none; }
+  .bvz-intro { order: 1; opacity: 1; transform: none; max-width: none; display: none; }
   .bvz-visual { order: 2; }
   .bvz-story { order: 3; opacity: 1; transform: none; visibility: visible !important; pointer-events: auto; max-width: none; }
   .bvz-steps { margin-bottom: 18px; }
