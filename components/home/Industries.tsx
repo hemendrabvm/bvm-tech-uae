@@ -37,7 +37,7 @@ const STRATEGY_INDUSTRIES = [
     idx: "05",
     title: "Construction & Engineering",
     desc: "Projects, HSE, QA/QC, procurement and digital delivery.",
-    img: "/images/tyuity.jpeg",
+    img: "/images/tyuity.jpg",
     href: "/industries",
   },
   {
@@ -197,7 +197,7 @@ export default function Industries() {
       </div>
 
       {/* Bottom CTA: Explore All Industries */}
-      <div className="text-center mt-5 position-relative z-10">
+      <div className="text-center mt-2 position-relative z-10">
         <Link
           href="/industries"
           className="btn btn-explore-services rounded-pill fw-semibold magnetic-btn"

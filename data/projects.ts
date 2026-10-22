@@ -90,7 +90,7 @@ export const projects: Project[] = [
     indexCode: "01 / INVENTORY MANAGEMENT SYSTEM",
     description:
       "A custom inventory management platform developed to centralize store operations, manage invoices and inventory, and provide role-based access through a structured PHP and MySQL architecture.",
-    image: "/images/m1.png",
+    image: "/images/m1.jpg",
     imageAlt: "Kings Furniture In-House Inventory Management System",
     technologies: ["PHP", "MySQL", "JavaScript"],
     stats: [
@@ -164,7 +164,7 @@ export const projects: Project[] = [
         badge: "SCALABLE INVENTORY ARCHITECTURE",
         title: "Custom Business Management Platform",
         desc: "Engineered with PHP and MySQL to provide a structured, reliable, and scalable solution tailored to Kings Furniture's internal business operations.",
-        img: "/images/m1.png",
+        img: "/images/m1.jpg",
         imgAlt: "Kings Furniture In-House Management System Interface",
         overlay: "PHP & MySQL Management Engine",
       },
@@ -234,7 +234,7 @@ export const projects: Project[] = [
     indexCode: "02 / FURNITURE PROTECTION & SERVICES",
     description:
       "A responsive digital platform developed to present furniture protection plans, simplify claims and service information, and deliver a seamless customer experience across devices using modern web technologies.",
-    image: "/images/yuye.png",
+    image: "/images/yuye.jpg",
     imageAlt: "Royal Care FS Platform Interface",
     technologies: ["Node.js", "Next.js", "MySQL", "JavaScript"],
     stats: [
@@ -308,7 +308,7 @@ export const projects: Project[] = [
         badge: "SCALABLE DIGITAL ARCHITECTURE",
         title: "Modern Furniture Service Platform",
         desc: "Engineered with Node.js, Next.js, and MySQL to deliver a fast, reliable, and scalable digital experience across devices.",
-        img: "/images/yuye.png",
+        img: "/images/yuye.jpg",
         imgAlt: "Royal Care FS Platform Interface",
         overlay: "Responsive Next.js & Node.js Engine",
       },
@@ -378,7 +378,7 @@ export const projects: Project[] = [
     indexCode: "03 / ENTERPRISE ERP & HRMS",
     description:
       "A smart centralized business platform combining employee management, payroll automation, attendance tracking, employee self-service, reporting, and workflow approvals.",
-    image: "/images/m3.png",
+    image: "/images/m3.jpg",
     imageAlt: "Smart Human Resource & ERP Management Platform",
     technologies: ["JavaScript", "Node.js", "MySQL", "AWS Cloud Hosting"],
     stats: [
@@ -451,7 +451,7 @@ export const projects: Project[] = [
         badge: "ENTERPRISE CORE",
         title: "Workforce & Operations Dashboard",
         desc: "Engineered with Node.js and MySQL on AWS cloud for real-time workforce management.",
-        img: "/images/m3.png",
+        img: "/images/m3.jpg",
         imgAlt: "HRMS ERP System Interface",
         overlay: "ACID-Compliant Payroll Engine",
       },
@@ -521,7 +521,7 @@ export const projects: Project[] = [
     indexCode: "04 / REAL ESTATE & PROPERTY MANAGEMENT",
     description:
       "All-in-one real estate management platform designed to streamline property operations, maintenance, inspections, contractor management, accounting, reporting, and communication through one connected digital solution.",
-    image: "/images/m7.png",
+    image: "/images/m7.jpg",
     imageAlt: "Realty Guru Property Management Dashboard",
     technologies: ["PHP", "CodeIgniter", "MySQL", "JavaScript"],
     stats: [
@@ -595,7 +595,7 @@ export const projects: Project[] = [
         badge: "PROPERTY MANAGEMENT PLATFORM",
         title: "Smart & Connected Property Management System",
         desc: "Built to streamline high-volume property operations, improve collaboration, and provide centralized visibility across every management workflow.",
-        img: "/images/m7.png",
+        img: "/images/m7.jpg",
         imgAlt: "Realty Guru Property Management UI",
         overlay: "Integrated Trust Accounting & Maintenance",
       },
@@ -665,7 +665,7 @@ export const projects: Project[] = [
     indexCode: "05 / RENTAL & BOOKING",
     description:
       "A modern rental platform developed for the Egypt market that helps users discover, list, and manage rental properties with a smooth digital experience.",
-    image: "/images/m4.png",
+    image: "/images/m4.jpg",
     imageAlt: "Just Pack Smart Property Rental Platform",
     technologies: ["PHP", "JavaScript", "Bootstrap", "Laravel", "MySQL"],
     stats: [
@@ -739,7 +739,7 @@ export const projects: Project[] = [
         badge: "RENTAL PLATFORM",
         title: "Modern Rental Marketplace",
         desc: "Engineered with Laravel and Bootstrap for fast loading on all regional mobile devices.",
-        img: "/images/m4.png",
+        img: "/images/m4.jpg",
         imgAlt: "Just Pack Rental Platform Interface",
         overlay: "Direct Landlord-Tenant Sync",
       },
@@ -809,7 +809,7 @@ export const projects: Project[] = [
     indexCode: "06 / REAL ESTATE & PROPTECH",
     description:
       "A premium real estate platform developed to simplify luxury property discovery, agent communication, and lead generation for buyers, sellers, landlords, and investors in the UAE market.",
-    image: "/images/m2.png",
+    image: "/images/m2.jpg",
     imageAlt: "Espace Luxury Real Estate Platform",
     technologies: ["Laravel", "MySQL", "AWS Cloud Hosting"],
     stats: [
@@ -883,7 +883,7 @@ export const projects: Project[] = [
         badge: "PROPTECH PLATFORM",
         title: "Luxury UAE Property Discovery Engine",
         desc: "Built with Laravel and AWS Cloud for high concurrency and sub-second property filtering.",
-        img: "/images/m2.png",
+        img: "/images/m2.jpg",
         imgAlt: "Espace Property Listing Dashboard",
         overlay: "Sub-Second Property Search",
       },
@@ -953,7 +953,7 @@ export const projects: Project[] = [
     indexCode: "07 / TRAVEL & PET TRANSPORTATION",
     description:
       "Developed a streamlined pet travel platform enabling online quote requests, crate hire, airport transfers, travel coordination, and customer support for safe, organised pet relocation across Australia.",
-    image: "/images/m8.png",
+    image: "/images/m8.jpg",
     imageAlt: "Tail Travel Pet Relocation Platform",
     technologies: ["PHP", "CodeIgniter", "MySQL", "JavaScript"],
     stats: [
@@ -1027,7 +1027,7 @@ export const projects: Project[] = [
         badge: "PET TRANSPORTATION PLATFORM",
         title: "Smart & Connected Pet Travel Management System",
         desc: "Built to simplify complex pet relocation operations, improve coordination, and provide centralized visibility across every stage of the travel journey.",
-        img: "/images/m8.png",
+        img: "/images/m8.jpg",
         imgAlt: "Tail Travel Dashboard Interface",
         overlay: "End-to-End Flight & Transfer Coordination",
       },
@@ -1097,7 +1097,7 @@ export const projects: Project[] = [
     indexCode: "08 / E-LEARNING & EDTECH",
     description:
       "An interactive online platform that helps users learn the Korean language through structured lessons, quizzes, vocabulary practice, and progress tracking.",
-    image: "/images/m6.png",
+    image: "/images/m6.jpg",
     imageAlt: "Kelbak Korean Language Learning Platform",
     technologies: ["PHP", "JavaScript", "MySQL"],
     stats: [
@@ -1171,7 +1171,7 @@ export const projects: Project[] = [
         badge: "EDTECH ARCHITECTURE",
         title: "Language Learning Management System",
         desc: "Built with PHP, JavaScript, and MySQL for responsive language education across all devices.",
-        img: "/images/m6.png",
+        img: "/images/m6.jpg",
         imgAlt: "Kelbak E-Learning Platform Interface",
         overlay: "Progress-Driven LMS Core",
       },

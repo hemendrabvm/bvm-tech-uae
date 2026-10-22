@@ -528,11 +528,18 @@ export default function Header() {
       <div className="container header-nav-wrapper">
         <nav className="navbar navbar-expand-lg navbar-dark custom-navbar-capsule py-2 px-3 px-lg-4">
           {/* Logo on Left */}
-          <Link className="navbar-brand d-flex align-items-center" href="/" onClick={closeAll}>
-            <div className="logo-wrapper">
-              <img src="/images/logo.svg" alt="BVM Tech Limited Logo" />
-            </div>
-          </Link>
+     <Link
+  className="navbar-brand d-flex align-items-center"
+  href="/"
+  onClick={() => {
+    closeAll();
+    window.scrollTo(0, 0);
+  }}
+>
+  <div className="logo-wrapper">
+    <img src="/images/logo.svg" alt="BVM Tech Limited Logo" />
+  </div>
+</Link>
 
           {/* Right Mobile Actions: Directly redirects to /contact */}
           <div className="d-flex d-lg-none align-items-center gap-2 ms-auto">
@@ -821,7 +828,7 @@ export default function Header() {
                 className="btn btn-link text-cyan fw-bold small text-decoration-none p-0"
                 onClick={closeAll}
               >
-                Consult an Industry Specialist &rarr;
+                Consult an Industry Specialist <i className="fa-solid fa-arrow-right"></i>
               </Link>
             </div>
           </div>

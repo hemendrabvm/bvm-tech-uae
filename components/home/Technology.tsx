@@ -4,7 +4,7 @@ import { useRef } from "react";
 import Link from "next/link";
 import { useTechAnimation } from "@/animations/useTechAnimation";
 
-/* Outer Orbit: 8 Logos (Radius: 540px) */
+/* Outer Orbit / Mobile Lane 1 Platforms */
 const OUTER_ORBIT = [
   {
     angle: "0deg",
@@ -48,7 +48,7 @@ const OUTER_ORBIT = [
   },
 ];
 
-/* Inner Orbit: 7 Logos (Radius: 410px) */
+/* Inner Orbit / Mobile Lane 2 Platforms */
 const INNER_ORBIT = [
   {
     angle: "25deg",
@@ -93,8 +93,8 @@ export default function Technology() {
 
   return (
     <section className="technology-section ecosystem-section position-relative" ref={sectionRef}>
-      {/* Dual Rotating Orbit Rings */}
-      <div className="tech-orbit-container position-absolute tech-anim-orbit">
+      {/* Desktop Only: Dual Rotating Orbit Rings (Hidden on < 992px) */}
+      <div className="tech-orbit-container position-absolute tech-anim-orbit d-none d-lg-block">
         {/* Outer Orbit (8 items) */}
         <div className="tech-orbit-track track-outer">
           {OUTER_ORBIT.map((item) => (
@@ -138,7 +138,7 @@ export default function Technology() {
         </div>
       </div>
 
-      {/* Center Content Container */}
+      {/* Content Container */}
       <div className="tech-content-container text-center">
         {/* Badge */}
         <div className="tech-badge d-inline-flex align-items-center gap-2 mb-3 tech-anim-badge">
@@ -152,23 +152,50 @@ export default function Technology() {
             <span className="tech-line-inner">Connected Across the Enterprise</span>
           </span>
           <span className="tech-line-mask">
-            <span className="tech-line-inner headline-cyan">Technology Ecosystem.</span>
+            <span className="tech-line-inner hero-headline-cyan">Technology Ecosystem.</span>
           </span>
         </h2>
 
         {/* Supporting Content */}
-        <p className="tech-ecosystem-subtext">
+        <p className="tech-ecosystem-subtext text-bright-muted mb-4">
           We work across established enterprise platforms and technology ecosystems to design solutions around business requirements, rather than forcing every challenge into a single technology.
         </p>
 
-        {/* CTA Button using Site's Native Diagonal Arrow SVG */}
+        {/* Mobile & Tablet Only: Dual-Lane Stream (< 992px) */}
+        <div className="tech-mobile-ecosystem d-lg-none mb-4">
+          {/* Lane 1: Scrolls Left */}
+          <div className="tech-mobile-marquee-wrap mb-2">
+            <div className="tech-mobile-track track-scroll-left">
+              {[...OUTER_ORBIT, ...OUTER_ORBIT].map((item, idx) => (
+                <div className="tech-mobile-bubble" key={`m-outer-${idx}`}>
+                  <img src={item.src} alt={item.name} />
+                  <span className="tech-mobile-name">{item.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Lane 2: Scrolls Right */}
+          <div className="tech-mobile-marquee-wrap">
+            <div className="tech-mobile-track track-scroll-right">
+              {[...INNER_ORBIT, ...INNER_ORBIT].map((item, idx) => (
+                <div className="tech-mobile-bubble" key={`m-inner-${idx}`}>
+                  <img src={item.src} alt={item.name} />
+                  <span className="tech-mobile-name">{item.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* CTA Button */}
         <div>
           <Link
-            href="/services"
+            href="/enterprise-applications"
             className="btn btn-explore-services rounded-pill fw-semibold magnetic-btn"
           >
             <span className="btn-text">Explore Platforms &amp; Ecosystems</span>
-            <span className="arrow-icon-wrapper">
+            <span className="arrow-icon-wrapper ms-2">
               <svg
                 className="diagonal-arrow-svg"
                 width="12"

@@ -534,33 +534,34 @@ export default function AdvisoryPageContent() {
               </h2>
 
               <div className="d-flex justify-content-center anim-reveal">
-                <button
-                  type="button"
-                  onClick={openAdvisorModal}
-                  className="btn btn-consult-red d-inline-flex align-items-center justify-content-center px-4 py-3 rounded-pill fw-semibold magnetic-btn"
-                >
-                  <span className="btn-text">Talk to an Advisor</span>
-                  <span className="arrow-icon-wrapper ms-2">
-                    <svg
-                      className="diagonal-arrow-svg"
-                      width="14"
-                      height="14"
-                      viewBox="0 0 14 14"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M2 12L12 2M12 2H4M12 2V10"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                  <span className="btn-sheen" />
-                </button>
+                <Link
+  href="/contact"
+  className="btn btn-consult-red d-inline-flex align-items-center justify-content-center px-4 py-3 rounded-pill fw-semibold magnetic-btn"
+>
+  <span className="btn-text">Talk to BVM</span>
+
+  <span className="arrow-icon-wrapper ms-2">
+    <svg
+      className="diagonal-arrow-svg"
+      width="14"
+      height="14"
+      viewBox="0 0 14 14"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path
+        d="M2 12L12 2M12 2H4M12 2V10"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  </span>
+
+  <span className="btn-sheen" />
+</Link>
               </div>
             </div>
           </div>

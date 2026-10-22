@@ -68,7 +68,7 @@ export const blogPosts: BlogPost[] = [
     authorImg: "/images/tm2.png",
     excerpt:
       "Dubai’s technology market is entering a new phase. Businesses are no longer looking at digital transformation simply as a way to build a website, launch an app or move existing processes online. The focus is shifting toward AI-powered operations, intelligent automation, cloud platforms, connected business systems and stronger cybersecurity.",
-    image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/phwc.jpeg",
     imageAlt: "Dubai’s 2026 Technology Shift: Why Businesses Are Investing in AI, Automation and Smarter Software",
     featured: true,
     takeaways: [

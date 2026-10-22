@@ -51,7 +51,7 @@ const TRANSFORMATION_CARDS = [
     ],
     ctaText: "Explore Integration",
     ctaHref: "/contact",
-    bg: "/images/bp3.jpeg",
+    bg: "/images/bp3.jpg",
     active: false,
   },
   {
@@ -83,7 +83,7 @@ const TRANSFORMATION_CARDS = [
     ],
     ctaText: "Explore Resilience",
     ctaHref: "/security",
-    bg: "/images/bp5.jpeg",
+    bg: "/images/bp5.jpg",
     active: false,
   },
   {

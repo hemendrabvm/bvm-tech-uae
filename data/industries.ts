@@ -67,7 +67,7 @@ export const industries: IndustryItem[] = [
       "POS & Billing",
       "Bilingual Concierge"
     ],
-    img: "/images/tyuity.jpeg",
+    img: "/images/tyuity.jpg",
     badgeNum: "99.9% UPTIME",
     badgeLabel: "Booking Engine SLA",
     cta: "Explore Hospitality Solutions",

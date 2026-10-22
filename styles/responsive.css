@@ -406,7 +406,7 @@
   }
 
   .logo-wrapper img {
-    height: 32px !important;
+    height: 28px !important;
     width: auto;
   }
 
@@ -449,7 +449,7 @@
   .hero-actions .btn {
     width: max-content;
     justify-content: center;
-    padding: 14px 22px;
+        padding: 12px 28px;
   }
   
   .hero-banner-img { max-height: 320px; padding-right: 67px;}

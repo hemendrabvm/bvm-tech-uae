@@ -6,7 +6,7 @@ const TOP_CLIENT_STORIES = [
   // 1. Kings Furniture
   {
     className: "p-card-1",
-    img: "/images/m1.png",
+    img: "/images/m1.jpg",
     alt: "Kings Furniture In-House Inventory Management System",
     tags: ["PHP", "MySQL", "JavaScript", "Role-Based Access"],
     title: "Kings Furniture - In-House Inventory Management System",
@@ -20,7 +20,7 @@ const TOP_CLIENT_STORIES = [
   // 2. Royal Care FS
   {
     className: "p-card-2",
-    img: "/images/yuye.png",
+    img: "/images/yuye.jpg",
     alt: "Royal Care FS Furniture Protection Platform",
     tags: ["Node.js", "Next.js", "MySQL", "Claims Engine"],
     title: "Royal Care FS - Furniture Protection & Claims Platform",
@@ -34,7 +34,7 @@ const TOP_CLIENT_STORIES = [
   // 3. HRMS ERP
   {
     className: "p-card-3",
-    img: "/images/m3.png",
+    img: "/images/m3.jpg",
     alt: "HRMS ERP Enterprise Operations Platform",
     tags: ["Node.js", "MySQL", "AWS Cloud", "WPS Payroll"],
     title: "HRMS ERP - Enterprise Workforce & Payroll Platform",
@@ -48,7 +48,7 @@ const TOP_CLIENT_STORIES = [
   // 4. Realty Guru
   {
     className: "p-card-4",
-    img: "/images/m7.png",
+    img: "/images/m7.jpg",
     alt: "Realty Guru Property Management Platform",
     tags: ["PHP", "CodeIgniter", "MySQL", "Trust Accounting"],
     title: "Realty Guru - Smart Property Management Platform",
@@ -62,7 +62,7 @@ const TOP_CLIENT_STORIES = [
   // 5. Just Pack
   {
     className: "p-card-5",
-    img: "/images/m4.png",
+    img: "/images/m4.jpg",
     alt: "Just Pack Smart Property Rental Platform",
     tags: ["PHP", "Laravel", "MySQL", "Bootstrap"],
     title: "Just Pack - Smart Property Rental Platform",

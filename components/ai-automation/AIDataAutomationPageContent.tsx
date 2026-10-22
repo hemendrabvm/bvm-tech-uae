@@ -1,6 +1,8 @@
 "use client";
 
 import { useRef } from "react";
+import Link from "next/link";
+
 import { useAdvisorModal } from "@/components/AdvisorModal/AdvisorModalContext";
 import {
   useAnimReveal,
@@ -77,17 +79,17 @@ const OUTER_ORBIT = [
   {
     angle: "0deg",
     name: "Microsoft Fabric",
-    src: "https://upload.wikimedia.org/wikipedia/commons/a/a8/Microsoft_Azure_Logo.svg",
+    src: "/images/tech-logo/azure-logo.svg",
   },
   {
     angle: "90deg",
     name: "Power BI",
-    src: "https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg",
+    src: "/images/tech-logo/power-bi-logo.svg",
   },
   {
     angle: "180deg",
     name: "Databricks",
-    src: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Databricks-logo.svg",
+    src: "/images/tech-logo/databricks-logo.svg",
   },
   {
     angle: "270deg",
@@ -100,7 +102,7 @@ const INNER_ORBIT = [
   {
     angle: "45deg",
     name: "Azure AI",
-    src: "https://upload.wikimedia.org/wikipedia/commons/a/a8/Microsoft_Azure_Logo.svg",
+    src: "/images/tech-logo/azure-logo.svg",
   },
   {
     angle: "135deg",
@@ -115,7 +117,7 @@ const INNER_ORBIT = [
   {
     angle: "315deg",
     name: "Microsoft Power Platform",
-    src: "https://msicons.com/icons/power-platform/03335-icon-service-Power-Platform.svg",
+    src: "/images/tech-logo/power-platform-logo.svg",
   },
 ];
 
@@ -218,33 +220,34 @@ export default function AIDataAutomationPageContent() {
 
               {/* CTA */}
               <div className="d-flex flex-wrap gap-3">
-                <button
-                  type="button"
-                  onClick={openAdvisorModal}
-                  className="btn btn-consult-red rounded-pill px-4 py-3 fw-semibold magnetic-btn d-inline-flex align-items-center gap-2"
-                >
-                  <span className="btn-text">Discuss an AI or Data Initiative</span>
-                  <span className="arrow-icon-wrapper">
-                    <svg
-                      className="diagonal-arrow-svg"
-                      width="12"
-                      height="12"
-                      viewBox="0 0 12 12"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M1.5 10.5L10.5 1.5M10.5 1.5H3.5M10.5 1.5V8.5"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                  <span className="btn-sheen" />
-                </button>
+                <Link
+  href="/contact"
+  className="btn btn-consult-red d-inline-flex align-items-center justify-content-center px-4 py-3 rounded-pill fw-semibold magnetic-btn"
+>
+  <span className="btn-text">Talk to BVM</span>
+
+  <span className="arrow-icon-wrapper ms-2">
+    <svg
+      className="diagonal-arrow-svg"
+      width="14"
+      height="14"
+      viewBox="0 0 14 14"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path
+        d="M2 12L12 2M12 2H4M12 2V10"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  </span>
+
+  <span className="btn-sheen" />
+</Link>
               </div>
             </div>
 
@@ -255,7 +258,7 @@ export default function AIDataAutomationPageContent() {
                   <div className="image-reveal-wrapper">
                     <div className="image-reveal-mask" />
                     <img
-                      src="https://images.pexels.com/photos/5833310/pexels-photo-5833310.jpeg"
+                      src="/images/header-ai-data.jpeg"
                       alt="AI, Data & Intelligent Automation"
                       className="img-fluid image-reveal-img header-showcase-img"
                       onError={(e) => {
@@ -368,12 +371,12 @@ export default function AIDataAutomationPageContent() {
         </div>
       </section>
 
-      {/* ====================================================================
-          SECTION 4 — TECHNOLOGY ECOSYSTEM (DUAL-ORBIT ARCHITECTURE)
+{/* ====================================================================
+          SECTION 4 — TECHNOLOGY ECOSYSTEM (DUAL-ORBIT & MOBILE STREAM)
           ==================================================================== */}
-      <section className="technology-section h-small ecosystem-section position-relative " ref={techRef}>
-        {/* Dual Rotating Orbit Rings */}
-        <div className="tech-orbit-container position-absolute tech-anim-orbit">
+      <section className="technology-section h-small ecosystem-section position-relative" ref={techRef}>
+        {/* Desktop Only: Dual Rotating Orbit Rings (Hidden on < 992px) */}
+        <div className="tech-orbit-container position-absolute tech-anim-orbit d-none d-lg-block">
           {/* Outer Orbit (4 items: Microsoft Fabric, Power BI, Databricks, Snowflake) */}
           <div className="tech-orbit-track track-outer">
             {OUTER_ORBIT.map((item) => (
@@ -430,9 +433,34 @@ export default function AIDataAutomationPageContent() {
             </span>
           </h2>
 
+          {/* Mobile & Tablet Only: Dual-Lane Stream (< 992px) */}
+          <div className="tech-mobile-ecosystem d-lg-none mt-4">
+            {/* Lane 1: Outer Orbit Platforms */}
+            <div className="tech-mobile-marquee-wrap mb-2">
+              <div className="tech-mobile-track track-scroll-left">
+                {[...OUTER_ORBIT, ...OUTER_ORBIT].map((item, idx) => (
+                  <div className="tech-mobile-bubble" key={`ai-m-outer-${idx}`}>
+                    <img src={item.src} alt={item.name} />
+                    <span className="tech-mobile-name">{item.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Lane 2: Inner Orbit Platforms */}
+            <div className="tech-mobile-marquee-wrap">
+              <div className="tech-mobile-track track-scroll-right">
+                {[...INNER_ORBIT, ...INNER_ORBIT].map((item, idx) => (
+                  <div className="tech-mobile-bubble" key={`ai-m-inner-${idx}`}>
+                    <img src={item.src} alt={item.name} />
+                    <span className="tech-mobile-name">{item.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
-
       {/* ====================================================================
           SECTION 5 — AI & DATA JOURNEY (Pages 2 & 3 in PDF)
           ==================================================================== */}
@@ -510,33 +538,34 @@ export default function AIDataAutomationPageContent() {
               </h2>
 
             <div className="d-flex justify-content-center anim-reveal">
-                <button
-                  type="button"
-                  onClick={openAdvisorModal}
-                  className="btn btn-consult-red d-inline-flex align-items-center justify-content-center px-4 py-3 rounded-pill fw-semibold magnetic-btn"
-                >
-                  <span className="btn-text">Talk to an Advisor</span>
-                  <span className="arrow-icon-wrapper ms-2">
-                    <svg
-                      className="diagonal-arrow-svg"
-                      width="14"
-                      height="14"
-                      viewBox="0 0 14 14"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M2 12L12 2M12 2H4M12 2V10"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                  <span className="btn-sheen" />
-                </button>
+               <Link
+  href="/contact"
+  className="btn btn-consult-red d-inline-flex align-items-center justify-content-center px-4 py-3 rounded-pill fw-semibold magnetic-btn"
+>
+  <span className="btn-text">Talk to BVM</span>
+
+  <span className="arrow-icon-wrapper ms-2">
+    <svg
+      className="diagonal-arrow-svg"
+      width="14"
+      height="14"
+      viewBox="0 0 14 14"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path
+        d="M2 12L12 2M12 2H4M12 2V10"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  </span>
+
+  <span className="btn-sheen" />
+</Link>
               </div>
             </div>
           </div>
