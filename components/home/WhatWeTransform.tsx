@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { CSSProperties, KeyboardEvent, MouseEvent, PointerEvent } from "react";
 import Link from "next/link";
 import { useServicesAnimation } from "@/animations/useServicesAnimation";
 
 const AUTOPLAY_MS = 4500;
+const SWIPE_PX = 50;
+const DRAG_PX = 6;
 
 const TRANSFORMATION_CARDS = [
   {
@@ -72,10 +74,11 @@ const TRANSFORMATION_CARDS = [
 
 const COUNT = TRANSFORMATION_CARDS.length;
 const TOTAL = String(COUNT).padStart(2, "0");
+const HALF = Math.floor(COUNT / 2);
 
-// Signed, wrapped offset of card i from the active card: -3 … +2
-const offset = (i: number, active: number) => ((i - active + 3 + COUNT * 4) % COUNT) - 3;
-
+// Signed, wrapped offset of card i from the active card: -HALF … +(COUNT-HALF-1)
+const offset = (i: number, active: number) =>
+  ((i - active + HALF + COUNT * 4) % COUNT) - HALF;
 
 const ArrowIcon = () => (
   <svg
@@ -99,7 +102,13 @@ const ArrowIcon = () => (
 
 const ChevronIcon = () => (
   <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-    <path d="M3 9h12M10.5 4.5L15 9l-4.5 4.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="M3 9h12M10.5 4.5L15 9l-4.5 4.5"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
@@ -107,33 +116,41 @@ export default function WhatWeTransform() {
   const sectionRef = useRef<HTMLElement>(null);
   const showcaseRef = useRef<HTMLDivElement>(null);
   const drag = useRef({ x: 0, down: false, moved: false });
+  const raf = useRef<number | null>(null);
 
   // active + previous kept together so wrap-around jumps can skip the fly-across
   const [pos, setPos] = useState({ active: 0, prev: 0 });
   const { active, prev: previous } = pos;
 
-  const [autoplay, setAutoplay] = useState(true);
-  const [inView, setInView] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
+  const [inView, setInView] = useState(false);     // true once: drives the entrance
+  const [onScreen, setOnScreen] = useState(false); // live: drives autoplay
   const [booted, setBooted] = useState(false);
 
   useServicesAnimation(sectionRef);
 
+  // Respect reduced motion, and react if the setting changes
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setAutoplay(!mq.matches);
+    const update = () => setReduceMotion(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
   }, []);
 
-  // Entrance once the stage scrolls into view
+  // Entrance once, plus live on-screen tracking so autoplay stops when scrolled away
   useEffect(() => {
     const el = showcaseRef.current;
     if (!el) return;
     let timer: ReturnType<typeof setTimeout> | undefined;
+    let entered = false;
     const io = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        setOnScreen(entry.isIntersecting);
+        if (entry.isIntersecting && !entered) {
+          entered = true;
           setInView(true);
           timer = setTimeout(() => setBooted(true), 2000);
-          io.disconnect();
         }
       },
       { threshold: 0.2 }
@@ -142,24 +159,40 @@ export default function WhatWeTransform() {
     return () => {
       io.disconnect();
       if (timer) clearTimeout(timer);
+      if (raf.current !== null) cancelAnimationFrame(raf.current);
     };
   }, []);
 
-  const go = (n: number) =>
-    setPos((p) => ({ active: ((n % COUNT) + COUNT) % COUNT, prev: p.active }));
-  const next = () => go(active + 1);
-  const prevCard = () => go(active - 1);
+  const go = useCallback((n: number) => {
+    setPos((p) => {
+      const target = ((n % COUNT) + COUNT) % COUNT;
+      return target === p.active ? p : { active: target, prev: p.active };
+    });
+  }, []);
 
+  const next = useCallback(() => setPos((p) => ({ active: (p.active + 1) % COUNT, prev: p.active })), []);
+  const prevCard = useCallback(
+    () => setPos((p) => ({ active: (p.active - 1 + COUNT) % COUNT, prev: p.active })),
+    []
+  );
+
+  // Cursor tilt + glow, throttled to one write per frame
   const handleMove = (e: MouseEvent<HTMLDivElement>) => {
     const el = showcaseRef.current;
-    if (!el) return;
-    const r = el.getBoundingClientRect();
-    const nx = (e.clientX - r.left) / r.width;
-    const ny = (e.clientY - r.top) / r.height;
-    el.style.setProperty("--rx", `${((nx - 0.5) * 6).toFixed(2)}deg`);
-    el.style.setProperty("--ry", `${(-(ny - 0.5) * 5).toFixed(2)}deg`);
-    el.style.setProperty("--px", `${(nx * 100).toFixed(1)}%`);
-    el.style.setProperty("--py", `${(ny * 100).toFixed(1)}%`);
+    if (!el || raf.current !== null) return;
+    const { clientX, clientY } = e;
+    raf.current = requestAnimationFrame(() => {
+      raf.current = null;
+      const r = el.getBoundingClientRect();
+      const nx = (clientX - r.left) / r.width;
+      const ny = (clientY - r.top) / r.height;
+      el.style.setProperty("--rx", `${((nx - 0.5) * 10).toFixed(2)}deg`);
+      el.style.setProperty("--ry", `${(-(ny - 0.5) * 8).toFixed(2)}deg`);
+      el.style.setProperty("--mx", (nx - 0.5).toFixed(3));
+      el.style.setProperty("--my", (ny - 0.5).toFixed(3));
+      el.style.setProperty("--px", `${(nx * 100).toFixed(1)}%`);
+      el.style.setProperty("--py", `${(ny * 100).toFixed(1)}%`);
+    });
   };
 
   const handleLeave = () => {
@@ -167,6 +200,8 @@ export default function WhatWeTransform() {
     if (!el) return;
     el.style.setProperty("--rx", "0deg");
     el.style.setProperty("--ry", "0deg");
+    el.style.setProperty("--mx", "0");
+    el.style.setProperty("--my", "0");
   };
 
   const onDown = (e: PointerEvent<HTMLDivElement>) => {
@@ -176,22 +211,39 @@ export default function WhatWeTransform() {
     if (!drag.current.down) return;
     const dx = e.clientX - drag.current.x;
     drag.current.down = false;
-    if (Math.abs(dx) > 6) drag.current.moved = true;
-    if (dx < -50) next();
-    else if (dx > 50) prevCard();
+    if (Math.abs(dx) > DRAG_PX) drag.current.moved = true;
+    if (dx < -SWIPE_PX) next();
+    else if (dx > SWIPE_PX) prevCard();
+  };
+
+  // A drag must never count as a click (on a card or on a CTA link inside it)
+  const swallowDragClick = (e: MouseEvent<HTMLDivElement>) => {
+    if (drag.current.moved) {
+      drag.current.moved = false;
+      e.preventDefault();
+      e.stopPropagation();
+    }
   };
 
   const onKey = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (e.target !== e.currentTarget) return; // don't hijack keys from the CTA link
     if (e.key === "ArrowRight") {
       e.preventDefault();
       next();
     } else if (e.key === "ArrowLeft") {
       e.preventDefault();
       prevCard();
+    } else if (e.key === "Home") {
+      e.preventDefault();
+      go(0);
+    } else if (e.key === "End") {
+      e.preventDefault();
+      go(COUNT - 1);
     }
   };
 
   const current = TRANSFORMATION_CARDS[active];
+  const autoplay = !reduceMotion && inView && onScreen;
 
   return (
     <section id="what-we-do" className="services-section position-relative" ref={sectionRef}>
@@ -262,12 +314,11 @@ export default function WhatWeTransform() {
           onPointerCancel={() => {
             drag.current.down = false;
           }}
+          onClickCapture={swallowDragClick}
         >
           <div className="wt-floor" aria-hidden="true" />
           <div className="wt-horizon" aria-hidden="true" />
           <div className="wt-pad" aria-hidden="true" />
-          {/* <div className="wt-beam" aria-hidden="true" /> */}
-
 
           <div className="wt-ghost" key={current.idx} aria-hidden="true">
             {current.idx}
@@ -276,20 +327,20 @@ export default function WhatWeTransform() {
           {TRANSFORMATION_CARDS.map((card, i) => {
             const d = offset(i, active);
             const a = Math.abs(d);
-            const jump = Math.abs(d - offset(i, previous)) > 3;
+            const jump = Math.abs(d - offset(i, previous)) > HALF;
             const isActive = i === active;
 
             return (
               <div
                 key={card.idx}
+                role="group"
+                aria-roledescription="slide"
+                aria-label={`${i + 1} of ${COUNT}`}
+                aria-hidden={!isActive}
                 className={`wt-card${isActive ? " is-active" : ""}${a > 2 ? " is-far" : ""}${jump ? " jump" : ""}`}
                 data-a={a}
                 style={{ ["--d" as string]: d, ["--a" as string]: a } as CSSProperties}
                 onClick={() => {
-                  if (drag.current.moved) {
-                    drag.current.moved = false;
-                    return;
-                  }
                   if (!isActive) go(i);
                 }}
               >
@@ -322,6 +373,7 @@ export default function WhatWeTransform() {
                         <Link
                           href={card.ctaHref}
                           tabIndex={isActive ? 0 : -1}
+                          draggable={false}
                           className="btn btn-consult-red rounded-pill px-4 py-2 fw-semibold magnetic-btn d-inline-flex align-items-center gap-2"
                         >
                           <span className="btn-text">{card.ctaText}</span>
@@ -358,7 +410,7 @@ export default function WhatWeTransform() {
                     aria-current={i === active ? "true" : undefined}
                     onClick={() => go(i)}
                   >
-                    {i === active && autoplay && inView && (
+                    {i === active && autoplay && (
                       <span className="wt-seg-fill" onAnimationEnd={next} />
                     )}
                   </button>
