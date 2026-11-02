@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useAdvisorModal } from "@/components/AdvisorModal/AdvisorModalContext";
 
@@ -13,6 +13,16 @@ const LAYERS = [
     tiles: [["Finance", "Connected"], ["Supply chain", "Connected"], ["People", "Connected"]],
     rows: [["General ledger", "Synced"], ["Procurement", "Active"], ["Asset management", "Active"]],
     bars: [38, 52, 46, 64, 58, 72, 66, 80, 74, 88, 82, 94],
+    satTop: {
+      kicker: "Operational Core",
+      label: "Resource utilization",
+      line: "M0 34 L20 30 L40 32 L60 22 L80 24 L100 14 L120 8",
+    },
+    satBot: {
+      kicker: "Core Sync",
+      label: "ERP · CRM · EAM",
+      mode: "hub",
+    },
   },
   {
     href: "/security", tone: "red", icon: "fa-cloud", title: "Cloud & Integration", sub: "Connect systems and data",
@@ -20,6 +30,16 @@ const LAYERS = [
     tiles: [["Applications", "Linked"], ["Systems", "Linked"], ["Data", "Linked"]],
     rows: [["ERP to CRM", "Connected"], ["CRM to service desk", "Connected"], ["Data warehouse", "Syncing"]],
     bars: [60, 62, 58, 66, 64, 70, 68, 72, 70, 76, 74, 78],
+    satTop: {
+      kicker: "Data Pipeline",
+      label: "API throughput",
+      line: "M0 26 L18 18 L36 28 L54 16 L72 25 L90 12 L108 20 L120 10",
+    },
+    satBot: {
+      kicker: "Mesh Network",
+      label: "Systems connected",
+      mode: "mesh",
+    },
   },
   {
     href: "/custom-software-development", tone: "cyan", icon: "fa-code", title: "Digital Engineering", sub: "Custom solutions, agile and platforms",
@@ -27,6 +47,16 @@ const LAYERS = [
     tiles: [["Web apps", "In delivery"], ["Mobile", "In delivery"], ["Platforms", "In delivery"]],
     rows: [["Customer portal", "Released"], ["Workflow app", "In sprint"], ["Partner platform", "In design"]],
     bars: [30, 44, 40, 58, 52, 66, 60, 74, 70, 82, 78, 90],
+    satTop: {
+      kicker: "Agile Delivery",
+      label: "Release velocity",
+      line: "M0 38 L24 38 L24 28 L52 28 L52 18 L84 18 L84 9 L120 9",
+    },
+    satBot: {
+      kicker: "DevSecOps",
+      label: "CI/CD pipeline active",
+      mode: "pipeline",
+    },
   },
   {
     href: "/ai-automation-development", tone: "red", icon: "fa-microchip", title: "AI & Data", sub: "Turn data into intelligence",
@@ -34,6 +64,16 @@ const LAYERS = [
     tiles: [["Analytics", "Running"], ["Automation", "Running"], ["AI assistants", "Live"]],
     rows: [["Demand forecast", "Running"], ["Invoice automation", "Running"], ["Support assistant", "Live"]],
     bars: [24, 30, 38, 36, 52, 60, 58, 74, 82, 80, 92, 98],
+    satTop: {
+      kicker: "AI Insight",
+      label: "Demand forecast",
+      line: "M0 38 L15 33 L30 35 L48 24 L66 27 L84 13 L102 16 L120 4",
+    },
+    satBot: {
+      kicker: "Intelligence",
+      label: "Neural models live",
+      mode: "neural",
+    },
   },
   {
     href: "/faq#faq-ownership", tone: "cyan", icon: "fa-gear", title: "Managed Delivery", sub: "Run, optimize and scale",
@@ -41,6 +81,16 @@ const LAYERS = [
     tiles: [["Monitoring", "24/7"], ["Optimization", "Ongoing"], ["Support", "Global"]],
     rows: [["Platform health", "Healthy"], ["Release pipeline", "Healthy"], ["Service desk", "Open"]],
     bars: [70, 72, 71, 74, 73, 76, 75, 78, 77, 80, 79, 82],
+    satTop: {
+      kicker: "24/7 Operations",
+      label: "99.98% SLA Uptime",
+      line: "M0 14 L20 13 L40 15 L60 12 L80 13 L100 11 L120 10",
+    },
+    satBot: {
+      kicker: "Global Delivery",
+      label: "Global nodes healthy",
+      mode: "pulse",
+    },
   },
 ];
 
@@ -71,11 +121,106 @@ const ArrowIcon = () => (
   </span>
 );
 
+/* Dynamic SVG graphics for the bottom-left satellite card per step */
+const SatBotGraphic = ({ mode }: { mode: string }) => {
+  switch (mode) {
+    case "hub":
+      return (
+        <svg viewBox="0 0 120 44">
+          <path d="M22 22 L60 10 L98 22 L60 34 Z M22 22 L98 22" fill="none" stroke="var(--accent-ink)" strokeOpacity="0.55" strokeWidth="1.5" strokeDasharray="3 3" />
+          <circle cx="22" cy="22" r="5.5" fill="var(--accent)" />
+          <circle cx="60" cy="10" r="5.5" fill="var(--accent-ink)" />
+          <circle cx="98" cy="22" r="5.5" fill="var(--accent)" />
+          <circle cx="60" cy="34" r="5.5" fill="var(--accent-ink)" />
+        </svg>
+      );
+    case "pipeline":
+      return (
+        <svg viewBox="0 0 120 44">
+          <path d="M16 22 H104" fill="none" stroke="var(--accent-ink)" strokeOpacity="0.6" strokeWidth="2" strokeDasharray="4 4" />
+          <rect x="10" y="14" width="16" height="16" rx="4" fill="var(--accent)" />
+          <rect x="52" y="14" width="16" height="16" rx="4" fill="var(--accent-ink)" />
+          <rect x="94" y="14" width="16" height="16" rx="4" fill="var(--accent)" />
+        </svg>
+      );
+    case "neural":
+      return (
+        <svg viewBox="0 0 120 44">
+          <path d="M20 12 L60 22 L20 32 M60 22 L100 12 M60 22 L100 32" fill="none" stroke="var(--accent-ink)" strokeOpacity="0.6" strokeWidth="1.5" />
+          <circle cx="20" cy="12" r="5" fill="var(--accent)" />
+          <circle cx="20" cy="32" r="5" fill="var(--accent)" />
+          <circle cx="60" cy="22" r="7" fill="var(--accent-ink)" />
+          <circle cx="100" cy="12" r="5" fill="var(--accent)" />
+          <circle cx="100" cy="32" r="5" fill="var(--accent)" />
+        </svg>
+      );
+    case "pulse":
+      return (
+        <svg viewBox="0 0 120 44">
+          <path d="M4 24 H34 L44 10 L56 36 L68 18 L76 24 H116" fill="none" stroke="var(--accent-ink)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <circle cx="108" cy="24" r="4.5" fill="var(--accent)" />
+        </svg>
+      );
+    case "mesh":
+    default:
+      return (
+        <svg viewBox="0 0 120 44">
+          <path d="M16 34 L60 10 L104 34 M16 34 L104 34" fill="none" stroke="var(--accent-ink)" strokeOpacity="0.6" strokeWidth="1.5" strokeDasharray="3 4" vectorEffect="non-scaling-stroke" />
+          <circle cx="16" cy="34" r="6.5" fill="var(--accent)" />
+          <circle cx="60" cy="10" r="6.5" fill="var(--accent-ink)" />
+          <circle cx="104" cy="34" r="6.5" fill="var(--accent)" />
+        </svg>
+      );
+  }
+};
+
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
   const pinRef = useRef<HTMLDivElement>(null);
+  const timerRef = useRef<number>(0);
   const { openAdvisorModal } = useAdvisorModal();
   const [active, setActive] = useState(-1); // -1 = intro, 0..4 = service in focus
+
+  /* Skip directly past the hero section to the next section on the page */
+  const skipHeroSection = useCallback(() => {
+    const section = heroRef.current;
+    if (!section) return;
+
+    const nextEl = section.nextElementSibling as HTMLElement | null;
+    if (nextEl) {
+      nextEl.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+
+    const rect = section.getBoundingClientRect();
+    window.scrollTo({
+      top: window.scrollY + rect.top + section.offsetHeight,
+      behavior: "smooth",
+    });
+  }, []);
+
+  /* Jump to a specific service when clicking a progress step bar */
+  const goToLayer = useCallback((index: number) => {
+    const section = heroRef.current;
+    if (!section) return;
+
+    if (window.matchMedia("(max-width: 991px)").matches || section.classList.contains("is-static")) {
+      setActive(index);
+      window.clearInterval(timerRef.current);
+      timerRef.current = window.setInterval(() => setActive((a) => (a + 1) % LAYERS.length), 4200);
+      return;
+    }
+
+    const rect = section.getBoundingClientRect();
+    const total = section.offsetHeight - window.innerHeight;
+    if (total <= 0) return;
+
+    const targetP = STORY_START + (index + 0.35) * STEP;
+    window.scrollTo({
+      top: window.scrollY + rect.top + targetP * total,
+      behavior: "smooth",
+    });
+  }, []);
 
   useEffect(() => {
     const section = heroRef.current;
@@ -99,25 +244,30 @@ export default function Hero() {
     const onPointer = (e: PointerEvent) => {
       if (mobile.matches) return;
       const r = pin.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width;
-      const y = (e.clientY - r.top) / r.height;
+      const x = clamp((e.clientX - r.left) / r.width, 0, 1);
+      const y = clamp((e.clientY - r.top) / r.height, 0, 1);
       pin.style.setProperty("--mx", `${(x * 100).toFixed(1)}%`);
       pin.style.setProperty("--my", `${(y * 100).toFixed(1)}%`);
       pin.style.setProperty("--px", ((x - 0.5) * 2).toFixed(3));
       pin.style.setProperty("--py", ((y - 0.5) * 2).toFixed(3));
     };
-    pin.addEventListener("pointermove", onPointer);
+    const onPointerLeave = () => {
+      if (mobile.matches) return;
+      pin.style.setProperty("--px", "0");
+      pin.style.setProperty("--py", "0");
+    };
+    pin.addEventListener("pointermove", onPointer, { passive: true });
+    pin.addEventListener("pointerleave", onPointerLeave, { passive: true });
 
     let target = 0;
     let current = 0;
     let raf = 0;
     let last = -2;
-    let timer = 0;
 
     const apply = (p: number) => {
       const m = ease(range(p, 0, 0.2));
       setVars(m, 1 - ease(range(p, 0.03, 0.12)));
-      /* orbiting camera: the workspace keeps turning slightly as you scroll */
+      /* orbiting camera: exact original math */
       pin.style.setProperty("--p", p.toFixed(4));
       pin.style.setProperty("--ry", `${(-34 + m * 24 + Math.sin(p * Math.PI * 5) * 7 * m).toFixed(2)}deg`);
       pin.style.setProperty("--rx", `${(14 - m * 8 + Math.cos(p * Math.PI * 3) * 3 * m).toFixed(2)}deg`);
@@ -143,12 +293,14 @@ export default function Hero() {
 
     /* phones/tablets: no pinning, the workspace cycles through the services */
     const setup = () => {
-      window.clearInterval(timer);
+      window.clearInterval(timerRef.current);
       if (mobile.matches) {
+        if (raf) cancelAnimationFrame(raf);
+        raf = 0;
         setVars(1, 1);
         last = -2;
         setActive(0);
-        timer = window.setInterval(() => setActive((a) => (a + 1) % LAYERS.length), 4200);
+        timerRef.current = window.setInterval(() => setActive((a) => (a + 1) % LAYERS.length), 4200);
       } else {
         last = -2;
         onScroll();
@@ -165,7 +317,8 @@ export default function Hero() {
       window.removeEventListener("resize", onScroll);
       mobile.removeEventListener("change", setup);
       pin.removeEventListener("pointermove", onPointer);
-      window.clearInterval(timer);
+      pin.removeEventListener("pointerleave", onPointerLeave);
+      window.clearInterval(timerRef.current);
       if (raf) cancelAnimationFrame(raf);
     };
   }, []);
@@ -175,7 +328,11 @@ export default function Hero() {
 
   return (
     <section className="bvz-hero" ref={heroRef}>
-      <div className={`bvz-pin${active >= 0 ? " is-story" : ""}`} ref={pinRef} style={{ ["--accent" as string]: TONES[L.tone].a, ["--accent-ink" as string]: TONES[L.tone].ink }}>
+      <div
+        className={`bvz-pin${active >= 0 ? " is-story" : ""}`}
+        ref={pinRef}
+        style={{ ["--accent" as string]: TONES[L.tone].a, ["--accent-ink" as string]: TONES[L.tone].ink }}
+      >
         <div className="bvz-bg" aria-hidden="true" />
 
         <div className="container bvz-container">
@@ -216,9 +373,17 @@ export default function Hero() {
               </div>
 
               <div className="bvz-story" aria-live="polite">
-                <div className="bvz-steps" aria-hidden="true">
+                <div className="bvz-steps" role="tablist" aria-label="Services">
                   {LAYERS.map((l, i) => (
-                    <span key={l.title} className={i < view ? "is-done" : i === view ? "is-now" : ""} />
+                    <button
+                      key={l.title}
+                      type="button"
+                      role="tab"
+                      aria-selected={view === i}
+                      aria-label={`View ${l.title}`}
+                      onClick={() => goToLayer(i)}
+                      className={i < view ? "is-done" : i === view ? "is-now" : ""}
+                    />
                   ))}
                 </div>
                 <div className="bvz-caps">
@@ -259,29 +424,34 @@ export default function Hero() {
                   <span className="bvz-floor" aria-hidden="true" />
                   <span className="bvz-plate bvz-p1" aria-hidden="true" />
                   <span className="bvz-plate bvz-p2" aria-hidden="true" />
+
+                  {/* Dynamic Top-Right Satellite Card (bvz-sat-ai) */}
                   <div className="bvz-sat bvz-sat-ai" aria-hidden="true">
-                    <span className="bvz-sat-k">AI insight</span>
-                    <svg viewBox="0 0 120 44" preserveAspectRatio="none">
-                      <defs>
-                        <linearGradient id="bvzFill" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="0" stopColor="#38bdf8" stopOpacity="0.4" />
-                          <stop offset="1" stopColor="#38bdf8" stopOpacity="0" />
-                        </linearGradient>
-                      </defs>
-                      <path d="M0 38 L15 33 L30 35 L48 24 L66 27 L84 13 L102 16 L120 4 L120 44 L0 44Z" fill="url(#bvzFill)" />
-                      <path d="M0 38 L15 33 L30 35 L48 24 L66 27 L84 13 L102 16 L120 4" fill="none" stroke="#38bdf8" strokeWidth="2" vectorEffect="non-scaling-stroke" />
-                    </svg>
-                    <b>Demand forecast</b>
+                    <div className="bvz-sat-inner" key={`ai-${view}`}>
+                      <span className="bvz-sat-k">{L.satTop.kicker}</span>
+                      <svg viewBox="0 0 120 44" preserveAspectRatio="none">
+                        <defs>
+                          <linearGradient id="bvzFill" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0" stopColor="var(--accent-ink)" stopOpacity="0.4" />
+                            <stop offset="1" stopColor="var(--accent-ink)" stopOpacity="0" />
+                          </linearGradient>
+                        </defs>
+                        <path d={`${L.satTop.line} L120 44 L0 44Z`} fill="url(#bvzFill)" />
+                        <path d={L.satTop.line} fill="none" stroke="var(--accent-ink)" strokeWidth="2" vectorEffect="non-scaling-stroke" />
+                      </svg>
+                      <b>{L.satTop.label}</b>
+                    </div>
                   </div>
+
+                  {/* Dynamic Bottom-Left Satellite Card (bvz-sat-int) */}
                   <div className="bvz-sat bvz-sat-int" aria-hidden="true">
-                    <svg viewBox="0 0 120 52">
-                      <path d="M16 38 L60 14 L104 38 M16 38 L104 38" fill="none" stroke="rgba(56,189,248,0.6)" strokeWidth="1.5" strokeDasharray="3 4" vectorEffect="non-scaling-stroke" />
-                      <circle cx="16" cy="38" r="7" fill="#0096ea" />
-                      <circle cx="60" cy="14" r="7" fill="#38bdf8" />
-                      <circle cx="104" cy="38" r="7" fill="#0096ea" />
-                    </svg>
-                    <b>Systems connected</b>
+                    <div className="bvz-sat-inner" key={`int-${view}`}>
+                      <span className="bvz-sat-k">{L.satBot.kicker}</span>
+                      <SatBotGraphic mode={L.satBot.mode} />
+                      <b>{L.satBot.label}</b>
+                    </div>
                   </div>
+
                   <div className="bvz-win">
                     <div className="bvz-bar" aria-hidden="true">
                       <i /><i /><i />
@@ -327,6 +497,23 @@ export default function Hero() {
         </div>
 
         <div className="bvz-cue" aria-hidden="true"><span>Scroll to explore</span><i /></div>
+
+        {/* Skip Hero Section Button */}
+        <button
+          type="button"
+          onClick={skipHeroSection}
+          className="bvz-skip"
+          aria-label="Skip hero section and scroll to next section"
+        >
+          <span className="bvz-skip-txt">Skip to content</span>
+          <span className="bvz-skip-ring" aria-hidden="true">
+            <svg viewBox="0 0 28 28">
+              <circle className="bvz-skip-track" cx="14" cy="14" r="11" />
+              <circle className="bvz-skip-prog" cx="14" cy="14" r="11" />
+            </svg>
+            <i className="fa-solid fa-arrow-down" />
+          </span>
+        </button>
       </div>
     </section>
   );
