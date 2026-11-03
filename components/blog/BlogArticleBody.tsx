@@ -53,7 +53,28 @@ export default function BlogArticleBody({ body }: { body: BlogBodyBlock[] }) {
       );
       continue;
     }
-    if (block.type === "h2") {
+    if (block.type === "image") {
+      nodes.push(
+        <div
+          className="spotlight-card ind-anim-card p-3 rounded-4 my-4 anim-reveal"
+          key={`img-${i}`}
+        >
+          <div className="image-reveal-wrapper rounded-4 overflow-hidden">
+            <div className="image-reveal-mask" />
+            <img
+              src={block.src}
+              alt={block.alt}
+              className="img-fluid image-reveal-img w-100"
+            />
+          </div>
+          {block.caption && (
+            <p className="text-bright-muted extra-small text-center mt-3 mb-0">
+              {block.caption}
+            </p>
+          )}
+        </div>
+      );
+    } else if (block.type === "h2") {
       nodes.push(
         <h2 className="text-white mt-5 mb-3 fs-3 fw-bold anim-reveal" key={`h2-${i}`}>
           {block.text}

@@ -18,7 +18,8 @@ export type BlogBodyBlock =
   | { type: "p"; text: string }
   | { type: "h2"; text: string }
   | { type: "blockquote"; text: string }
-  | { type: "li"; text: string };
+  | { type: "li"; text: string }
+  | { type: "image"; src: string; alt: string; caption?: string };
 
 export type BlogTakeaway = {
   title: string;
@@ -54,6 +55,631 @@ export const blogNavPills: { id: BlogFilterId; label: string }[] = [
 ];
 
 export const blogPosts: BlogPost[] = [
+  // NEW ARTICLE: Salesforce Education Cloud (with 9 Demo Images)
+  {
+    slug: "salesforce-education-cloud-guide",
+    title: "Salesforce Education Cloud: A Strategic Guide for University Leaders and CIOs",
+    categoryLabel: "ENTERPRISE TECHNOLOGY",
+    category: "cloud-architecture",
+    filterId: "cloud-architecture",
+    readTime: "14 Min Read",
+    date: "November 2026",
+    author: "Sahil Pareek",
+    authorRole: "BVM Tech Team",
+    authorImg: "/images/tm2.png",
+    excerpt:
+      "Explore Salesforce Education Cloud, its features, AI capabilities, student lifecycle management, integrations and implementation considerations for universities and CIOs.",
+    // IMAGE 1 (Featured Hero Image) — Replace URL anytime
+    image:
+      "/images/salesforce.png",
+    imageAlt:
+      "Salesforce Education Cloud: A Strategic Guide for University Leaders and CIOs",
+    featured: true,
+    takeaways: [
+      {
+        title: "Unified Student Lifecycle",
+        desc: "Connects recruitment, admissions, academic operations, student success, financials and alumni engagement on one platform.",
+        iconClass: "text-cyan",
+      },
+      {
+        title: "AI & Agentforce Education",
+        desc: "Uses AI agents and workflow automation to streamline enquiries, admissions tasks and personalized student advising.",
+        iconClass: "text-red",
+      },
+      {
+        title: "API-Led Campus Integration",
+        desc: "Integrates with existing SIS, LMS, ERP, finance and identity systems through structured API architectures.",
+        iconClass: "text-cyan",
+      },
+      {
+        title: "CIO Implementation Roadmap",
+        desc: "Provides a 9-step framework covering data governance, architecture design, phased rollout and user adoption.",
+        iconClass: "text-red",
+      },
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Higher education institutions are navigating an increasingly complex digital environment. From attracting prospective students and managing admissions to improving student engagement, coordinating academic operations and strengthening alumni relationships, universities must manage an extensive network of people, processes and technology systems.",
+      },
+      {
+        type: "p",
+        text: "However, many institutions still operate with disconnected applications, fragmented student records and manual workflows that make it difficult to deliver consistent experiences.",
+      },
+      {
+        type: "p",
+        text: "Salesforce Education Cloud offers a different approach. By bringing together education-focused CRM capabilities, connected data, workflow automation and artificial intelligence, it helps institutions build a more unified digital environment around the entire learner journey.",
+      },
+      {
+        type: "p",
+        text: "For university leaders and CIOs, the opportunity extends beyond implementing another software platform. It is about establishing a connected technology foundation that supports institutional efficiency, better decision-making and long-term student success.",
+      },
+      {
+        type: "p",
+        text: "This guide explores how Salesforce Education Cloud works, its key capabilities, implementation considerations and the strategic value it can bring to modern higher education institutions.",
+      },
+      {
+        type: "h2",
+        text: "1. What Is Salesforce Education Cloud?",
+      },
+      {
+        type: "p",
+        text: "Salesforce Education Cloud is an education-focused enterprise platform designed to help educational institutions manage relationships, processes and information throughout the student lifecycle.",
+      },
+      {
+        type: "p",
+        text: "Built on the Salesforce platform, it brings together capabilities for recruitment, admissions, academic operations, student success, student financials and alumni engagement.",
+      },
+      {
+        type: "p",
+        text: "Rather than managing each interaction through separate departmental applications, institutions can establish a more connected environment where relevant information is accessible to authorized teams.",
+      },
+      {
+        type: "p",
+        text: "For example, an admissions team can manage prospective student enquiries and applications, while academic advisors can access relevant student information to provide more informed guidance. Student support teams can coordinate cases, and alumni relations teams can continue engagement beyond graduation.",
+      },
+      {
+        type: "p",
+        text: "The objective is to create a more consistent experience for students while giving institutional teams better visibility into their operations.",
+      },
+      {
+        type: "p",
+        text: "**Understanding the Education Cloud and Agentforce Education Naming**Salesforce has evolved its education platform as its capabilities have expanded to include more advanced AI and agent-based functionality. Salesforce documentation increasingly refers to the solution as Agentforce Education, formerly Education Cloud. However, Education Cloud remains a widely recognized term in the higher education technology market. Throughout this guide, we use Salesforce Education Cloud to describe the platform and its broader capabilities.",
+      },
+      {
+        type: "p",
+        text: "**What Makes It Different?**Traditional institutional systems often focus on specific operational responsibilities, such as student records, admissions processing or communication management. Education Cloud takes a more connected approach by combining education-specific data structures, CRM capabilities, automation and AI-enabled workflows.",
+      },
+      {
+        type: "li",
+        text: "Establishing a unified view of students and institutional relationships.",
+      },
+      {
+        type: "li",
+        text: "Improving recruitment and admissions processes.",
+      },
+      {
+        type: "li",
+        text: "Supporting personalized student engagement.",
+      },
+      {
+        type: "li",
+        text: "Connecting academic and administrative workflows.",
+      },
+      {
+        type: "li",
+        text: "Enabling data-driven institutional decisions.",
+      },
+      {
+        type: "li",
+        text: "Extending engagement to alumni and other stakeholders.",
+      },
+      {
+        type: "p",
+        text: "The result is a technology environment designed around the complete relationship between an institution and its learners.",
+      },
+
+      // SECTION 2 + IMAGE 2
+      {
+        type: "h2",
+        text: "2. Why Higher Education Institutions Need Connected Digital Systems",
+      },
+      {
+        type: "p",
+        text: "Universities operate through multiple departments, each with its own responsibilities, systems and information requirements. Admissions teams manage prospective students. Academic departments coordinate courses and schedules. Student affairs teams handle support requests, while finance departments manage fees and payments. When these functions operate independently, information becomes fragmented.",
+      },
+      {
+        type: "image",
+        src: "/images/sa1.png",
+        alt: "Connected university ecosystem illustration",
+        caption: "Connected University Ecosystem: Unifying admissions, academics, student support and alumni teams.",
+      },
+      {
+        type: "li",
+        text: "**Fragmented Student Information**Student information may be distributed across admission applications, spreadsheets, student information systems, learning management platforms and communication tools. This makes it difficult to establish a complete understanding of an individual's relationship with the institution.",
+      },
+      {
+        type: "li",
+        text: "**Manual Administrative Processes**Repetitive activities such as application follow-ups, document verification, appointment scheduling and enquiry management can consume significant staff time.",
+      },
+      {
+        type: "li",
+        text: "**Limited Institutional Visibility**Without connected reporting, university leadership may struggle to obtain a consolidated view of admissions performance, student engagement, operational bottlenecks and retention indicators.",
+      },
+      {
+        type: "li",
+        text: "**Inconsistent Student Experiences**Students may need to contact multiple departments to resolve simple questions or complete administrative activities.",
+      },
+      {
+        type: "li",
+        text: "**Reactive Student Support**When academic, engagement and support information remains disconnected, identifying students who may require additional assistance becomes more difficult.",
+      },
+      {
+        type: "p",
+        text: "**Moving Towards a Connected Campus**A connected campus is not simply a university with more digital applications. It is an environment where systems, data and workflows work together to support institutional objectives. Salesforce Education Cloud can contribute to this approach by connecting student-facing experiences with institutional processes and providing a common platform for relevant information and engagement. For CIOs, this creates an opportunity to move from isolated technology investments towards a more coordinated digital architecture.",
+      },
+
+      // SECTION 3 + IMAGE 3
+      {
+        type: "h2",
+        text: "3. How Salesforce Education Cloud Works",
+      },
+      {
+        type: "p",
+        text: "Salesforce Education Cloud combines education-specific capabilities with the broader Salesforce platform. Its architecture is designed to connect information from different institutional sources, support business processes and make relevant information available to authorized users. At a strategic level, the platform can be understood through four interconnected layers.",
+      },
+      {
+        type: "image",
+        src: "/images/sa2.png",
+        alt: "Education Cloud architecture diagram",
+        caption: "Education Cloud Architecture: Data Foundation, Connected Workflows, AI Automation and Analytics.",
+      },
+      {
+        type: "li",
+        text: "**3.1 Education Data Foundation**Brings together student and prospective student profiles, academic programmes and course information, applications and admissions records, institutional relationships, student engagement information, and alumni and donor relationships.",
+      },
+      {
+        type: "li",
+        text: "**3.2 Connected Applications and Workflows**Supports admissions management, student support, academic operations, financial processes and alumni engagement through common capabilities such as application management, scheduling and case management across departments.",
+      },
+      {
+        type: "li",
+        text: "**3.3 AI and Intelligent Automation**Helps institutions automate selected activities, provide contextual recommendations and support faster access to information—such as AI-powered agents assisting with routine student enquiries and summarizing relevant information.",
+      },
+      {
+        type: "li",
+        text: "**3.4 Analytics and Decision Support**Provides dashboards and analytics to monitor operational performance, identify trends and evaluate areas that require attention beyond disconnected departmental reports.",
+      },
+      {
+        type: "blockquote",
+        text: "Illustrative architecture: Institutional Systems → Data Integration → Education Cloud → AI & Workflow Automation → Analytics & Student Experiences",
+      },
+      {
+        type: "p",
+        text: "The exact architecture depends on the institution's existing technology environment and integration requirements.",
+      },
+
+      // SECTION 4 + IMAGE 4
+      {
+        type: "h2",
+        text: "4. Key Capabilities of Salesforce Education Cloud",
+      },
+      {
+        type: "p",
+        text: "Salesforce Education Cloud provides purpose-built capabilities for different stages of the education lifecycle. Understanding these capabilities helps university leaders identify where the platform can address operational challenges.",
+      },
+      {
+        type: "image",
+        src: "/images/sa3.png",
+        alt: "Student admissions and academic operations dashboard concept",
+        caption: "Student Admissions & Academic Operations Dashboard Concept.",
+      },
+      {
+        type: "li",
+        text: "**4.1 Recruitment and Admissions Management**Covers prospective student management, enquiry and lead tracking, application management, admissions workflow coordination, document review and tracking, applicant communication, and recruitment performance reporting.",
+      },
+      {
+        type: "li",
+        text: "**4.2 Academic Operations**Supports academic programme management, course and curriculum structures, course registration, academic planning, degree progress management, and learning programme administration. The precise scope should be evaluated against the institution's existing Student Information System (SIS).",
+      },
+      {
+        type: "li",
+        text: "**4.3 Student Success and Engagement**Supports student profile management, academic advising, appointment scheduling, student support case management, personalized engagement, student care and action plans, and student progress visibility.",
+      },
+      {
+        type: "li",
+        text: "**4.4 Student Financials**Supports student account management, fee structures, financial account visibility, fee-related information, and financial support interactions alongside existing finance and payment systems.",
+      },
+      {
+        type: "li",
+        text: "**4.5 Advancement and Alumni Relations**Supports alumni relationship management, donor engagement, fundraising coordination, advancement operations, institutional relationship tracking, and philanthropic research support.",
+      },
+
+      // SECTION 5 + IMAGE 5
+      {
+        type: "h2",
+        text: "5. Managing the Complete Student Lifecycle",
+      },
+      {
+        type: "p",
+        text: "One of the most important strategic advantages of Education Cloud is its focus on the complete learner journey. Instead of treating admissions, academic administration and alumni engagement as isolated processes, institutions can establish a more connected relationship with students.",
+      },
+      {
+        type: "image",
+        src: "/images/sa4.png",
+        alt: "Student lifecycle journey infographic",
+        caption: "Complete Student Lifecycle Journey: From Awareness and Recruitment to Alumni Engagement.",
+      },
+      {
+        type: "li",
+        text: "**Stage 1: Awareness and Recruitment**The journey begins when prospective students discover an institution. Universities can manage enquiries, recruitment campaigns, event registrations and communication activities through connected CRM processes.",
+      },
+      {
+        type: "li",
+        text: "**Stage 2: Application and Admissions**Once a student expresses interest, admissions teams can manage application records, supporting documents, review activities and communication. This provides better visibility into the application process.",
+      },
+      {
+        type: "li",
+        text: "**Stage 3: Enrollment and Onboarding**After admission, institutions can coordinate enrollment-related activities and onboarding communication. Students can receive relevant information about registration, institutional services and upcoming academic activities.",
+      },
+      {
+        type: "li",
+        text: "**Stage 4: Academic Progress and Engagement**During their academic journey, students interact with academic departments, advisors and support teams. Connected student information can help institutions coordinate these interactions and provide more relevant support.",
+      },
+      {
+        type: "li",
+        text: "**Stage 5: Graduation and Career Development**As students approach graduation, institutions can support career-readiness activities, skills development and relevant engagement.",
+      },
+      {
+        type: "li",
+        text: "**Stage 6: Alumni and Long-Term Relationships**After graduation, the relationship can continue through alumni networks, institutional events, mentoring initiatives and fundraising programmes.",
+      },
+      {
+        type: "blockquote",
+        text: "The strategic value: Every stage contributes information that can help institutions understand their learners better and deliver more consistent experiences.",
+      },
+
+      // SECTION 6 + IMAGE 6
+      {
+        type: "h2",
+        text: "6. The Role of AI and Intelligent Automation in Higher Education",
+      },
+      {
+        type: "p",
+        text: "Artificial intelligence is becoming an important part of institutional digital transformation. However, its value in higher education is not limited to introducing chatbots or automating simple enquiries. The greater opportunity is to use AI to improve information access, support institutional teams and coordinate processes. Salesforce combines its AI capabilities with Education Cloud through Agentforce and related platform services.",
+      },
+      {
+        type: "image",
+        src: "/images/sa5.png",
+        alt: "AI-powered student assistance visualization",
+        caption: "AI-Powered Student Assistance & Intelligent Automation in Higher Education.",
+      },
+      {
+        type: "li",
+        text: "**AI-Powered Student Assistance**AI agents can help respond to routine questions about admissions, applications, institutional services and other approved information, guiding prospective students towards the appropriate next step.",
+      },
+      {
+        type: "li",
+        text: "**Admissions Process Automation**AI and workflow automation can assist admissions teams with answering common applicant questions, providing application guidance, supporting document-related workflows, identifying incomplete application activities and coordinating follow-up tasks.",
+      },
+      {
+        type: "li",
+        text: "**Personalized Student Guidance**AI can help advisors access relevant student information, generate summaries to prepare for student meetings and identify appropriate resources.",
+      },
+      {
+        type: "li",
+        text: "**Student Financial Assistance**AI-powered financial support capabilities can help students understand account balances, fees and relevant financial information.",
+      },
+      {
+        type: "li",
+        text: "**Institutional Intelligence & Governance**When AI operates alongside connected data and analytics, teams gain better visibility into operational patterns. Because higher education institutions handle sensitive data, AI adoption must include role-based access controls, data privacy policies, consent management, human review for consequential decisions, output monitoring and clear accountability.",
+      },
+
+      // SECTION 7
+      {
+        type: "h2",
+        text: "7. Benefits of Salesforce Education Cloud for Universities",
+      },
+      {
+        type: "p",
+        text: "The value of Education Cloud should be evaluated through institutional outcomes rather than the number of features implemented. When aligned with the right operating model, it can contribute to several important improvements:",
+      },
+      {
+        type: "li",
+        text: "**A More Connected Student Experience**Students can benefit from more consistent interactions across admissions, academic departments, student support and other institutional functions.",
+      },
+      {
+        type: "li",
+        text: "**Improved Operational Efficiency**Workflow automation and connected information can reduce repetitive administrative activities so staff can focus on human interaction.",
+      },
+      {
+        type: "li",
+        text: "**Better Institutional Visibility**Consolidated information and reporting can help leadership teams understand recruitment performance, student engagement and operational activities.",
+      },
+      {
+        type: "li",
+        text: "**More Proactive Student Support**Access to relevant student information can help advisors identify support requirements earlier and coordinate appropriate interventions.",
+      },
+      {
+        type: "li",
+        text: "**Improved Collaboration Across Departments**A shared platform can reduce information gaps between departments and support more coordinated institutional processes.",
+      },
+      {
+        type: "li",
+        text: "**A Foundation for Future Innovation**A connected Salesforce environment provides a foundation for extending institutional capabilities through AI, analytics, integrations and digital experiences.",
+      },
+
+      // SECTION 8 + IMAGE 7
+      {
+        type: "h2",
+        text: "8. Salesforce Education Cloud vs Traditional CRM and SIS",
+      },
+      {
+        type: "p",
+        text: "One of the most important decisions for university CIOs is understanding how Education Cloud fits alongside existing institutional technology. A Customer Relationship Management (CRM) system and a Student Information System (SIS) serve different but complementary purposes.",
+      },
+      {
+        type: "image",
+        src: "/images/sa6.png",
+        alt: "CRM vs SIS vs Education Cloud comparison infographic",
+        caption: "Comparing Traditional CRM, Traditional SIS and Salesforce Education Cloud.",
+      },
+      {
+        type: "li",
+        text: "**Primary Focus**Traditional CRM: Relationship management | Traditional SIS: Student records and academic administration | Salesforce Education Cloud: Connected learner and institutional experiences.",
+      },
+      {
+        type: "li",
+        text: "**Recruitment & Admissions**Traditional CRM: Lead and enquiry tracking | Traditional SIS: Admission record management | Salesforce Education Cloud: Purpose-built recruitment and connected admissions workflows.",
+      },
+      {
+        type: "li",
+        text: "**Academic Operations & Student Engagement**Traditional CRM: Communication tracking | Traditional SIS: Core academic records | Salesforce Education Cloud: Education-specific academic, student success and engagement capabilities.",
+      },
+      {
+        type: "li",
+        text: "**AI, Integrations & Alumni Engagement**Salesforce Education Cloud combines Salesforce AI and Agentforce capabilities, the Salesforce integration ecosystem, and built-in advancement and alumni capabilities.",
+      },
+      {
+        type: "p",
+        text: "**Does Education Cloud Replace an Existing SIS?**Not necessarily. Institutions should not assume that implementing Education Cloud automatically eliminates the need for an existing Student Information System. Some institutions retain their current SIS while connecting it with Salesforce, while others evaluate Education Cloud's expanding academic capabilities as part of a broader modernization strategy.",
+      },
+
+      // SECTION 9 + IMAGE 8
+      {
+        type: "h2",
+        text: "9. Integration with Existing University Technology Systems",
+      },
+      {
+        type: "p",
+        text: "A university rarely operates through a single software platform. Education Cloud becomes more valuable when integrated across Student Information Systems (SIS), Learning Management Systems (LMS), ERP and Finance applications, payment gateways, identity and access management (IAM) platforms, websites and application portals, and analytics platforms.",
+      },
+      {
+        type: "image",
+        src: "/images/sa7.png",
+        alt: "Enterprise integration architecture",
+        caption: "Enterprise Integration Architecture: Connecting SIS, LMS, ERP, Finance and Identity Systems.",
+      },
+      {
+        type: "li",
+        text: "**SIS & LMS Integration**Connect student records, academic information, enrollment data and learning engagement information with relevant CRM processes.",
+      },
+      {
+        type: "li",
+        text: "**ERP, Finance & Portal Integration**Connect financial and administrative information as well as prospective student enquiries and application forms with Salesforce processes.",
+      },
+      {
+        type: "li",
+        text: "**API-Led Integration Architecture**Using APIs and platforms such as MuleSoft, a well-designed integration architecture addresses data ownership, synchronization, API security, error handling, monitoring, consistency and scalability.",
+      },
+
+      // SECTION 10 + IMAGE 9
+      {
+        type: "h2",
+        text: "10. Salesforce Education Cloud Implementation: What CIOs Should Consider",
+      },
+      {
+        type: "p",
+        text: "Implementing an enterprise education platform requires understanding institutional processes, evaluating existing systems, preparing data and establishing an architecture that can support long-term requirements.",
+      },
+      {
+        type: "image",
+        src: "/images/sa8.png",
+        alt: "Enterprise implementation roadmap",
+        caption: "Enterprise Implementation Roadmap: 9 Strategic Steps for University CIOs.",
+      },
+      {
+        type: "li",
+        text: "**Step 1: Define Institutional Objectives**Identify the problems the institution wants to solve and define measurable outcomes before selecting technical solutions.",
+      },
+      {
+        type: "li",
+        text: "**Step 2: Assess the Existing Technology Environment**Review current applications, databases, integrations and infrastructure to identify which systems remain, modernize or integrate.",
+      },
+      {
+        type: "li",
+        text: "**Step 3: Establish the Data Strategy**Review student records, duplication, formats, ownership, access requirements and governance before migrating institutional data.",
+      },
+      {
+        type: "li",
+        text: "**Step 4: Design the Platform Architecture**Define Salesforce configuration, integration architecture, data flows, security and identity management, reporting and scalability.",
+      },
+      {
+        type: "li",
+        text: "**Step 5: Configure Institutional Workflows**Configure admissions, student support, academic operations and alumni engagement around actual university policies.",
+      },
+      {
+        type: "li",
+        text: "**Step 6: Integrate Existing Applications**Implement and validate integrations to ensure information is synchronized and failures are managed.",
+      },
+      {
+        type: "li",
+        text: "**Step 7: Test and Validate**Cover functional requirements, data accuracy, security permissions, integration reliability and user experience with institutional departments.",
+      },
+      {
+        type: "li",
+        text: "**Step 8: Train Teams and Manage Adoption**Provide role-specific training for admissions teams, advisors, administrative staff, IT teams and leadership.",
+      },
+      {
+        type: "li",
+        text: "**Step 9: Monitor and Optimize**Evaluate platform performance against original objectives, reviewing adoption, workflow efficiency and data quality.",
+      },
+
+      // SECTION 11
+      {
+        type: "h2",
+        text: "11. Common Implementation Challenges",
+      },
+      {
+        type: "li",
+        text: "**Legacy System Complexity**Conduct a detailed application and integration assessment before finalizing the architecture across multiple generations of applications.",
+      },
+      {
+        type: "li",
+        text: "**Poor Data Quality**Establish data cleansing, validation and governance processes before migration to address duplicate or incomplete records.",
+      },
+      {
+        type: "li",
+        text: "**Departmental Resistance**Involve stakeholders early and demonstrate how the platform supports their actual responsibilities.",
+      },
+      {
+        type: "li",
+        text: "**Integration Complexity**Use a structured API and integration strategy with proper monitoring and error handling.",
+      },
+      {
+        type: "li",
+        text: "**Unclear Implementation Scope**Prioritize high-value use cases and introduce capabilities through manageable implementation phases.",
+      },
+      {
+        type: "li",
+        text: "**Insufficient Governance**Establish data ownership, access controls and institutional governance policies from the beginning.",
+      },
+
+      // SECTION 12
+      {
+        type: "h2",
+        text: "12. When Should a University Consider Salesforce Education Cloud?",
+      },
+      {
+        type: "p",
+        text: "Education Cloud may be worth evaluating when an institution experiences fragmented student information across departments, growing admissions complexity, increasing administrative workloads, limited student engagement visibility, expanding digital transformation initiatives, or greater demand for AI-enabled services.",
+      },
+      {
+        type: "p",
+        text: "**Questions CIOs Should Ask Before Investing:**",
+      },
+      {
+        type: "li",
+        text: "What institutional problems are we trying to solve, and which existing applications should remain?",
+      },
+      {
+        type: "li",
+        text: "What student information needs to be connected, and which departments will use the platform?",
+      },
+      {
+        type: "li",
+        text: "What integrations are required, and how will data security and privacy be maintained?",
+      },
+      {
+        type: "li",
+        text: "What outcomes will determine implementation success, and can the proposed architecture support future institutional growth?",
+      },
+
+      // SECTION 13
+      {
+        type: "h2",
+        text: "13. How BVM Tech Limited Supports Enterprise Digital Transformation",
+      },
+      {
+        type: "p",
+        text: "Selecting an enterprise platform is only one part of a successful transformation initiative. At BVM Tech Limited, we approach enterprise technology through the lens of business requirements, operational priorities and long-term scalability.",
+      },
+      {
+        type: "li",
+        text: "**Enterprise Platform Strategy**We help organizations evaluate enterprise platforms based on operational requirements, existing systems and long-term technology objectives.",
+      },
+      {
+        type: "li",
+        text: "**Enterprise Application Modernization**A structured modernization approach helps organizations improve application environments while managing technical complexity.",
+      },
+      {
+        type: "li",
+        text: "**Cloud and System Integration**BVM's cloud and integration capabilities cover API integration, enterprise connectivity and cloud ecosystems.",
+      },
+      {
+        type: "li",
+        text: "**AI, Data and Intelligent Automation**We align AI and automation capabilities with practical use cases, governance and measurable objectives.",
+      },
+      {
+        type: "li",
+        text: "**Digital and Product Engineering**Custom digital experiences, application development and platform engineering extend enterprise capabilities around specific organizational requirements.",
+      },
+
+      // SECTION 14
+      {
+        type: "h2",
+        text: "14. Frequently Asked Questions",
+      },
+      {
+        type: "li",
+        text: "**Q1. What is Salesforce Education Cloud?**\nSalesforce Education Cloud is an education-focused enterprise platform designed to connect recruitment, admissions, academic operations, student success, student financials and alumni engagement through Salesforce capabilities. Salesforce documentation also refers to the evolving solution as Agentforce Education.",
+      },
+      {
+        type: "li",
+        text: "**Q2. How does Salesforce Education Cloud help universities?**\nIt helps universities connect student information, improve admissions workflows, support student engagement, automate selected administrative activities and gain better visibility into institutional operations.",
+      },
+      {
+        type: "li",
+        text: "**Q3. What is the difference between Salesforce Education Cloud and a traditional CRM?**\nA traditional CRM primarily focuses on managing customer or stakeholder relationships. Salesforce Education Cloud extends CRM capabilities with education-specific data structures and workflows designed for recruitment, admissions, student success, academic operations and alumni engagement.",
+      },
+      {
+        type: "li",
+        text: "**Q4. Is Salesforce Education Cloud a Student Information System?**\nEducation Cloud includes expanding student information and academic operations capabilities. However, institutions should evaluate its specific functionality against their existing SIS requirements before deciding whether to retain, integrate or replace an existing system.",
+      },
+      {
+        type: "li",
+        text: "**Q5. Can Salesforce Education Cloud integrate with an existing SIS?**\nYes. Salesforce supports integration with external applications through APIs and integration technologies. The integration architecture depends on the systems involved, data ownership, synchronization requirements and institutional policies.",
+      },
+      {
+        type: "li",
+        text: "**Q6. Does Salesforce Education Cloud support AI?**\nYes. Salesforce incorporates Agentforce and other AI capabilities into its education platform. These can support activities such as student recruitment assistance, advising support, information retrieval and selected administrative workflows. Availability varies by feature, edition, licensing and release status.",
+      },
+      {
+        type: "li",
+        text: "**Q7. Can universities automate admissions processes?**\nUniversities can use Education Cloud capabilities and configurable workflows to support application management, applicant communication, task coordination and selected admissions activities. The level of automation depends on institutional requirements and implementation design.",
+      },
+      {
+        type: "li",
+        text: "**Q8. Is Salesforce Education Cloud suitable for large universities?**\nIt can support complex institutional environments, but suitability depends on the institution's architecture, data volumes, integration requirements, licensing and governance needs. A technical and functional assessment is recommended before implementation.",
+      },
+      {
+        type: "li",
+        text: "**Q9. How long does Salesforce Education Cloud implementation take?**\nThere is no universal implementation timeline. Project duration depends on the number of departments involved, data migration complexity, integrations, customization requirements and implementation scope. A phased approach can help institutions introduce capabilities progressively.",
+      },
+      {
+        type: "li",
+        text: "**Q10. How can BVM Tech Limited help with education technology transformation?**\nBVM Tech Limited provides enterprise technology, application modernization, cloud and integration, AI and data, and digital engineering capabilities. These capabilities can support organizations evaluating and planning broader enterprise technology transformation initiatives.",
+      },
+
+      // SECTION 15
+      {
+        type: "h2",
+        text: "15. Building a More Connected Future for Higher Education",
+      },
+      {
+        type: "p",
+        text: "Higher education is entering a period where connected information, personalized experiences and intelligent automation will play an increasingly important role in institutional operations. Salesforce Education Cloud provides an opportunity to bring together education-focused CRM capabilities, academic operations, student engagement, AI and institutional data within a broader enterprise platform.",
+      },
+      {
+        type: "p",
+        text: "However, successful adoption requires more than selecting the right software. It requires a clear transformation strategy, a well-designed architecture, reliable integrations, effective data governance and a strong focus on institutional adoption.",
+      },
+      {
+        type: "blockquote",
+        text: "Ready to evaluate your institution's enterprise technology strategy? Connect with BVM Tech Limited — Let's build technology that works together.",
+      },
+    ],
+  },
   // 1. EXACT ARTICLE: Dubai’s 2026 Technology Shift
   {
     slug: "dubai-2026-technology-shift-ai-automation-software",
