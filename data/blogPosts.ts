@@ -190,7 +190,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "image",
-        src: "/images/sa1.png",
+        src: "/images/sa1.jpg",
         alt: "Connected university ecosystem illustration",
         caption: "Connected University Ecosystem: Unifying admissions, academics, student support and alumni teams.",
       },
@@ -230,7 +230,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "image",
-        src: "/images/sa2.png",
+        src: "/images/sa2.jpg",
         alt: "Education Cloud architecture diagram",
         caption: "Education Cloud Architecture: Data Foundation, Connected Workflows, AI Automation and Analytics.",
       },
@@ -270,7 +270,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "image",
-        src: "/images/sa3.png",
+        src: "/images/sa3.jpg",
         alt: "Student admissions and academic operations dashboard concept",
         caption: "Student Admissions & Academic Operations Dashboard Concept.",
       },
@@ -306,7 +306,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "image",
-        src: "/images/sa4.png",
+        src: "/images/sa4.jpg",
         alt: "Student lifecycle journey infographic",
         caption: "Complete Student Lifecycle Journey: From Awareness and Recruitment to Alumni Engagement.",
       },
@@ -350,7 +350,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "image",
-        src: "/images/sa5.png",
+        src: "/images/sa5.jpg",
         alt: "AI-powered student assistance visualization",
         caption: "AI-Powered Student Assistance & Intelligent Automation in Higher Education.",
       },
@@ -420,7 +420,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "image",
-        src: "/images/sa6.png",
+        src: "/images/sa6.jpg",
         alt: "CRM vs SIS vs Education Cloud comparison infographic",
         caption: "Comparing Traditional CRM, Traditional SIS and Salesforce Education Cloud.",
       },
@@ -456,7 +456,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "image",
-        src: "/images/sa7.png",
+        src: "/images/sa7.jpg",
         alt: "Enterprise integration architecture",
         caption: "Enterprise Integration Architecture: Connecting SIS, LMS, ERP, Finance and Identity Systems.",
       },
@@ -484,7 +484,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "image",
-        src: "/images/sa8.png",
+        src: "/images/sa8.jpg",
         alt: "Enterprise implementation roadmap",
         caption: "Enterprise Implementation Roadmap: 9 Strategic Steps for University CIOs.",
       },
