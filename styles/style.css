@@ -7144,7 +7144,7 @@ body:not(.reduce-motion) .tech-anim-orbit {
 .bvz-sat-k { font-size: 0.68rem; font-weight: 600; color: #7dd3fc; }
 .bvz-sat svg { display: block; width: 100%; height: 44px; overflow: visible; }
 .bvz-sat-ai { width: 190px; top: -30px; right: -26px; transform: translate3d(calc(var(--px, 0) * -10px), calc(var(--py, 0) * -8px), calc(70px + var(--move) * 110px)); }
-.bvz-sat-int { width: 176px; bottom: -34px; left: -30px; transform: translate3d(calc(var(--px, 0) * -16px), calc(var(--py, 0) * -12px), calc(50px + var(--move) * 80px)); }
+.bvz-sat-int { width: 176px; bottom: -50px; left: -30px; transform: translate3d(calc(var(--px, 0) * -16px), calc(var(--py, 0) * -12px), calc(50px + var(--move) * 80px)); }
 @media (max-width: 991px) { .bvz-sat { display: none; } }
 
 /* ==========================================================================

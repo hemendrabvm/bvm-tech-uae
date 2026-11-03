@@ -28,7 +28,7 @@ const TRANSFORMATION_CARDS = [
     capabilities: ["Enterprise AI", "Data Engineering", "Analytics", "Intelligent Automation"],
     ctaText: "Explore AI & Data",
     ctaHref: "/ai-automation-development",
-    bg: "/images/bp2.jpeg",
+    bg: "/images/ertq.png",
   },
   {
     idx: "03",
@@ -58,7 +58,7 @@ const TRANSFORMATION_CARDS = [
     capabilities: ["Cloud", "Cybersecurity", "DevSecOps", "Business Continuity"],
     ctaText: "Explore Resilience",
     ctaHref: "/security",
-    bg: "/images/eyre.png",
+    bg: "/images/tyut.png",
   },
   {
     idx: "06",
@@ -68,7 +68,7 @@ const TRANSFORMATION_CARDS = [
     capabilities: ["Technology Specialists", "Dedicated Teams", "Managed Delivery", "ODC"],
     ctaText: "Explore Global Delivery",
     ctaHref: "/contact",
-    bg: "/images/bp6.jpeg",
+    bg: "/images/rteq.png",
   },
 ];
 
