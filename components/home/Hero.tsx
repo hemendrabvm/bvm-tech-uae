@@ -229,14 +229,15 @@ export default function Hero() {
 
     const mobile = window.matchMedia("(max-width: 991px)");
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const setVars = (move: number, intro: number) => {
+    const setVars = (move: number, intro: number, story: number) => {
       pin.style.setProperty("--move", move.toFixed(4));
       pin.style.setProperty("--intro", intro.toFixed(4));
+      pin.style.setProperty("--story", story.toFixed(4));
     };
 
     if (reduce.matches) {
       section.classList.add("is-static");
-      setVars(0.5, 1);
+      setVars(0.5, 1, 0);
       return;
     }
 
@@ -266,7 +267,12 @@ export default function Hero() {
 
     const apply = (p: number) => {
       const m = ease(range(p, 0, 0.2));
-      setVars(m, 1 - ease(range(p, 0.03, 0.12)));
+
+      // Sequence the hand-off: the intro finishes leaving before the service
+      // story begins entering. Both transitions remain scroll-driven and smooth.
+      const introProgress = 1 - ease(range(p, 0.03, 0.12));
+      const storyProgress = ease(range(p, STORY_START, STORY_START + 0.10));
+      setVars(m, introProgress, storyProgress);
       /* orbiting camera: exact original math */
       pin.style.setProperty("--p", p.toFixed(4));
       pin.style.setProperty("--ry", `${(-34 + m * 24 + Math.sin(p * Math.PI * 5) * 7 * m).toFixed(2)}deg`);
@@ -297,7 +303,7 @@ export default function Hero() {
       if (mobile.matches) {
         if (raf) cancelAnimationFrame(raf);
         raf = 0;
-        setVars(1, 1);
+        setVars(1, 1, 0);
         last = -2;
         setActive(0);
         timerRef.current = window.setInterval(() => setActive((a) => (a + 1) % LAYERS.length), 4200);
