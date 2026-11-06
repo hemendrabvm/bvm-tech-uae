@@ -60,7 +60,7 @@ export const metadata: Metadata = {
 
     images: [
       {
-        url: "/images/bvm-linkedin-preview.png",
+        url: "/images/bvm-linkedin-previewb.png",
         width: 1200,
         height: 627,
         alt: "BVM Tech Limited - Enterprise Technology, Consulting & Digital Engineering",
@@ -78,7 +78,7 @@ export const metadata: Metadata = {
     description:
       "Enterprise technology, consulting and digital engineering company in Dubai (DIFC).",
 
-    images: ["/images/bvm-linkedin-preview.png"],
+    images: ["/images/bvm-linkedin-previewb.png"],
   },
 };
 
