@@ -7,15 +7,17 @@ import Preloader from "@/components/Preloader/Preloader";
 import { AdvisorModalProvider } from "@/components/AdvisorModal/AdvisorModalContext";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.bvmtech.ae"),
+
   title: {
     default: "BVM Tech Limited | Enterprise Technology, Consulting & Digital Engineering",
     template: "%s | BVM Tech Limited",
   },
+
   description:
     "Enterprise technology, consulting and digital engineering company in Dubai (DIFC). BVM Tech helps organizations modernize core systems, adopt AI, connect enterprise platforms, and scale technology delivery across the GCC and global markets.",
 
   icons: {
-    // Standard browser favicon
     icon: [
       {
         url: "/images/favicon.ico",
@@ -33,7 +35,6 @@ export const metadata: Metadata = {
       },
     ],
 
-    // Apple devices / Safari
     apple: [
       {
         url: "/images/apple-touch-icon.png",
@@ -41,6 +42,33 @@ export const metadata: Metadata = {
         type: "image/png",
       },
     ],
+  },
+
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://www.bvmtech.ae/",
+    siteName: "BVM Tech Limited",
+    title:
+      "BVM Tech Limited | Enterprise Technology, Consulting & Digital Engineering",
+    description:
+      "Enterprise technology, consulting and digital engineering company in Dubai (DIFC).",
+    images: [
+      {
+        url: "/images/bvm-linkedin-preview.jpg",
+        width: 1200,
+        height: 627,
+        alt: "BVM Tech Limited",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "BVM Tech Limited | Enterprise Technology",
+    description:
+      "Enterprise technology, consulting and digital engineering company in Dubai (DIFC).",
+    images: ["/images/bvm-linkedin-preview.jpg"],
   },
 };
 
@@ -52,14 +80,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Apple Touch Icon - iPhone / iPad */}
         <link
           rel="apple-touch-icon"
           sizes="180x180"
           href="/images/apple-touch-icon.png"
         />
 
-        {/* Google Fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -71,7 +97,6 @@ export default function RootLayout({
           rel="stylesheet"
         />
 
-        {/* Font Awesome 6 */}
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -80,7 +105,6 @@ export default function RootLayout({
           referrerPolicy="no-referrer"
         />
 
-        {/* Prevent browser from automatically restoring scroll position */}
         <script
           dangerouslySetInnerHTML={{
             __html: `if('scrollRestoration' in history){history.scrollRestoration='manual';}`,
