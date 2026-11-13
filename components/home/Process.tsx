@@ -22,7 +22,7 @@ const STAGES = [
     name: "ADVISE",
     desc: "Define the right direction.",
     outcome: "CLARITY",
-    img: "/images/z1.jpg",
+    img: "/images/z1.png",
     fallbackImg:
       "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&w=600&q=80",
     icon: "fa-solid fa-lightbulb",
@@ -34,7 +34,7 @@ const STAGES = [
     name: "TRANSFORM",
     desc: "Modernize and integrate.",
     outcome: "MODERN PLATFORMS",
-    img: "/images/z2.jpg",
+    img: "/images/z2.png",
     fallbackImg:
       "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80",
     icon: "fa-solid fa-gear",
@@ -46,7 +46,7 @@ const STAGES = [
     name: "ENGINEER",
     desc: "Build What Differentiates.",
     outcome: "TAILORED SOLUTIONS",
-    img: "/images/z3.jpg",
+    img: "/images/z3.png",
     fallbackImg:
       "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80",
     icon: "fa-solid fa-code",
@@ -58,7 +58,7 @@ const STAGES = [
     name: "OPERATE",
     desc: "Keep technology performing.",
     outcome: "OPTIMAL PERFORMANCE",
-    img: "/images/z4.jpg",
+    img: "/images/z4.png",
     fallbackImg:
       "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80",
     icon: "fa-solid fa-layer-group",
@@ -70,7 +70,7 @@ const STAGES = [
     name: "SCALE",
     desc: "Extend capability for what’s next.",
     outcome: "LONG-TERM VALUE",
-    img: "/images/z5.jpg",
+    img: "/images/z5.png",
     fallbackImg:
       "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80",
     icon: "fa-solid fa-chart-line",
@@ -212,7 +212,7 @@ export default function Process({
         <div className="row align-items-end justify-content-between mb-5 g-4">
           <div className="col-12 col-lg-8">
             <div className="who-badge d-inline-flex align-items-center gap-2 mb-3 anim-reveal">
-              <span className="hero-badge-pulse-dot" />
+              <img src="/images/h.png" alt="" />
               <span>{badgeText}</span>
             </div>
 
