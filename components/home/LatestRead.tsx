@@ -5,16 +5,14 @@ import { blogPosts } from "@/data/blogPosts";
 import BlogCard from "@/components/blog/BlogCard";
 
 export default function LatestRead() {
-  // Pull the top 3 latest articles
-  const latestArticles = blogPosts.slice(0, 3);
+  const latestArticles = blogPosts.slice(0, 4);
 
   return (
     <section className="latest-read-section position-relative">
-      {/* Background Ambient Glow */}
-      <div className="latest-read-ambient-glow" />
+      <div className="bvm-arch-grid" aria-hidden="true" />
+      <div className="latest-read-ambient-glow" aria-hidden="true" />
 
       <div className="container position-relative z-10">
-        {/* Section Header: Headline on Left, View All on Right */}
         <div className="row align-items-end justify-content-between mb-5 g-4">
           <div className="col-12 col-lg-8">
             <div className="who-badge d-inline-flex align-items-center gap-2 mb-3 anim-reveal">
@@ -22,21 +20,22 @@ export default function LatestRead() {
               <span>LATEST READ</span>
             </div>
 
-          <h2 className="choose-title text-white mb-3">
-  <span className="header-line-mask">
-    <span className="header-line-inner anim-text-reveal">
-      Perspectives on Enterprise
-    </span>
-  </span>
-  <span className="header-line-mask">
-    <span className="header-line-inner anim-text-reveal headline-cyan">
-      Technology &amp; Scale.
-    </span>
-  </span>
-</h2>
+            <h2 className="choose-title text-white mb-3">
+              <span className="header-line-mask">
+                <span className="header-line-inner anim-text-reveal">
+                  Perspectives on Enterprise
+                </span>
+              </span>
+              <span className="header-line-mask">
+                <span className="header-line-inner anim-text-reveal headline-cyan">
+                  Technology &amp; Scale.
+                </span>
+              </span>
+            </h2>
 
             <p className="process-header-subtext text-bright-muted anim-reveal mb-0">
-              Architectural deep dives, enterprise AI strategies, cloud modernization roadmaps, and practical insights from our senior engineering team.
+              Architectural deep dives, enterprise AI strategies, cloud modernization roadmaps, and
+              practical insights from our senior engineering team.
             </p>
           </div>
 
@@ -70,10 +69,10 @@ export default function LatestRead() {
           </div>
         </div>
 
-        {/* 100% Reuse of the site's existing BlogCard component */}
-        <div className="row g-4">
+        {/* 4 Cards in a Row on Desktop (xl: 4, md: 2, mobile: 1) */}
+        <div className="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4">
           {latestArticles.map((post) => (
-            <BlogCard key={post.slug} post={post} />
+            <BlogCard key={post.slug} post={post} compact colClass="col" />
           ))}
         </div>
       </div>

@@ -38,6 +38,7 @@ export default function BlogGrid({ posts }: { posts: BlogPost[] }) {
       className="articles-grid-section position-relative"
       id="all-articles"
     >
+      <div className="bvm-arch-grid" aria-hidden="true" />
       <img
         src="/images/3.png"
         className="section-bg-glow section-glow-left"
@@ -65,16 +66,16 @@ export default function BlogGrid({ posts }: { posts: BlogPost[] }) {
           </div>
         </div>
 
-        <div className="row g-4">
+        {/* 4 Cards in a Row on Desktop (xl: 4, md: 2, mobile: 1) */}
+        <div className="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4">
           {posts.length === 0 ? (
             <div className="col-12 text-center py-5">
               <p className="text-bright-muted mb-0">
-                No articles in this category yet. Try another topic or view all
-                articles.
+                No articles in this category yet. Try another topic or view all articles.
               </p>
             </div>
           ) : (
-            posts.map((post) => <BlogCard key={post.slug} post={post} />)
+            posts.map((post) => <BlogCard key={post.slug} post={post} colClass="col" />)
           )}
         </div>
       </div>

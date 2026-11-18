@@ -3,7 +3,6 @@
 import Link from "next/link";
 
 const TOP_CLIENT_STORIES = [
-  // 1. Kings Furniture
   {
     className: "p-card-1",
     img: "/images/m1.jpg",
@@ -17,7 +16,6 @@ const TOP_CLIENT_STORIES = [
     ],
     slug: "kings-furniture",
   },
-  // 2. Royal Care FS
   {
     className: "p-card-2",
     img: "/images/yuye.jpg",
@@ -31,7 +29,6 @@ const TOP_CLIENT_STORIES = [
     ],
     slug: "royal-care-fs",
   },
-  // 3. HRMS ERP
   {
     className: "p-card-3",
     img: "/images/m3.jpg",
@@ -45,7 +42,6 @@ const TOP_CLIENT_STORIES = [
     ],
     slug: "hrms-erp-platform",
   },
-  // 4. Realty Guru
   {
     className: "p-card-4",
     img: "/images/m7.jpg",
@@ -59,7 +55,6 @@ const TOP_CLIENT_STORIES = [
     ],
     slug: "realty-guru",
   },
-  // 5. Just Pack
   {
     className: "p-card-5",
     img: "/images/m4.jpg",
@@ -78,13 +73,16 @@ const TOP_CLIENT_STORIES = [
 export default function FeaturedProjects() {
   return (
     <section className="featured-projects-section">
+      <div className="featured-projects-backdrop" aria-hidden="true">
+        <div className="bvm-arch-grid" />
+      </div>
       <img src="/images/torch.png" alt="" className="torch-bg" />
 
       <div className="container position-relative z-3">
         {/* Section Header */}
         <div className="row justify-content-center text-center mb-5">
           <div className="col-12 col-lg-8">
-            <div className="projects-badge d-inline-flex align-items-center gap-2 mb-4 projects-anim-badge">
+            <div className="projects-badge d-inline-flex align-items-center gap-2 mb-4 projects-anim-badge anim-reveal">
               <img src="/images/h2.png" alt="Icon" />
               <span>CLIENT STORIES</span>
             </div>
@@ -106,13 +104,13 @@ export default function FeaturedProjects() {
 
         {/* 5 Top Client Stories Sticky Stack */}
         <div className="projects-sticky-stack">
-          {TOP_CLIENT_STORIES.map((project) => (
+          {TOP_CLIENT_STORIES.map((project, index) => (
             <div
               key={project.title}
               className={`project-stack-card ${project.className}`}
               data-cursor="VIEW"
             >
-              <div className="row align-items-center g-5">
+              <div className="row align-items-center g-4 g-lg-5">
                 {/* Media Mockup */}
                 <div className="col-12 col-lg-6">
                   <div className="project-media-wrapper">
@@ -121,6 +119,7 @@ export default function FeaturedProjects() {
                       <img
                         src={project.img}
                         alt={project.alt}
+                        loading="lazy"
                         className="img-fluid image-reveal-img project-mockup-img"
                       />
                     </div>
@@ -130,21 +129,21 @@ export default function FeaturedProjects() {
                 {/* Content Block */}
                 <div className="col-12 col-lg-6">
                   <div className="project-content-block">
-                    <div className="project-tags-group d-flex flex-wrap gap-2 mb-3">
-                      {project.tags.map((tag) => (
-                        <span className="project-tag" key={tag}>
-                          {tag}
-                        </span>
-                      ))}
+                    <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+                      <div className="project-tags-group d-flex flex-wrap gap-2">
+                        {project.tags.map((tag) => (
+                          <span className="project-tag" key={tag}>
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <span className="sector-code">0{index + 1} / 05</span>
                     </div>
 
-                    <h3 className="project-card-title text-white mb-3">
-                      {project.title}
-                    </h3>
-
+                    <h3 className="project-card-title text-white mb-3">{project.title}</h3>
                     <p className="project-card-desc mb-4">{project.desc}</p>
 
-                    {/* Stats Strip */}
+                    {/* Animated Stats Strip */}
                     <div className="project-stats-row row g-0 mb-4 py-3 border-top border-bottom border-secondary border-opacity-20">
                       {project.stats.map((stat, i) => (
                         <div
@@ -156,10 +155,7 @@ export default function FeaturedProjects() {
                           }
                         >
                           <div className="stat-number text-white">
-                            <span
-                              className="proj-counter"
-                              data-target={stat.target}
-                            >
+                            <span className="proj-counter" data-target={stat.target}>
                               0
                             </span>
                             {stat.suffix}
@@ -169,7 +165,6 @@ export default function FeaturedProjects() {
                       ))}
                     </div>
 
-                    {/* Original Button with Original Diagonal Arrow SVG */}
                     <Link
                       href={`/case-study/${project.slug}`}
                       className="btn btn-case-study rounded-pill fw-semibold magnetic-btn"
@@ -201,6 +196,36 @@ export default function FeaturedProjects() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Bottom Portfolio CTA */}
+        <div className="text-center mt-5 anim-reveal">
+          <Link
+            href="/projects"
+            className="btn btn-sky-blue d-inline-flex align-items-center justify-content-center px-4 py-3 rounded-pill fw-semibold magnetic-btn"
+          >
+            <span className="btn-text">Explore All Case Studies</span>
+            <span className="arrow-icon-wrapper">
+              <svg
+                className="diagonal-arrow-svg"
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M2 12L12 2M12 2H4M12 2V10"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </span>
+            <span className="btn-sheen" />
+          </Link>
         </div>
       </div>
     </section>

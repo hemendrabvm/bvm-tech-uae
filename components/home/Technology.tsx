@@ -6,46 +6,18 @@ import { useTechAnimation } from "@/animations/useTechAnimation";
 
 /* Outer Orbit / Mobile Lane 1 Platforms */
 const OUTER_ORBIT = [
-  {
-    angle: "0deg",
-    name: "SAP",
-    src: "/images/tech-logo/tech-logo10.png",
-  },
-  {
-    angle: "45deg",
-    name: "Oracle",
-    src: "/images/tech-logo/tech-logo6.svg",
-  },
-  {
-    angle: "90deg",
-    name: "Microsoft Dynamics 365",
-    src: "/images/tech-logo/tech-logo5.png",
-  },
-  {
-    angle: "135deg",
-    name: "Odoo",
-    src: "/images/tech-logo/tech-logo8.svg",
-  },
-  {
-    angle: "180deg",
-    name: "Salesforce",
-    src: "/images/tech-logo/tech-logo9.png",
-  },
+  { angle: "0deg", name: "SAP", src: "/images/tech-logo/tech-logo10.png" },
+  { angle: "45deg", name: "Oracle", src: "/images/tech-logo/tech-logo6.svg" },
+  { angle: "90deg", name: "Microsoft Dynamics 365", src: "/images/tech-logo/tech-logo5.png" },
+  { angle: "135deg", name: "Odoo", src: "/images/tech-logo/tech-logo8.svg" },
+  { angle: "180deg", name: "Salesforce", src: "/images/tech-logo/tech-logo9.png" },
   {
     angle: "225deg",
     name: "ServiceNow",
     src: "https://upload.wikimedia.org/wikipedia/commons/5/57/ServiceNow_logo.svg",
   },
-  {
-    angle: "270deg",
-    name: "Creatio",
-    src: "/images/tech-logo/tech-logo11.svg",
-  },
-  {
-    angle: "315deg",
-    name: "Zoho",
-    src: "/images/tech-logo/tech-logo15.svg",
-  },
+  { angle: "270deg", name: "Creatio", src: "/images/tech-logo/tech-logo11.svg" },
+  { angle: "315deg", name: "Zoho", src: "/images/tech-logo/tech-logo15.svg" },
 ];
 
 /* Inner Orbit / Mobile Lane 2 Platforms */
@@ -55,36 +27,16 @@ const INNER_ORBIT = [
     name: "Microsoft Azure",
     src: "https://upload.wikimedia.org/wikipedia/commons/a/a8/Microsoft_Azure_Logo.svg",
   },
-  {
-    angle: "76.4deg",
-    name: "AWS",
-    src: "/images/tech-logo/tech-logo2.svg",
-  },
+  { angle: "76.4deg", name: "AWS", src: "/images/tech-logo/tech-logo2.svg" },
   {
     angle: "127.8deg",
     name: "Databricks",
     src: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Databricks-logo.svg",
   },
-  {
-    angle: "179.3deg",
-    name: "Snowflake",
-    src: "/images/tech-logo/tech-logo12.svg",
-  },
-  {
-    angle: "230.7deg",
-    name: "Atlassian",
-    src: "/images/tech-logo/tech-logo3.svg",
-  },
-  {
-    angle: "282.1deg",
-    name: "UiPath",
-    src: "/images/tech-logo/tech-logo13.svg",
-  },
-  {
-    angle: "333.5deg",
-    name: "FacilityBot",
-    src: "/images/tech-logo/tech-logo14.png",
-  },
+  { angle: "179.3deg", name: "Snowflake", src: "/images/tech-logo/tech-logo12.svg" },
+  { angle: "230.7deg", name: "Atlassian", src: "/images/tech-logo/tech-logo3.svg" },
+  { angle: "282.1deg", name: "UiPath", src: "/images/tech-logo/tech-logo13.svg" },
+  { angle: "333.5deg", name: "FacilityBot", src: "/images/tech-logo/tech-logo14.png" },
 ];
 
 export default function Technology() {
@@ -92,9 +44,17 @@ export default function Technology() {
   useTechAnimation(sectionRef);
 
   return (
-    <section className="technology-section ecosystem-section position-relative" ref={sectionRef}>
+    <section
+      className="technology-section ecosystem-section position-relative"
+      ref={sectionRef}
+    >
+      <div className="bvm-arch-grid" aria-hidden="true" />
+
       {/* Desktop Only: Dual Rotating Orbit Rings (Hidden on < 992px) */}
       <div className="tech-orbit-container position-absolute tech-anim-orbit d-none d-lg-block">
+        <div className="tech-radar-ring ring-sm" aria-hidden="true" />
+        <div className="tech-radar-ring ring-lg" aria-hidden="true" />
+
         {/* Outer Orbit (8 items) */}
         <div className="tech-orbit-track track-outer">
           {OUTER_ORBIT.map((item) => (
@@ -108,8 +68,10 @@ export default function Technology() {
                 } as React.CSSProperties
               }
             >
-              <div className="tech-bubble glow-tech-bubble">
-                <img src={item.src} alt={item.name} />
+              <div className="tech-bubble glow-tech-bubble tech-pod-glass">
+                <div className="tech-bubble-core">
+                  <img src={item.src} alt={item.name} loading="lazy" />
+                </div>
                 <span className="tech-tooltip">{item.name}</span>
               </div>
             </div>
@@ -129,8 +91,10 @@ export default function Technology() {
                 } as React.CSSProperties
               }
             >
-              <div className="tech-bubble glow-tech-bubble">
-                <img src={item.src} alt={item.name} />
+              <div className="tech-bubble glow-tech-bubble tech-pod-glass">
+                <div className="tech-bubble-core">
+                  <img src={item.src} alt={item.name} loading="lazy" />
+                </div>
                 <span className="tech-tooltip">{item.name}</span>
               </div>
             </div>
@@ -138,15 +102,16 @@ export default function Technology() {
         </div>
       </div>
 
+      {/* Smoothly fades lower orbital arc before bottom horizon */}
+      <div className="tech-orbit-bottom-fade d-none d-lg-block" aria-hidden="true" />
+
       {/* Content Container */}
       <div className="tech-content-container text-center">
-        {/* Badge */}
         <div className="tech-badge d-inline-flex align-items-center gap-2 mb-3 tech-anim-badge">
           <img src="/images/h.png" alt="Icon" />
           <span>ENTERPRISE ECOSYSTEM</span>
         </div>
 
-        {/* Headline */}
         <h2 className="tech-title text-white mb-3">
           <span className="tech-line-mask">
             <span className="tech-line-inner">Connected Across the Enterprise</span>
@@ -156,31 +121,50 @@ export default function Technology() {
           </span>
         </h2>
 
-        {/* Supporting Content */}
         <p className="tech-ecosystem-subtext text-bright-muted mb-4">
-          We work across established enterprise platforms and technology ecosystems to design solutions around business requirements, rather than forcing every challenge into a single technology.
+          We work across established enterprise platforms and technology ecosystems to design
+          solutions around business requirements, rather than forcing every challenge into a single
+          technology.
         </p>
 
         {/* Mobile & Tablet Only: Dual-Lane Stream (< 992px) */}
         <div className="tech-mobile-ecosystem d-lg-none mb-4">
-          {/* Lane 1: Scrolls Left */}
           <div className="tech-mobile-marquee-wrap mb-2">
             <div className="tech-mobile-track track-scroll-left">
-              {[...OUTER_ORBIT, ...OUTER_ORBIT].map((item, idx) => (
-                <div className="tech-mobile-bubble" key={`m-outer-${idx}`}>
-                  <img src={item.src} alt={item.name} />
+              {OUTER_ORBIT.map((item, idx) => (
+                <div className="tech-mobile-bubble" key={`m-outer-a-${idx}`}>
+                  <span className="tech-mobile-logo-badge">
+                    <img src={item.src} alt={item.name} loading="lazy" />
+                  </span>
+                  <span className="tech-mobile-name">{item.name}</span>
+                </div>
+              ))}
+              {OUTER_ORBIT.map((item, idx) => (
+                <div className="tech-mobile-bubble" key={`m-outer-b-${idx}`} aria-hidden="true">
+                  <span className="tech-mobile-logo-badge">
+                    <img src={item.src} alt="" loading="lazy" />
+                  </span>
                   <span className="tech-mobile-name">{item.name}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Lane 2: Scrolls Right */}
           <div className="tech-mobile-marquee-wrap">
             <div className="tech-mobile-track track-scroll-right">
-              {[...INNER_ORBIT, ...INNER_ORBIT].map((item, idx) => (
-                <div className="tech-mobile-bubble" key={`m-inner-${idx}`}>
-                  <img src={item.src} alt={item.name} />
+              {INNER_ORBIT.map((item, idx) => (
+                <div className="tech-mobile-bubble" key={`m-inner-a-${idx}`}>
+                  <span className="tech-mobile-logo-badge">
+                    <img src={item.src} alt={item.name} loading="lazy" />
+                  </span>
+                  <span className="tech-mobile-name">{item.name}</span>
+                </div>
+              ))}
+              {INNER_ORBIT.map((item, idx) => (
+                <div className="tech-mobile-bubble" key={`m-inner-b-${idx}`} aria-hidden="true">
+                  <span className="tech-mobile-logo-badge">
+                    <img src={item.src} alt="" loading="lazy" />
+                  </span>
                   <span className="tech-mobile-name">{item.name}</span>
                 </div>
               ))}
@@ -188,7 +172,6 @@ export default function Technology() {
           </div>
         </div>
 
-        {/* CTA Button */}
         <div>
           <Link
             href="/enterprise-applications"

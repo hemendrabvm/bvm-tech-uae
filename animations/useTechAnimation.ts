@@ -53,7 +53,7 @@ export function useTechAnimation(sectionRef: RefObject<HTMLElement | null>) {
           rotateX: 0,
           opacity: 1,
           filter: "blur(0px)",
-          duration: 1.25,
+          duration: 1.2,
           stagger: 0.12,
           ease: "expo.out",
         },
@@ -63,9 +63,20 @@ export function useTechAnimation(sectionRef: RefObject<HTMLElement | null>) {
       if (orbit) {
         tl.to(
           orbit,
-          { scale: 1, opacity: 1, duration: 1.25, ease: "power4.out" },
+          { scale: 1, opacity: 1, duration: 1.2, ease: "power4.out" },
           "-=0.7"
         );
+
+        gsap.to(orbit, {
+          y: -26,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1.2,
+          },
+        });
       }
     },
     { scope: sectionRef, dependencies: [pathname] }

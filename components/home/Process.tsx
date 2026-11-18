@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  useCallback,
   useEffect,
   useRef,
   useState,
@@ -9,10 +10,6 @@ import {
   type MouseEvent,
 } from "react";
 import Link from "next/link";
-import {
-  useAnimReveal,
-  useAnimTextReveal,
-} from "@/animations/usePageAnimations";
 
 const WAVE_INTERVAL_MS = 3800;
 
@@ -81,32 +78,36 @@ const STAGES = [
 
 const COUNT = STAGES.length;
 const TOTAL = String(COUNT).padStart(2, "0");
+const clamp = (v: number, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 
 type ProcessProps = {
   badgeText?: string;
   className?: string;
 };
 
-export default function Process({
-  badgeText = "HOW BVM WORKS",
-  className = "",
-}: ProcessProps) {
+export default function Process({ badgeText = "HOW BVM WORKS", className = "" }: ProcessProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const matrixRef = useRef<HTMLDivElement>(null);
+  const hoveredRef = useRef<number | null>(null);
+  const manualStageRef = useRef<number | null>(null);
 
   const [active, setActive] = useState(0);
   const [hovered, setHovered] = useState<number | null>(null);
-  const [inView, setInView] = useState(false);     // true once: triggers 3D entrance on scroll reach
-  const [booted, setBooted] = useState(false);     // true after entrance finishes
-  const [onScreen, setOnScreen] = useState(false); // live: controls autoplay
+  const [inView, setInView] = useState(false);
+  const [booted, setBooted] = useState(false);
+  const [onScreen, setOnScreen] = useState(false);
 
-  useAnimReveal(sectionRef);
-  useAnimTextReveal(sectionRef);
-
-  // Scroll-reach 3D entrance + live visibility tracking
+  // 1. Scroll-reach 3D entrance + live visibility tracking
   useEffect(() => {
     const el = matrixRef.current;
     if (!el) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setInView(true);
+      setBooted(true);
+      return;
+    }
+
     let timer: ReturnType<typeof setTimeout> | undefined;
     let entered = false;
 
@@ -129,11 +130,60 @@ export default function Process({
     };
   }, []);
 
-  // Sequential wave across the 5 stages when in view
+  // 2. Desktop (>= 1200px): Smooth scroll-linked waveguide progression
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const desktop = window.matchMedia("(min-width: 1200px)");
+    let targetProg = 0;
+    let currentProg = 0;
+    let rafId = 0;
+
+    const tick = () => {
+      if (hoveredRef.current === null && manualStageRef.current === null) {
+        currentProg += (targetProg - currentProg) * 0.14;
+        if (Math.abs(targetProg - currentProg) < 0.001) currentProg = targetProg;
+        section.style.setProperty("--pw-prog", currentProg.toFixed(4));
+        const nextIdx = Math.min(COUNT - 1, Math.floor(currentProg * COUNT));
+        setActive((prev) => (prev === nextIdx ? prev : nextIdx));
+        rafId = Math.abs(targetProg - currentProg) >= 0.001 ? requestAnimationFrame(tick) : 0;
+      } else {
+        rafId = 0;
+      }
+    };
+
+    const onScroll = () => {
+      if (!desktop.matches) return;
+      const rect = section.getBoundingClientRect();
+      if (rect.top > window.innerHeight || rect.bottom < 0) {
+        manualStageRef.current = null;
+      }
+      if (hoveredRef.current !== null || manualStageRef.current !== null) return;
+
+      const start = window.innerHeight * 0.78;
+      const span = rect.height * 0.65;
+      targetProg = span > 0 ? clamp((start - rect.top) / span, 0, 1) : 0;
+      if (!rafId) rafId = requestAnimationFrame(tick);
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, []);
+
+  // 3. Mobile & Tablet (< 1200px): Sequential wave when visible
   useEffect(() => {
     if (!inView || !onScreen || hovered !== null) return;
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (mq.matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (window.matchMedia("(min-width: 1200px)").matches) return;
 
     const timer = window.setInterval(() => {
       setActive((prev) => (prev + 1) % COUNT);
@@ -142,7 +192,33 @@ export default function Process({
     return () => window.clearInterval(timer);
   }, [inView, onScreen, hovered]);
 
-  // Instant 3D Tilt + Multi-Layer Z-Parallax + Radial Cursor Spotlight (Desktop Pointer Only)
+  const handleHover = useCallback(
+    (idx: number | null) => {
+      hoveredRef.current = idx;
+      setHovered(idx);
+      const section = sectionRef.current;
+      if (!section) return;
+      if (idx !== null) {
+        section.style.setProperty("--pw-prog", (idx / (COUNT - 1)).toFixed(4));
+      } else {
+        const restoreIdx = manualStageRef.current ?? active;
+        section.style.setProperty("--pw-prog", (restoreIdx / (COUNT - 1)).toFixed(4));
+      }
+    },
+    [active]
+  );
+
+  const selectStage = useCallback((idx: number) => {
+    const clamped = ((idx % COUNT) + COUNT) % COUNT;
+    manualStageRef.current = clamped;
+    setActive(clamped);
+    const section = sectionRef.current;
+    if (section) {
+      section.style.setProperty("--pw-prog", (clamped / (COUNT - 1)).toFixed(4));
+    }
+  }, []);
+
+  // Instant 3D Tilt + Multi-Layer Z-Parallax + Radial Cursor Spotlight
   const handleCardMove = (e: MouseEvent<HTMLDivElement>) => {
     if (window.matchMedia("(hover: none)").matches) return;
     const card = e.currentTarget;
@@ -173,13 +249,19 @@ export default function Process({
   const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>, idx: number) => {
     if (e.key === "ArrowRight") {
       e.preventDefault();
-      setActive((idx + 1) % COUNT);
+      selectStage(idx + 1);
     } else if (e.key === "ArrowLeft") {
       e.preventDefault();
-      setActive((idx - 1 + COUNT) % COUNT);
+      selectStage(idx - 1);
+    } else if (e.key === "Home") {
+      e.preventDefault();
+      selectStage(0);
+    } else if (e.key === "End") {
+      e.preventDefault();
+      selectStage(COUNT - 1);
     } else if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      setActive(idx);
+      selectStage(idx);
     }
   };
 
@@ -197,18 +279,12 @@ export default function Process({
         } as CSSProperties
       }
     >
-      {/* Clean Ambient Background Atmosphere */}
       <div className="pw-bg-grid" aria-hidden="true" />
       <div className="process-bg-glow glow-left-cyan" aria-hidden="true" />
       <div className="process-bg-glow glow-right-cyan" aria-hidden="true" />
-      {/* <div className="process-terrain-fog" aria-hidden="true" /> */}
 
-      {/* Standard Site Container (Unchanged Size) */}
       <div className="container position-relative z-10">
-        {/* ================================================================
-            HEADER — UNTOUCHED CLASSES:
-            who-badge, process-title, process-header-subtext, btn-explore-services
-            ================================================================ */}
+        {/* HEADER */}
         <div className="row align-items-end justify-content-between mb-5 g-4">
           <div className="col-12 col-lg-8">
             <div className="who-badge d-inline-flex align-items-center gap-2 mb-3 anim-reveal">
@@ -218,9 +294,7 @@ export default function Process({
 
             <h2 className="process-title text-white mb-3">
               <span className="process-line-mask">
-                <span className="process-line-inner anim-text-reveal">
-                  From Strategy to
-                </span>
+                <span className="process-line-inner anim-text-reveal">From Strategy to</span>
               </span>
               <span className="process-line-mask">
                 <span className="process-line-inner anim-text-reveal headline-cyan">
@@ -230,9 +304,8 @@ export default function Process({
             </h2>
 
             <p className="process-header-subtext text-bright-muted anim-reveal mb-0">
-              BVM combines advisory, enterprise technology and digital
-              engineering to help organizations move from strategy to
-              implementation, optimization and long-term value.
+              BVM combines advisory, enterprise technology and digital engineering to help
+              organizations move from strategy to implementation, optimization and long-term value.
             </p>
           </div>
 
@@ -266,16 +339,13 @@ export default function Process({
           </div>
         </div>
 
-        {/* ================================================================
-            5-STAGE STAGGERED WAVE MATRIX WITH SPOTLIGHT FOCUS & 3D DEPTH
-            ================================================================ */}
+        {/* 5-STAGE STAGGERED WAVE MATRIX */}
         <div
           className={`pw-matrix-wrap position-relative${inView ? " is-in" : ""}${
             inView && !booted ? " is-booting" : ""
           }`}
           ref={matrixRef}
         >
-          {/* S-Curve Cyan Laser Waveguide + Synchronized Junction Nodes (Desktop) */}
           <svg
             className="pw-circuit-svg d-none d-xl-block"
             viewBox="0 0 1200 400"
@@ -284,20 +354,13 @@ export default function Process({
             aria-hidden="true"
           >
             <defs>
-              <linearGradient
-                id="pwCircuitGrad"
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="0%"
-              >
+              <linearGradient id="pwCircuitGrad" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#0096ea" />
                 <stop offset="50%" stopColor="#38bdf8" />
                 <stop offset="100%" stopColor="#8fdcff" />
               </linearGradient>
             </defs>
 
-            {/* Soft Outer Glow Path */}
             <path
               d="M 100 165 C 225 165, 225 215, 350 215 C 475 215, 475 165, 600 165 C 725 165, 725 215, 850 215 C 975 215, 975 165, 1100 165"
               stroke="url(#pwCircuitGrad)"
@@ -305,16 +368,12 @@ export default function Process({
               strokeWidth="12"
               strokeLinecap="round"
             />
-
-            {/* Subtle Dashed Guide Wave */}
             <path
               d="M 100 165 C 225 165, 225 215, 350 215 C 475 215, 475 165, 600 165 C 725 165, 725 215, 850 215 C 975 215, 975 165, 1100 165"
               stroke="rgba(90, 185, 235, 0.18)"
               strokeWidth="1.5"
               strokeDasharray="5 6"
             />
-
-            {/* Active Progress Laser Wave */}
             <path
               className="pw-circuit-active"
               d="M 100 165 C 225 165, 225 215, 350 215 C 475 215, 475 165, 600 165 C 725 165, 725 215, 850 215 C 975 215, 975 165, 1100 165"
@@ -323,8 +382,6 @@ export default function Process({
               strokeWidth="2.5"
               strokeLinecap="round"
             />
-
-            {/* Travelling Light Pulse */}
             <path
               className="pw-circuit-pulse"
               d="M 100 165 C 225 165, 225 215, 350 215 C 475 215, 475 165, 600 165 C 725 165, 725 215, 850 215 C 975 215, 975 165, 1100 165"
@@ -333,7 +390,6 @@ export default function Process({
               strokeLinecap="round"
             />
 
-            {/* Synchronized Junction Nodes Along the Wave */}
             {STAGES.map((s, i) => {
               const isLit = i <= currentIdx;
               const isNow = i === currentIdx;
@@ -351,11 +407,7 @@ export default function Process({
                     cy={s.cy}
                     r={isNow ? 5 : 3.5}
                     fill={
-                      isNow
-                        ? "#ffffff"
-                        : isLit
-                        ? "#38bdf8"
-                        : "rgba(255,255,255,0.2)"
+                      isNow ? "#ffffff" : isLit ? "#38bdf8" : "rgba(255,255,255,0.2)"
                     }
                     style={{ transition: "all 0.5s ease" }}
                   />
@@ -364,7 +416,6 @@ export default function Process({
             })}
           </svg>
 
-          {/* The 5 Staggered Columns */}
           <div className="pw-grid">
             {STAGES.map((stage, i) => {
               const isCurrent = i === currentIdx;
@@ -374,9 +425,7 @@ export default function Process({
               return (
                 <div
                   key={stage.num}
-                  className={`pw-col${
-                    isOffsetDown ? " is-wave-low" : " is-wave-high"
-                  }`}
+                  className={`pw-col${isOffsetDown ? " is-wave-low" : " is-wave-high"}`}
                   style={{ ["--i" as string]: i } as CSSProperties}
                 >
                   <div
@@ -386,44 +435,33 @@ export default function Process({
                     className={`pw-stage-unit${isCurrent ? " is-active" : ""}${
                       isPast ? " is-past" : ""
                     }`}
-                    onMouseEnter={() => {
-                      setHovered(i);
-                      setActive(i);
-                    }}
-                    onMouseLeave={() => setHovered(null)}
-                    onClick={() => setActive(i)}
+                    onMouseEnter={() => handleHover(i)}
+                    onMouseLeave={() => handleHover(null)}
+                    onClick={() => selectStage(i)}
                     onKeyDown={(e) => handleKeyDown(e, i)}
                   >
-                    {/* True 3D Tilting Card Rig */}
                     <div
                       className="pw-card"
                       onMouseMove={handleCardMove}
                       onMouseLeave={handleCardLeave}
                     >
-                      {/* Plane -1: 3D Extruded Backplate (translateZ(-18px)) */}
                       <div className="pw-card-plate" aria-hidden="true" />
 
-                      {/* Plane 0: Clipped Glass Surface + Conic Border + Spotlight */}
                       <div className="pw-card-surface">
                         <div className="pw-card-beam" aria-hidden="true" />
                         <div className="pw-card-spotlight" aria-hidden="true" />
 
-                        {/* Bottom Auto-Progress Line on Active Card */}
                         <div className="pw-card-prog" aria-hidden="true">
                           {isCurrent && inView && (
                             <span
-                              className={`pw-card-prog-fill${
-                                hovered !== null ? " is-paused" : ""
-                              }`}
+                              className={`pw-card-prog-fill${hovered !== null ? " is-paused" : ""}`}
                               key={currentIdx}
                             />
                           )}
                         </div>
                       </div>
 
-                      {/* Plane +1 & +2: 3D-Lifted Inner Content */}
                       <div className="pw-card-content">
-                        {/* 1. Top Header: Step Pill + Glowing Icon Orb */}
                         <div className="pw-card-head">
                           <span className="pw-step-pill">
                             <b>{stage.num}</b>
@@ -435,19 +473,31 @@ export default function Process({
                           </div>
                         </div>
 
-                        {/* 2. Stage Accent Bar + Title & Description */}
                         <div className="pw-body">
                           <span className="pw-accent-bar" aria-hidden="true" />
                           <div className="pw-title-row">
                             <h3 className="pw-heading">{stage.name}</h3>
                             <span className="pw-arrow" aria-hidden="true">
-                              <i className="fa-solid fa-arrow-up-right" />
+                              <svg
+                                width="10"
+                                height="10"
+                                viewBox="0 0 12 12"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M1.5 10.5L10.5 1.5M10.5 1.5H3.5M10.5 1.5V8.5"
+                                  stroke="currentColor"
+                                  strokeWidth="1.8"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                              </svg>
                             </span>
                           </div>
                           <p className="pw-desc">{stage.desc}</p>
                         </div>
 
-                        {/* 3. Bright, Unobstructed Image Viewport */}
                         <div className="pw-viewport">
                           <img
                             src={stage.img}
@@ -455,6 +505,7 @@ export default function Process({
                             className="pw-img"
                             draggable={false}
                             decoding="async"
+                            loading="lazy"
                             onError={(e) => {
                               const img = e.currentTarget;
                               img.onerror = null;
@@ -468,12 +519,10 @@ export default function Process({
                       </div>
                     </div>
 
-                    {/* Vertical Laser Connector Stem */}
                     <div className="pw-stem" aria-hidden="true">
                       <span className="pw-stem-pulse" />
                     </div>
 
-                    {/* Bottom Outcome Station Pill */}
                     <div className="pw-outcome-pill">
                       <span className="pw-outcome-dot" />
                       <div className="pw-outcome-meta">
@@ -482,7 +531,6 @@ export default function Process({
                       </div>
                     </div>
 
-                    {/* Soft Under-Column Floor Glow Halo */}
                     <div className="pw-pedestal" aria-hidden="true" />
                   </div>
                 </div>

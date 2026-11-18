@@ -1,7 +1,9 @@
 "use client";
 
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
+import type { Swiper as SwiperType } from "swiper";
 import { Autoplay, FreeMode } from "swiper/modules";
 
 const STRATEGY_INDUSTRIES = [
@@ -17,14 +19,14 @@ const STRATEGY_INDUSTRIES = [
     title: "Banking & Financial Services",
     desc: "Modernization, customer experience, automation, data and security.",
     img: "/images/der.jpeg",
-    href: "/industries",
+    href: "/industries#fintech",
   },
   {
     idx: "03",
     title: "Real Estate, Facilities & Smart Infrastructure",
     desc: "Assets, facilities, field operations, IoT and connected buildings.",
     img: "/images/i4.png",
-    href: "/industries",
+    href: "/industries#real-estate",
   },
   {
     idx: "04",
@@ -38,30 +40,33 @@ const STRATEGY_INDUSTRIES = [
     title: "Construction & Engineering",
     desc: "Projects, HSE, QA/QC, procurement and digital delivery.",
     img: "/images/tyuity.jpg",
-    href: "/industries",
+    href: "/industries#construction",
   },
   {
     idx: "06",
     title: "Manufacturing & Industrial",
     desc: "ERP, EAM, automation and operational intelligence.",
     img: "/images/i5.png",
-    href: "/industries",
+    href: "/industries#manufacturing",
   },
   {
     idx: "07",
     title: "Logistics & Mobility",
     desc: "Fleet, supply chain, asset tracking and operational visibility.",
     img: "/images/ind-logistics.jpg",
-    href: "/industries",
+    href: "/industries#logistics",
   },
   {
     idx: "08",
     title: "Retail & Consumer",
     desc: "Commerce, customer experience, ERP, CRM and data-driven operations.",
     img: "/images/i6.png",
-    href: "/industries",
+    href: "/industries#retail",
   },
 ];
+
+// Duplicate set for seamless wide-screen infinite loop & Prev/Next stepping
+const LOOP_SLIDES = [...STRATEGY_INDUSTRIES, ...STRATEGY_INDUSTRIES];
 
 function IndustryCard({
   idx,
@@ -77,9 +82,8 @@ function IndustryCard({
   href: string;
 }) {
   return (
-    <Link href={href} className="text-decoration-none">
+    <Link href={href} className="text-decoration-none d-block h-100">
       <div className="industry-card">
-        {/* Background Image with Reveal Mask */}
         <div className="image-reveal-wrapper">
           <div className="image-reveal-mask" />
           <div
@@ -88,17 +92,19 @@ function IndustryCard({
           />
         </div>
 
-        {/* Gradient Scrim for Legibility */}
         <div className="industry-card-overlay" />
-        <div className="card-index-tag">{idx}</div>
+        <div className="card-index-tag">
+          <span className="card-index-dot" aria-hidden="true" />
+          <span>{idx}</span>
+        </div>
 
-        {/* Card Content Block */}
         <div className="industry-card-content">
           <div className="industry-card-text">
+            <span className="industry-card-accent" aria-hidden="true" />
             <h3 className="industry-card-title">{title}</h3>
             <p className="industry-card-desc">{desc}</p>
           </div>
-          <span className="industry-card-arrow">
+          <span className="industry-card-arrow" aria-hidden="true">
             <svg
               className="diagonal-arrow-svg"
               width="12"
@@ -106,7 +112,6 @@ function IndustryCard({
               viewBox="0 0 12 12"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
             >
               <path
                 d="M1.5 10.5L10.5 1.5M10.5 1.5H3.5M10.5 1.5V8.5"
@@ -124,41 +129,113 @@ function IndustryCard({
 }
 
 export default function Industries() {
+  const swiperRef = useRef<SwiperType | null>(null);
+  const fixTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const resumeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const isHoveredRef = useRef(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduceMotion(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => {
+      mq.removeEventListener("change", update);
+      if (fixTimerRef.current) clearTimeout(fixTimerRef.current);
+      if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+    };
+  }, []);
+
+  const stepCarousel = useCallback(
+    (dir: "prev" | "next") => {
+      const s = swiperRef.current;
+      if (!s || !s.wrapperEl) return;
+
+      if (fixTimerRef.current) clearTimeout(fixTimerRef.current);
+      if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+
+      // Pause continuous marquee and freeze at the live visual pixel offset
+      s.autoplay?.stop();
+      const liveTranslate = s.getTranslate();
+      s.setTransition(0);
+      s.setTranslate(liveTranslate);
+
+      // Ensure loop buffer exists on the target side before stepping
+      if (typeof s.loopFix === "function") {
+        s.loopFix({ direction: dir });
+      }
+
+      const baseTranslate = s.translate;
+      const firstSlide = s.slides?.[0] as HTMLElement | undefined;
+      const step = (firstSlide ? firstSlide.offsetWidth : 340) + 24;
+      const targetTranslate = dir === "next" ? baseTranslate - step : baseTranslate + step;
+
+      s.wrapperEl.style.transitionTimingFunction = "cubic-bezier(0.16, 1, 0.3, 1)";
+      s.setTransition(480);
+      s.setTranslate(targetTranslate);
+
+      fixTimerRef.current = setTimeout(() => {
+        if (!s.destroyed && s.wrapperEl) {
+          s.wrapperEl.style.transitionTimingFunction = "";
+          if (typeof s.loopFix === "function") {
+            s.loopFix({ direction: dir });
+          }
+          s.updateActiveIndex();
+          s.updateSlidesClasses();
+        }
+      }, 490);
+
+      if (!reduceMotion) {
+        resumeTimerRef.current = setTimeout(() => {
+          if (!s.destroyed && !isHoveredRef.current) {
+            s.autoplay?.start();
+          }
+        }, 2000);
+      }
+    },
+    [reduceMotion]
+  );
+
   return (
     <section className="industries-section position-relative">
-      <div className="industries-bottom-glow" />
+      <div className="bvm-arch-grid" aria-hidden="true" />
+      <div className="industries-bottom-glow" aria-hidden="true" />
 
       <div className="container position-relative z-10 text-center">
-        {/* Section Badge */}
-        <div className="who-badge d-inline-flex align-items-center gap-2 mb-3 industries-anim-badge">
+        <div className="who-badge d-inline-flex align-items-center gap-2 mb-3 industries-anim-badge anim-reveal">
           <img src="/images/h.png" alt="Icon" />
           <span>INDUSTRIES</span>
         </div>
 
-        {/* Headline strictly on one line on desktop */}
         <h2 className="industries-title text-white mb-3">
-  <span className="industries-line-mask">
-    <span className="industries-line-inner anim-text-reveal">
-      Technology Grounded in
-    </span>
-  </span>
-  <span className="industries-line-mask">
-    <span className="industries-line-inner anim-text-reveal headline-cyan">
-      Industry Context.
-    </span>
-  </span>
-</h2>
+          <span className="industries-line-mask">
+            <span className="industries-line-inner anim-text-reveal">Technology Grounded in</span>
+          </span>
+          <span className="industries-line-mask">
+            <span className="industries-line-inner anim-text-reveal headline-cyan">
+              Industry Context.
+            </span>
+          </span>
+        </h2>
 
-        {/* Section Description */}
         <p className="industries-subtext anim-reveal">
-          BVM combines industry understanding with enterprise technology to address real operational and transformation priorities.
+          BVM combines industry understanding with enterprise technology to address real operational
+          and transformation priorities.
         </p>
       </div>
 
-      {/* Swiper Carousel with 8 Target Industry Cards */}
       <div
         className="industries-carousel-container container-fluid px-0 position-relative z-10 industries-anim-swiper"
         data-cursor="DRAG"
+        onMouseEnter={() => {
+          isHoveredRef.current = true;
+          swiperRef.current?.autoplay?.stop();
+        }}
+        onMouseLeave={() => {
+          isHoveredRef.current = false;
+          if (!reduceMotion) swiperRef.current?.autoplay?.start();
+        }}
       >
         <Swiper
           className="industries-swiper overflow-visible"
@@ -166,12 +243,19 @@ export default function Industries() {
           loop
           slidesPerView="auto"
           spaceBetween={24}
-          speed={6000}
-          autoplay={{
-            delay: 0,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: false,
+          speed={reduceMotion ? 300 : 6000}
+          onSwiper={(swiper) => {
+            swiperRef.current = swiper;
           }}
+          autoplay={
+            reduceMotion
+              ? false
+              : {
+                  delay: 0,
+                  disableOnInteraction: false,
+                  pauseOnMouseEnter: true,
+                }
+          }
           freeMode={{
             enabled: true,
             momentum: true,
@@ -182,22 +266,40 @@ export default function Industries() {
           simulateTouch
           grabCursor
           onTouchStart={(swiper) => {
-            if (swiper.autoplay) swiper.autoplay.stop();
+            swiper.autoplay?.stop();
           }}
           onTouchEnd={(swiper) => {
-            if (swiper.autoplay) swiper.autoplay.start();
+            if (!reduceMotion) swiper.autoplay?.start();
           }}
         >
-          {STRATEGY_INDUSTRIES.map((item) => (
-            <SwiperSlide key={`${item.idx}-${item.title}`} className="industry-slide">
+          {LOOP_SLIDES.map((item, i) => (
+            <SwiperSlide key={`${item.idx}-${i}`} className="industry-slide">
               <IndustryCard {...item} />
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
 
-      {/* Bottom CTA: Explore All Industries */}
-      <div className="text-center mt-2 position-relative z-10">
+      <div className="container position-relative z-10 industries-actions-row anim-reveal">
+        <div className="industries-controls-dock">
+          <button
+            type="button"
+            className="industries-nav-btn"
+            aria-label="Previous industry"
+            onClick={() => stepCarousel("prev")}
+          >
+            <i className="fa-solid fa-arrow-left" aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            className="industries-nav-btn"
+            aria-label="Next industry"
+            onClick={() => stepCarousel("next")}
+          >
+            <i className="fa-solid fa-arrow-right" aria-hidden="true" />
+          </button>
+        </div>
+
         <Link
           href="/industries"
           className="btn btn-explore-services rounded-pill fw-semibold magnetic-btn"
