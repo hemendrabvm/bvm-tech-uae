@@ -1184,6 +1184,9 @@
   grid-area: stage;
   position: relative;
   min-height: 550px;
+      /* background: linear-gradient(165deg, #0d131df5 0%, #070b11fa 100%); */
+    /* border: 1px solid #ffffff17; */
+  /* border-radius: 20px; */
 }
 
 .gc-globe-hit {
