@@ -2,109 +2,150 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { useAdvisorModal } from "@/components/AdvisorModal/AdvisorModalContext";
 
-/* The window on the right is a stylised business workspace. Its sidebar IS the
-   service list, and scrolling walks through each service. Text is illustrative. */
 const LAYERS = [
   {
-    href: "/erp-development", tone: "cyan", icon: "fa-chart-column", title: "Enterprise Platforms", sub: "ERP | CRM | ITSM | EAM",
+    href: "/enterprise-applications",
+    tone: "cyan",
+    icon: "fa-chart-column",
+    title: "Enterprise Platforms",
+    sub: "ERP | CRM | ITSM | EAM",
     desc: "ERP, CRM, ITSM and EAM platforms implemented as the operational core of your business.",
-    tiles: [["Finance", "Connected"], ["Supply chain", "Connected"], ["People", "Connected"]],
-    rows: [["General ledger", "Synced"], ["Procurement", "Active"], ["Asset management", "Active"]],
+    tiles: [
+      ["Finance", "Connected"],
+      ["Supply chain", "Connected"],
+      ["People", "Connected"],
+    ],
+    rows: [
+      ["General ledger", "Synced"],
+      ["Procurement", "Active"],
+      ["Asset management", "Active"],
+    ],
     bars: [38, 52, 46, 64, 58, 72, 66, 80, 74, 88, 82, 94],
     satTop: {
       kicker: "Operational Core",
       label: "Resource utilization",
       line: "M0 34 L20 30 L40 32 L60 22 L80 24 L100 14 L120 8",
     },
-    satBot: {
-      kicker: "Core Sync",
-      label: "ERP · CRM · EAM",
-      mode: "hub",
-    },
+    satBot: { kicker: "Core Sync", label: "ERP · CRM · EAM", mode: "hub" },
   },
   {
-    href: "/security", tone: "red", icon: "fa-cloud", title: "Cloud & Integration", sub: "Connect systems and data",
+    href: "/cloud-cybersecurity-integration",
+    tone: "red",
+    icon: "fa-cloud",
+    title: "Cloud & Integration",
+    sub: "Connect systems and data",
     desc: "Applications, systems and data connected so every platform works as one.",
-    tiles: [["Applications", "Linked"], ["Systems", "Linked"], ["Data", "Linked"]],
-    rows: [["ERP to CRM", "Connected"], ["CRM to service desk", "Connected"], ["Data warehouse", "Syncing"]],
+    tiles: [
+      ["Applications", "Linked"],
+      ["Systems", "Linked"],
+      ["Data", "Linked"],
+    ],
+    rows: [
+      ["ERP to CRM", "Connected"],
+      ["CRM to service desk", "Connected"],
+      ["Data warehouse", "Syncing"],
+    ],
     bars: [60, 62, 58, 66, 64, 70, 68, 72, 70, 76, 74, 78],
     satTop: {
       kicker: "Data Pipeline",
       label: "API throughput",
       line: "M0 26 L18 18 L36 28 L54 16 L72 25 L90 12 L108 20 L120 10",
     },
-    satBot: {
-      kicker: "Mesh Network",
-      label: "Systems connected",
-      mode: "mesh",
-    },
+    satBot: { kicker: "Mesh Network", label: "Systems connected", mode: "mesh" },
   },
   {
-    href: "/custom-software-development", tone: "cyan", icon: "fa-code", title: "Digital Engineering", sub: "Custom solutions, agile and platforms",
+    href: "/digital-product-engineering",
+    tone: "cyan",
+    icon: "fa-code",
+    title: "Digital Engineering",
+    sub: "Custom solutions, agile and platforms",
     desc: "Custom software and product platforms, built around the way your teams actually work.",
-    tiles: [["Web apps", "In delivery"], ["Mobile", "In delivery"], ["Platforms", "In delivery"]],
-    rows: [["Customer portal", "Released"], ["Workflow app", "In sprint"], ["Partner platform", "In design"]],
+    tiles: [
+      ["Web apps", "In delivery"],
+      ["Mobile", "In delivery"],
+      ["Platforms", "In delivery"],
+    ],
+    rows: [
+      ["Customer portal", "Released"],
+      ["Workflow app", "In sprint"],
+      ["Partner platform", "In design"],
+    ],
     bars: [30, 44, 40, 58, 52, 66, 60, 74, 70, 82, 78, 90],
     satTop: {
       kicker: "Agile Delivery",
       label: "Release velocity",
       line: "M0 38 L24 38 L24 28 L52 28 L52 18 L84 18 L84 9 L120 9",
     },
-    satBot: {
-      kicker: "DevSecOps",
-      label: "CI/CD pipeline active",
-      mode: "pipeline",
-    },
+    satBot: { kicker: "DevSecOps", label: "CI/CD pipeline active", mode: "pipeline" },
   },
   {
-    href: "/ai-automation-development", tone: "red", icon: "fa-microchip", title: "AI & Data", sub: "Turn data into intelligence",
+    href: "/ai-automation-development",
+    tone: "red",
+    icon: "fa-microchip",
+    title: "AI & Data",
+    sub: "Turn data into intelligence",
     desc: "Analytics, automation and AI that turn the data you already have into decisions.",
-    tiles: [["Analytics", "Running"], ["Automation", "Running"], ["AI assistants", "Live"]],
-    rows: [["Demand forecast", "Running"], ["Invoice automation", "Running"], ["Support assistant", "Live"]],
+    tiles: [
+      ["Analytics", "Running"],
+      ["Automation", "Running"],
+      ["AI assistants", "Live"],
+    ],
+    rows: [
+      ["Demand forecast", "Running"],
+      ["Invoice automation", "Running"],
+      ["Support assistant", "Live"],
+    ],
     bars: [24, 30, 38, 36, 52, 60, 58, 74, 82, 80, 92, 98],
     satTop: {
       kicker: "AI Insight",
       label: "Demand forecast",
       line: "M0 38 L15 33 L30 35 L48 24 L66 27 L84 13 L102 16 L120 4",
     },
-    satBot: {
-      kicker: "Intelligence",
-      label: "Neural models live",
-      mode: "neural",
-    },
+    satBot: { kicker: "Intelligence", label: "Neural models live", mode: "neural" },
   },
   {
-    href: "/faq#faq-ownership", tone: "cyan", icon: "fa-gear", title: "Managed Delivery", sub: "Run, optimize and scale",
+    href: "/managed-services",
+    tone: "cyan",
+    icon: "fa-gear",
+    title: "Managed Delivery",
+    sub: "Run, optimize and scale",
     desc: "A global delivery team that runs, optimizes and scales what we build with you.",
-    tiles: [["Monitoring", "24/7"], ["Optimization", "Ongoing"], ["Support", "Global"]],
-    rows: [["Platform health", "Healthy"], ["Release pipeline", "Healthy"], ["Service desk", "Open"]],
+    tiles: [
+      ["Monitoring", "24/7"],
+      ["Optimization", "Ongoing"],
+      ["Support", "Global"],
+    ],
+    rows: [
+      ["Platform health", "Healthy"],
+      ["Release pipeline", "Healthy"],
+      ["Service desk", "Open"],
+    ],
     bars: [70, 72, 71, 74, 73, 76, 75, 78, 77, 80, 79, 82],
     satTop: {
       kicker: "24/7 Operations",
       label: "99.98% SLA Uptime",
       line: "M0 14 L20 13 L40 15 L60 12 L80 13 L100 11 L120 10",
     },
-    satBot: {
-      kicker: "Global Delivery",
-      label: "Global nodes healthy",
-      mode: "pulse",
-    },
+    satBot: { kicker: "Global Delivery", label: "Global nodes healthy", mode: "pulse" },
   },
 ];
 
-/* Alternating brand colours per slide: --logo-cyan, --brand-red (ink = lighter shade for text) */
 const TONES: Record<string, { a: string; ink: string }> = {
   cyan: { a: "var(--logo-cyan, #0096ea)", ink: "#38bdf8" },
   red: { a: "var(--brand-red, #e40d17)", ink: "#ff5a63" },
 };
 
-/* data streams behind the workspace: x = position (%), t = speed (s), dl = delay (s) */
 const STREAMS = [
-  { x: 6, t: 5.5, dl: 0 }, { x: 17, t: 7, dl: 2.2 }, { x: 28, t: 6, dl: 4 },
-  { x: 39, t: 8, dl: 1 }, { x: 50, t: 5.8, dl: 3.1 }, { x: 61, t: 7.4, dl: 0.6 },
-  { x: 72, t: 6.4, dl: 2.6, red: true }, { x: 83, t: 8.2, dl: 4.4 }, { x: 94, t: 6.6, dl: 1.6 },
+  { x: 6, t: 5.5, dl: 0 },
+  { x: 17, t: 7, dl: 2.2 },
+  { x: 28, t: 6, dl: 4 },
+  { x: 39, t: 8, dl: 1 },
+  { x: 50, t: 5.8, dl: 3.1 },
+  { x: 61, t: 7.4, dl: 0.6 },
+  { x: 72, t: 6.4, dl: 2.6, red: true },
+  { x: 83, t: 8.2, dl: 4.4 },
+  { x: 94, t: 6.6, dl: 1.6 },
 ];
 
 const STORY_START = 0.14;
@@ -121,7 +162,6 @@ const ArrowIcon = () => (
   </span>
 );
 
-/* Dynamic SVG graphics for the bottom-left satellite card per step */
 const SatBotGraphic = ({ mode }: { mode: string }) => {
   switch (mode) {
     case "hub":
@@ -178,10 +218,8 @@ export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
   const pinRef = useRef<HTMLDivElement>(null);
   const timerRef = useRef<number>(0);
-  const { openAdvisorModal } = useAdvisorModal();
-  const [active, setActive] = useState(-1); // -1 = intro, 0..4 = service in focus
+  const [active, setActive] = useState(-1);
 
-  /* Skip directly past the hero section to the next section on the page */
   const skipHeroSection = useCallback(() => {
     const section = heroRef.current;
     if (!section) return;
@@ -199,7 +237,6 @@ export default function Hero() {
     });
   }, []);
 
-  /* Jump to a specific service when clicking a progress step bar */
   const goToLayer = useCallback((index: number) => {
     const section = heroRef.current;
     if (!section) return;
@@ -241,7 +278,6 @@ export default function Hero() {
       return;
     }
 
-    /* cursor light + depth parallax (desktop only) */
     const onPointer = (e: PointerEvent) => {
       if (mobile.matches) return;
       const r = pin.getBoundingClientRect();
@@ -267,13 +303,9 @@ export default function Hero() {
 
     const apply = (p: number) => {
       const m = ease(range(p, 0, 0.2));
-
-      // Sequence the hand-off: the intro finishes leaving before the service
-      // story begins entering. Both transitions remain scroll-driven and smooth.
       const introProgress = 1 - ease(range(p, 0.03, 0.12));
-      const storyProgress = ease(range(p, STORY_START, STORY_START + 0.10));
+      const storyProgress = ease(range(p, STORY_START, STORY_START + 0.1));
       setVars(m, introProgress, storyProgress);
-      /* orbiting camera: exact original math */
       pin.style.setProperty("--p", p.toFixed(4));
       pin.style.setProperty("--ry", `${(-34 + m * 24 + Math.sin(p * Math.PI * 5) * 7 * m).toFixed(2)}deg`);
       pin.style.setProperty("--rx", `${(14 - m * 8 + Math.cos(p * Math.PI * 3) * 3 * m).toFixed(2)}deg`);
@@ -297,7 +329,6 @@ export default function Hero() {
       if (!raf) raf = requestAnimationFrame(tick);
     };
 
-    /* phones/tablets: no pinning, the workspace cycles through the services */
     const setup = () => {
       window.clearInterval(timerRef.current);
       if (mobile.matches) {
@@ -343,7 +374,6 @@ export default function Hero() {
 
         <div className="container bvz-container">
           <div className="bvz-grid">
-            {/* ---------- LEFT: intro, then one service at a time ---------- */}
             <div className="bvz-copy">
               <div className="bvz-intro">
                 <div className="bvz-badge bvz-rise" style={{ ["--d" as string]: "0.05s" }}>
@@ -360,12 +390,18 @@ export default function Hero() {
                   modernize technology, accelerate transformation and create measurable business outcomes.
                 </p>
                 <div className="bvz-actions bvz-rise" style={{ ["--d" as string]: "0.62s" }}>
-                  <button type="button" onClick={openAdvisorModal} className="btn btn-consult-red d-inline-flex align-items-center justify-content-center px-4 py-3 rounded-pill fw-semibold magnetic-btn">
+                  <Link
+                    href="/contact"
+                    className="btn btn-consult-red d-inline-flex align-items-center justify-content-center px-4 py-3 rounded-pill fw-semibold magnetic-btn"
+                  >
                     <span className="btn-text">Talk to an Advisor</span>
                     <ArrowIcon />
                     <span className="btn-sheen" />
-                  </button>
-                  <Link href="#what-we-do" className="btn btn-sky-blue d-inline-flex align-items-center justify-content-center px-4 py-3 rounded-pill fw-semibold magnetic-btn">
+                  </Link>
+                  <Link
+                    href="#what-we-do"
+                    className="btn btn-sky-blue d-inline-flex align-items-center justify-content-center px-4 py-3 rounded-pill fw-semibold magnetic-btn"
+                  >
                     <span className="btn-text">Explore Our Capabilities</span>
                     <ArrowIcon />
                     <span className="btn-sheen" />
@@ -414,7 +450,6 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* ---------- RIGHT: 3D workspace ---------- */}
             <div className="bvz-visual">
               <div className="bvz-scene">
                 <div className="bvz-rig">
@@ -431,7 +466,6 @@ export default function Hero() {
                   <span className="bvz-plate bvz-p1" aria-hidden="true" />
                   <span className="bvz-plate bvz-p2" aria-hidden="true" />
 
-                  {/* Dynamic Top-Right Satellite Card (bvz-sat-ai) */}
                   <div className="bvz-sat bvz-sat-ai" aria-hidden="true">
                     <div className="bvz-sat-inner" key={`ai-${view}`}>
                       <span className="bvz-sat-k">{L.satTop.kicker}</span>
@@ -449,7 +483,6 @@ export default function Hero() {
                     </div>
                   </div>
 
-                  {/* Dynamic Bottom-Left Satellite Card (bvz-sat-int) */}
                   <div className="bvz-sat bvz-sat-int" aria-hidden="true">
                     <div className="bvz-sat-inner" key={`int-${view}`}>
                       <span className="bvz-sat-k">{L.satBot.kicker}</span>
@@ -504,7 +537,6 @@ export default function Hero() {
 
         <div className="bvz-cue" aria-hidden="true"><span>Scroll to explore</span><i /></div>
 
-        {/* Skip Hero Section Button */}
         <button
           type="button"
           onClick={skipHeroSection}
