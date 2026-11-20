@@ -140,7 +140,6 @@ main#main-content {
     position: relative;
     z-index: 2;
 }
-
 /* ==========================================================================
    PRELOADER — SIMPLE VERTICAL RECTANGLE METER & IRIS WIPE (THEME-LOCKED)
    Strictly uses: --bg-dark (#03060a), --logo-cyan (#0096ea),
@@ -222,7 +221,7 @@ main#main-content {
   }
 }
 
-/* 28 Slim Vertical Rectangle Bars (~5.4px x 12px) */
+/* 28 Fine Vertical Ticks: a small instrument-style scale, so the logo leads */
 .preloader-loader {
   width: 100%;
 }
@@ -230,37 +229,45 @@ main#main-content {
 .preloader-track {
   display: grid;
   grid-template-columns: repeat(28, minmax(0, 1fr));
-  gap: 4px;
+  gap: 0;
   width: 100%;
-  height: 12px;
+  height: 14px;
+  align-items: center;
 }
 
+/* Idle tick: short and faint */
 .preloader-segment {
   display: block;
-  width: 100%;
-  height: 100%;
-  border-radius: 1.5px;
-  background: rgba(255, 255, 255, 0.11);
-  transition: background-color 0.12s ease, box-shadow 0.12s ease;
+  width: 2px;
+  height: 5px;
+  justify-self: center;
+  border-radius: 1px;
+  background: rgba(255, 255, 255, 0.14);
+  transition:
+    height 0.2s cubic-bezier(0.2, 0.7, 0.3, 1),
+    background-color 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
-/* Active Rectangles (--logo-cyan) */
+/* Active tick (--logo-cyan): grows taller, so the fill reads as a rising scale */
 .preloader-segment.active {
+  height: 9px;
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.28) 0%,
-    var(--logo-cyan) 100%
+    rgba(255, 255, 255, 0.4) 0%,
+    var(--logo-cyan) 60%
   );
   background-color: var(--logo-cyan);
-  box-shadow: 0 0 6px var(--logo-cyan-glow);
+  box-shadow: 0 0 5px rgba(0, 150, 234, 0.45);
 }
 
-/* Leading Active Rectangle */
+/* Leading tick: tallest, white, the only bright point in the meter */
 .preloader-segment.current {
+  height: 14px;
   background: var(--text-white);
   box-shadow:
-    0 0 8px var(--logo-cyan),
-    0 0 16px var(--logo-cyan-glow);
+    0 0 6px var(--logo-cyan),
+    0 0 12px rgba(0, 150, 234, 0.5);
 }
 
 /* Loading Information Row */
@@ -338,8 +345,11 @@ main#main-content {
   }
 
   .preloader-track {
-    gap: 3px;
-    height: 10px;
+    height: 12px;
+  }
+
+  .preloader-segment.current {
+    height: 12px;
   }
 
   .preloader-info {
@@ -370,6 +380,12 @@ main#main-content {
   }
 
   .preloader-logo {
+    animation: none;
+  }
+
+  .preloader-segment,
+  .preloader-segment.current {
+    transition: none;
     animation: none;
   }
 }
